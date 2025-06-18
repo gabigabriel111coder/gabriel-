@@ -1,0 +1,7 @@
+{
+  "name": "Inim Addon Repo",
+  "url": "https://github.com/yourusername/inim-addon",
+  "maintainer": "yourusername",
+  "slug": "inim",
+  "description": "Bridge MQTT per centrale Inim Prime X60"
+}

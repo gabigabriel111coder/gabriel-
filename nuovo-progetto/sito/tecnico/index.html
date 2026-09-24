@@ -26,6 +26,7 @@
   <script src="../assets/main.js" defer></script>
   <script src="../assets/vendor/qrcode.js" defer></script>
   <script src="../assets/strumenti.js" defer></script>
+  <script src="../assets/gestionale.js" defer></script>
 </head>
 <body data-no-3d data-no-assistant>
 <a class="skip" href="#main">Vai al contenuto</a>
@@ -91,6 +92,7 @@
     <a href="../index.html#contatti">Contatti</a>
     <a class="nav__only-mobile" href="../prenota.html">Prenota un orario</a>
   </nav>
+  
   <button class="theme-btn" type="button" data-theme-toggle aria-pressed="false" aria-label="Passa al tema scuro"><svg class="i i-moon"><use href="#i-moon"/></svg><svg class="i i-sun"><use href="#i-sun"/></svg></button>
   <a class="btn btn--ghost btn--sm nav__cta nav__book" href="../prenota.html"><svg class="i"><use href="#i-calendar"/></svg>Prenota</a>
   <a class="btn btn--wa btn--sm nav__cta" href="../index.html#contatti" data-wa><svg class="i"><use href="#i-chat"/></svg>WhatsApp</a>
@@ -99,16 +101,65 @@
 <main id="main">
 
 <section class="page-hero wrap">
+  
+  <nav class="panel-nav" aria-label="Pannello">
+    <a href="index.html" aria-current="page">Strumenti</a><a href="richieste.html">Richieste</a><a href="monitoraggio.html">Monitoraggio</a>
+  </nav>
   <h1>Pannello del tecnico</h1>
-  <p class="lead">Gli strumenti per il lavoro di ogni giorno. Questa pagina non compare su Google: salvala nei preferiti.</p>
-  <p class="callout callout--warn narrow-left">Non è protetta da password: non scriverci mai dati dei clienti.</p>
+  <p class="lead">Gli strumenti per il lavoro di ogni giorno. Queste pagine non compaiono su Google: salvale nei preferiti.</p>
 </section>
 
 <section class="section section--tight wrap">
-  <div class="card glass">
-    <h2>Controllo impostazioni</h2>
-    <p class="muted">Cosa manca in <code>assets/config.js</code> prima di pubblicare.</p>
-    <ul class="checks" data-checks></ul>
+  <div class="cards">
+    <a class="card-sm glass" href="richieste.html"><span class="ico ico--blue"><svg class="i"><use href="#i-calendar"/></svg></span><h3>Richieste e appuntamenti</h3><p>Conferma gli appuntamenti: conferma, promemoria e richiesta di recensione partono da soli.</p></a>
+    <a class="card-sm glass" href="monitoraggio.html"><span class="ico ico--green"><svg class="i"><use href="#i-shield"/></svg></span><h3>Monitoraggio dei PC</h3><p>Lo stato dei computer degli abbonati, con avvisi su Telegram quando qualcosa non va.</p></a>
+  </div>
+</section>
+
+<section class="section section--tight wrap">
+  
+  <div class="card glass access" data-access>
+    <div data-access-out>
+      <h2>Accesso</h2>
+      <p class="muted">Scrivi la chiave di accesso che hai impostato su Netlify come <code>ADMIN_TOKEN</code>. Resta salvata solo su questo dispositivo.</p>
+      <form class="idform" data-access-form>
+        <label class="sr-only" for="adm-key">Chiave di accesso</label>
+        <input id="adm-key" type="password" autocomplete="current-password" placeholder="Chiave di accesso" required minlength="24">
+        <button class="btn btn--primary" type="submit">Entra</button>
+      </form>
+      <p class="form__status" role="status" aria-live="polite" data-access-status></p>
+      <details class="access__help">
+        <summary>Non hai ancora una chiave?</summary>
+        <p class="muted">Creane una lunga e casuale con il pulsante, copiala in Netlify (Site configuration → Environment variables → <code>ADMIN_TOKEN</code>), ripubblica il sito e poi incollala qui.</p>
+        <div class="cta-row cta-row--tight"><button class="btn btn--ghost btn--xs" type="button" data-gen-key><svg class="i"><use href="#i-key"/></svg>Genera una chiave sicura</button></div>
+        <p><code class="access__key" data-gen-out></code></p>
+      </details>
+    </div>
+    <div class="access__in" data-access-in hidden>
+      <p><svg class="i"><use href="#i-check"/></svg>Collegato al gestionale.</p>
+      <button class="btn btn--ghost btn--xs" type="button" data-logout>Esci da questo dispositivo</button>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tight wrap">
+  <div class="cols2">
+    <div class="card glass">
+      <h2>Controllo impostazioni</h2>
+      <p class="muted">Cosa manca in <code>assets/config.js</code> prima di pubblicare.</p>
+      <ul class="checks" data-checks></ul>
+    </div>
+    <div class="card glass">
+      <h2>Servizi collegati</h2>
+      <p class="muted">Cosa è attivo su Netlify. Visibile dopo l'accesso.</p>
+      <ul class="checks" data-services><li class="todo"><svg class="i"><use href="#i-alert"/></svg><div><b>Accedi per vedere lo stato</b></div></li></ul>
+      <div class="cta-row cta-row--tight" data-test-box hidden>
+        <button class="btn btn--ghost btn--xs" type="button" data-test="telegram">Prova Telegram</button>
+        <button class="btn btn--ghost btn--xs" type="button" data-test="email">Prova email</button>
+        <button class="btn btn--ghost btn--xs" type="button" data-test="whatsapp">Prova WhatsApp</button>
+      </div>
+      <p class="form__status" role="status" aria-live="polite" data-test-status></p>
+    </div>
   </div>
 </section>
 

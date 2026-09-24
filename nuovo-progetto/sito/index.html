@@ -27,24 +27,53 @@
   <script src="assets/config.js" defer></script>
   <script src="assets/main.js" defer></script>
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "Gabriel Tech",
-    "logo": "https://www.example.com/assets/brand/icon-512.png",
-    "description": "Assistenza informatica da remoto per privati e piccole attività.",
-    "url": "https://www.example.com/",
-    "telephone": "+390000000000",
-    "email": "info@example.com",
-    "areaServed": { "@type": "Country", "name": "Italia" },
-    "priceRange": "€€",
-    "openingHoursSpecification": [
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "09:00", "closes": "13:00" },
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "14:30", "closes": "19:30" },
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "13:00" }
-    ]
-  }
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Gabriel Tech",
+  "description": "Assistenza informatica da remoto per privati e piccole attività.",
+  "url": "https://www.example.com/",
+  "logo": "https://www.example.com/assets/brand/icon-512.png",
+  "image": "https://www.example.com/assets/brand/og-image.png",
+  "telephone": "+390000000000",
+  "email": "info@example.com",
+  "areaServed": {
+    "@type": "Country",
+    "name": "Italia"
+  },
+  "priceRange": "€€",
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ],
+      "opens": "09:00",
+      "closes": "13:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "opens": "14:30",
+      "closes": "19:30"
+    }
+  ]
+}
   </script>
+  <link rel="alternate" hreflang="it" href="https://www.example.com/">
+  <link rel="alternate" hreflang="en" href="https://www.example.com/en/">
+  <link rel="alternate" hreflang="x-default" href="https://www.example.com/">
 </head>
 <body>
 <a class="skip" href="#main">Vai al contenuto</a>
@@ -98,7 +127,6 @@
   <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12.5" rx="2"/><path d="M9 20.5h6M12 16.5v4"/></symbol>
 </svg>
 
-<!-- NAV:START -->
 <header class="nav glass" data-nav>
   <a class="brand" href="#top" aria-label="Gabriel Tech, vai all'inizio">
     <svg class="brand__logo" aria-hidden="true"><use href="#logo-mark"/></svg>
@@ -113,12 +141,12 @@
     <a href="#contatti">Contatti</a>
     <a class="nav__only-mobile" href="prenota.html">Prenota un orario</a>
   </nav>
+  <a class="lang-btn" href="en/index.html" data-lang-switch hreflang="en" lang="en" aria-label="English version">EN</a>
   <button class="theme-btn" type="button" data-theme-toggle aria-pressed="false" aria-label="Passa al tema scuro"><svg class="i i-moon"><use href="#i-moon"/></svg><svg class="i i-sun"><use href="#i-sun"/></svg></button>
   <a class="btn btn--ghost btn--sm nav__cta nav__book" href="prenota.html"><svg class="i"><use href="#i-calendar"/></svg>Prenota</a>
   <a class="btn btn--wa btn--sm nav__cta" href="#contatti" data-wa><svg class="i"><use href="#i-chat"/></svg>WhatsApp</a>
   <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Apri il menu" data-menu><span></span><span></span></button>
 </header>
-<!-- NAV:END -->
 
 <main id="main">
 
@@ -295,10 +323,10 @@
       <fieldset class="quiz__q">
         <legend><small>Domanda 1 di 3</small>Che dispositivo usi?</legend>
         <div class="quiz__opts">
-          <label class="opt"><input type="radio" name="dispositivo" value="PC Windows"><span><svg class="i"><use href="#i-monitor"/></svg>PC Windows</span></label>
-          <label class="opt"><input type="radio" name="dispositivo" value="Mac"><span><svg class="i"><use href="#i-monitor"/></svg>Mac</span></label>
-          <label class="opt"><input type="radio" name="dispositivo" value="smartphone Android"><span><svg class="i"><use href="#i-mobile"/></svg>Android</span></label>
-          <label class="opt"><input type="radio" name="dispositivo" value="iPhone o iPad"><span><svg class="i"><use href="#i-mobile"/></svg>iPhone o iPad</span></label>
+          <label class="opt"><input type="radio" name="dispositivo" value="win"><span><svg class="i"><use href="#i-monitor"/></svg>PC Windows</span></label>
+          <label class="opt"><input type="radio" name="dispositivo" value="mac"><span><svg class="i"><use href="#i-monitor"/></svg>Mac</span></label>
+          <label class="opt"><input type="radio" name="dispositivo" value="android"><span><svg class="i"><use href="#i-mobile"/></svg>Android</span></label>
+          <label class="opt"><input type="radio" name="dispositivo" value="ios"><span><svg class="i"><use href="#i-mobile"/></svg>iPhone o iPad</span></label>
         </div>
       </fieldset>
       <fieldset class="quiz__q" hidden>
@@ -455,7 +483,7 @@
           <li><svg class="i"><use href="#i-check"/></svg>Installare un programma</li>
           <li><svg class="i"><use href="#i-check"/></svg>SPID, CIE e app IO</li>
         </ul>
-        <div class="plan__actions"><a class="btn btn--ghost btn--block" href="prenota.html?servizio=Rapido">Prenota</a></div>
+        <div class="plan__actions"><a class="btn btn--ghost btn--block" href="prenota.html?servizio=rapido">Prenota</a></div>
       </article>
       <article class="plan plan--hot glass reveal" data-tilt>
         <span class="badge">Il più scelto</span>
@@ -468,7 +496,7 @@
           <li><svg class="i"><use href="#i-check"/></svg>Passaggio a Windows 11</li>
           <li><svg class="i"><use href="#i-check"/></svg>Backup e sicurezza degli account</li>
         </ul>
-        <div class="plan__actions"><a class="btn btn--primary btn--block" href="prenota.html?servizio=Completo">Prenota</a></div>
+        <div class="plan__actions"><a class="btn btn--primary btn--block" href="prenota.html?servizio=completo">Prenota</a></div>
       </article>
       <article class="plan glass reveal" data-tilt>
         <h3 class="plan__name">Pacchetto 5 ore</h3>
@@ -491,7 +519,7 @@
         <p class="plan__sub">Fino a 3 dispositivi · disdici quando vuoi</p>
         <ul>
           <li><svg class="i"><use href="#i-check"/></svg>1 intervento Rapido al mese incluso</li>
-          <li><svg class="i"><use href="#i-check"/></svg>Check-up di sicurezza ogni 3 mesi</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Monitoraggio del PC e check-up ogni 3 mesi</li>
           <li><svg class="i"><use href="#i-check"/></svg>Risposta prioritaria su WhatsApp</li>
           <li><svg class="i"><use href="#i-check"/></svg>Sconto del 20% sugli interventi extra</li>
         </ul>
@@ -505,7 +533,7 @@
         <ul>
           <li><svg class="i"><use href="#i-check"/></svg>Fino a 2 ore di assistenza al mese</li>
           <li><svg class="i"><use href="#i-check"/></svg>Email, PEC e Microsoft 365</li>
-          <li><svg class="i"><use href="#i-check"/></svg>Controllo mensile dei backup</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Monitoraggio automatico di PC e backup</li>
           <li><svg class="i"><use href="#i-check"/></svg>Risposta entro 2 ore lavorative</li>
         </ul>
         <div class="plan__actions"><a class="btn btn--primary btn--block" data-pay="professionisti" hidden>Attiva online</a><a class="btn btn--ghost btn--block" href="#contatti" data-wa="Ciao! Mi interessa l'abbonamento Professionisti (39 €/mese).">Attiva su WhatsApp</a></div>
@@ -517,7 +545,7 @@
         <ul>
           <li><svg class="i"><use href="#i-check"/></svg>Assistenza per tutto l'ufficio</li>
           <li><svg class="i"><use href="#i-check"/></svg>Accesso non presidiato, solo se autorizzato</li>
-          <li><svg class="i"><use href="#i-check"/></svg>Report mensile degli interventi</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Monitoraggio di tutte le postazioni</li>
           <li><svg class="i"><use href="#i-check"/></svg>Nomina a responsabile del trattamento (GDPR)</li>
         </ul>
         <div class="plan__actions"><a class="btn btn--ghost btn--block" href="aziende.html">Scopri e chiedi un preventivo</a></div>
@@ -583,6 +611,7 @@
       <details class="glass reveal"><summary>Come si paga? Ricevo la fattura?</summary><p>Paghi a fine intervento con carta, PayPal, Satispay o bonifico istantaneo. Ricevi sempre la fattura elettronica.</p></details>
       <details class="glass reveal"><summary>Lavori anche su Mac, iPhone e Android?</summary><p>Sì. Su Mac e Android posso controllare il dispositivo a distanza. Su iPhone e iPad vedo lo schermo che condividi e ti guido passo passo.</p></details>
       <details class="glass reveal"><summary>Posso fare altro mentre lavori?</summary><p>Sì. Per operazioni lunghe, come aggiornamenti o backup, puoi lasciare il computer acceso: ti scrivo io quando ho finito. L'accesso vale solo per quella sessione.</p></details>
+      <details class="glass reveal"><summary>Cos'è il monitoraggio del PC incluso negli abbonamenti?</summary><p>Un piccolo programma, installato solo con il tuo consenso, che una volta al giorno mi manda lo stato di salute del computer: spazio sul disco, antivirus, aggiornamenti e backup. Se qualcosa non va ti avviso prima che diventi un problema. Non legge i tuoi file e non permette di controllare il PC.</p></details>
       <details class="glass reveal"><summary>Quali sono le condizioni del servizio?</summary><p>Prezzi, pagamenti, garanzia «se non risolvo non paghi» e diritto di recesso sono spiegati nelle <a href="condizioni.html">condizioni di servizio</a>, con parole semplici.</p></details>
       <details class="glass reveal"><summary>Lavori con aziende e partite IVA?</summary><p>Sì, con l'abbonamento Professionisti o con un piano su misura. Se nel tuo lavoro tratti dati di clienti, firmiamo la nomina a responsabile del trattamento prevista dal GDPR. <a href="aziende.html">Scopri l'assistenza per le aziende</a>.</p></details>
     </div>
@@ -608,9 +637,13 @@
         <table class="hours" data-hours>
           <caption>Orari (ora italiana)</caption>
           <tbody>
-            <tr><th scope="row">Lunedì – Venerdì</th><td>9:00–13:00 · 14:30–19:30</td></tr>
-            <tr><th scope="row">Sabato</th><td>9:00–13:00</td></tr>
-            <tr><th scope="row">Domenica</th><td>Chiuso</td></tr>
+          <tr><th scope="row">Lunedì</th><td>9:00–13:00 · 14:30–19:30</td></tr>
+          <tr><th scope="row">Martedì</th><td>9:00–13:00 · 14:30–19:30</td></tr>
+          <tr><th scope="row">Mercoledì</th><td>9:00–13:00 · 14:30–19:30</td></tr>
+          <tr><th scope="row">Giovedì</th><td>9:00–13:00 · 14:30–19:30</td></tr>
+          <tr><th scope="row">Venerdì</th><td>9:00–13:00 · 14:30–19:30</td></tr>
+          <tr><th scope="row">Sabato</th><td>9:00–13:00</td></tr>
+          <tr><th scope="row">Domenica</th><td>Chiuso</td></tr>
           </tbody>
         </table>
         <p class="card__note">Fuori orario puoi scrivermi lo stesso: ti rispondo appena torno disponibile. Email: <a href="mailto:info@example.com" data-email>info@example.com</a></p>
@@ -618,6 +651,7 @@
 
       <form class="form card glass reveal" name="richiamata" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-form data-wa-intro="Ciao! Vorrei essere ricontattato." data-success="Grazie! Ho ricevuto la richiesta: ti richiamo appena possibile, negli orari di disponibilità." data-success-link="collegati.html" data-success-link-text="Intanto prepara AnyDesk in 2 minuti.">
         <input type="hidden" name="form-name" value="richiamata">
+        <input type="hidden" name="lingua" value="it" data-lang-field>
         <p class="hp"><label>Non compilare questo campo: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
         <h3>Ti richiamo io</h3>
         <div class="field">
@@ -659,6 +693,11 @@
           <label for="f-msg">Descrivi il problema <span>(facoltativo)</span></label>
           <textarea id="f-msg" name="messaggio" rows="3" maxlength="800"></textarea>
         </div>
+        <div class="field">
+          <label for="f-email">Email <span>(facoltativa: ti mando la conferma)</span></label>
+          <input id="f-email" name="email" type="email" autocomplete="email" maxlength="100">
+        </div>
+        <label class="check"><input type="checkbox" name="aggiornamenti" value="si"><span>Mandami su WhatsApp la conferma e un promemoria dell'appuntamento e, dopo l'intervento, una richiesta di recensione (anche via email, se la lasci). Al massimo 3 messaggi.</span></label>
         <label class="check"><input type="checkbox" name="privacy" value="letta" required><span>Ho letto l'<a href="privacy.html">informativa privacy</a> e chiedo di essere ricontattato.</span></label>
         <div class="cta-row cta-row--tight">
           <button class="btn btn--primary" type="submit">Richiamami</button>
@@ -670,7 +709,6 @@
   </section>
 </main>
 
-<!-- FOOTER:START -->
 <footer class="footer">
   <div class="wrap">
     <div class="footer__cols">
@@ -718,6 +756,5 @@
   </div>
 </footer>
 <a class="fab" href="#contatti" data-wa aria-label="Scrivimi su WhatsApp"><svg class="i"><use href="#i-chat"/></svg></a>
-<!-- FOOTER:END -->
 </body>
 </html>

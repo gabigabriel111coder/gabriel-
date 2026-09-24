@@ -21,9 +21,12 @@
   <link rel="manifest" href="site.webmanifest">
   <link rel="stylesheet" href="assets/style.css">
   <script>document.documentElement.classList.add("js");try{var t=localStorage.getItem("gt-theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
-  <script type="importmap">{ "imports": { "three": "assets/vendor/three.module.min.js" } }</script>
+  <script type="importmap">{ "imports": { "three": "./assets/vendor/three.module.min.js" } }</script>
   <script src="assets/config.js" defer></script>
   <script src="assets/main.js" defer></script>
+  <link rel="alternate" hreflang="it" href="https://www.example.com/privacy.html">
+  <link rel="alternate" hreflang="en" href="https://www.example.com/en/privacy.html">
+  <link rel="alternate" hreflang="x-default" href="https://www.example.com/privacy.html">
 </head>
 <body>
 <a class="skip" href="#main">Vai al contenuto</a>
@@ -89,6 +92,7 @@
     <a href="index.html#contatti">Contatti</a>
     <a class="nav__only-mobile" href="prenota.html">Prenota un orario</a>
   </nav>
+  <a class="lang-btn" href="en/privacy.html" data-lang-switch hreflang="en" lang="en" aria-label="English version">EN</a>
   <button class="theme-btn" type="button" data-theme-toggle aria-pressed="false" aria-label="Passa al tema scuro"><svg class="i i-moon"><use href="#i-moon"/></svg><svg class="i i-sun"><use href="#i-sun"/></svg></button>
   <a class="btn btn--ghost btn--sm nav__cta nav__book" href="prenota.html"><svg class="i"><use href="#i-calendar"/></svg>Prenota</a>
   <a class="btn btn--wa btn--sm nav__cta" href="index.html#contatti" data-wa><svg class="i"><use href="#i-chat"/></svg>WhatsApp</a>
@@ -105,29 +109,33 @@
   <article class="prose glass reveal">
     <p class="callout callout--warn">Modello da completare con i tuoi dati e da far verificare da un commercialista o da un legale prima di pubblicare il sito.</p>
     <h2>1. Chi tratta i tuoi dati</h2>
-    <p>Il titolare del trattamento è [Nome Cognome], [indirizzo], P.IVA [00000000000], email [info@example.com].</p>
+    <p>Il titolare del trattamento è [Nome Cognome], [indirizzo], P.IVA [00000000000], email info@example.com.</p>
     <h2>2. Quali dati raccolgo</h2>
     <ul>
-      <li>I dati dei moduli del sito (richiamata, prenotazione, preventivo aziende): nome, telefono, eventuale email e azienda, dispositivo, giorno e orario scelti, descrizione del problema.</li>
+      <li>I dati dei moduli del sito (richiamata, prenotazione, preventivo aziende): nome, telefono, eventuale email e azienda, dispositivo, giorno e orario scelti, descrizione del problema, lingua della pagina e la tua scelta sui messaggi WhatsApp.</li>
+      <li>Lo storico della tua richiesta nel mio gestionale: stato, data dell'appuntamento e quali messaggi automatici ti sono stati inviati.</li>
       <li>I dati che mi invii su WhatsApp, per email o al telefono.</li>
       <li>Durante una sessione remota posso vedere ciò che compare sul tuo schermo: lo tratto solo per quanto serve all'intervento.</li>
       <li>I dati per la fattura, se acquisti un servizio.</li>
-      <li>Se usi l'assistente virtuale del sito, i messaggi che gli scrivi.</li>
+      <li>Se usi l'assistente virtuale del sito, i messaggi che gli scrivi e, per un'ora, un'impronta cifrata del tuo indirizzo IP che serve solo a limitare gli abusi.</li>
+      <li>Se hai un abbonamento con monitoraggio del computer: nome del computer, versione del sistema operativo, spazio sui dischi, stato di antivirus, firewall e aggiornamenti, salute dei dischi, da quanti giorni è acceso e data dell'ultimo backup. Non raccolgo file, cronologia o altri contenuti personali.</li>
     </ul>
     <h2>3. Perché li uso</h2>
     <ul>
       <li>Rispondere alle tue richieste e prepararti un preventivo (misure precontrattuali, art. 6.1.b del GDPR).</li>
-      <li>Eseguire l'intervento, il pacchetto o l'abbonamento che hai scelto (esecuzione del contratto, art. 6.1.b).</li>
+      <li>Eseguire l'intervento, il pacchetto o l'abbonamento che hai scelto, compresi conferme, promemoria degli appuntamenti e monitoraggio dei computer degli abbonati (esecuzione del contratto, art. 6.1.b).</li>
+      <li>Mandarti messaggi su WhatsApp e una richiesta di recensione dopo l'intervento, solo se lo hai chiesto (consenso, art. 6.1.a). Puoi revocarlo quando vuoi scrivendomi.</li>
       <li>Rispettare gli obblighi fiscali e contabili (obbligo di legge, art. 6.1.c).</li>
     </ul>
     <h2>4. Per quanto tempo</h2>
-    <p>Le richieste che non diventano un intervento vengono cancellate entro 12 mesi. I dati di fatturazione sono conservati per 10 anni, come prevede la legge. Non conservo copie dei file visti durante le sessioni remote.</p>
+    <p>Le richieste e lo storico dei messaggi restano nel gestionale al massimo 12 mesi, poi vengono cancellati in automatico. Del monitoraggio conservo solo l'ultimo controllo di ogni computer, finché dura l'abbonamento: quando lo togli, i dati vengono cancellati. I dati di fatturazione sono conservati per 10 anni, come prevede la legge. Non conservo copie dei file visti durante le sessioni remote.</p>
     <h2>5. A chi possono arrivare</h2>
     <p>Solo ai fornitori che mi servono per lavorare, quando li uso:</p>
     <ul>
-      <li>hosting del sito e dei moduli: Netlify, Inc.;</li>
+      <li>hosting del sito, dei moduli e dell'archivio del gestionale: Netlify, Inc.;</li>
       <li>controllo remoto: AnyDesk Software GmbH;</li>
-      <li>messaggistica: WhatsApp (gruppo Meta) e Telegram, che uso per ricevere sul telefono le richieste del sito;</li>
+      <li>messaggistica: WhatsApp e WhatsApp Business Platform (gruppo Meta), per i messaggi automatici se li hai chiesti, e Telegram, che uso per ricevere sul telefono le richieste del sito e gli avvisi del monitoraggio;</li>
+      <li>email automatiche, se lasci un indirizzo: Brevo (Sendinblue SAS, Francia) oppure Resend, Inc., a seconda del servizio che uso;</li>
       <li>pagamenti: il servizio che scegli (per esempio Stripe, PayPal, SumUp o Satispay);</li>
       <li>assistente virtuale, se attivo: Anthropic, che elabora i messaggi per generare le risposte;</li>
       <li>statistiche di visita, se attive: Cloudflare, in forma anonima e senza cookie;</li>
@@ -135,7 +143,7 @@
     </ul>
     <p>Alcuni fornitori possono trattare dati fuori dall'Unione europea con le garanzie previste dal GDPR, come il Data Privacy Framework UE-USA o le clausole contrattuali standard. Non vendo e non cedo i tuoi dati a nessuno.</p>
     <h2>6. I tuoi diritti</h2>
-    <p>Puoi chiedere di accedere ai tuoi dati, correggerli, cancellarli, limitarne l'uso, riceverne una copia o opporti al trattamento (artt. 15–22 del GDPR) scrivendo a [info@example.com]. Puoi anche presentare reclamo al <a href="https://www.garanteprivacy.it/" target="_blank" rel="noopener">Garante per la protezione dei dati personali</a>.</p>
+    <p>Puoi chiedere di accedere ai tuoi dati, correggerli, cancellarli, limitarne l'uso, riceverne una copia o opporti al trattamento (artt. 15–22 del GDPR) scrivendo a info@example.com. Puoi anche presentare reclamo al <a href="https://www.garanteprivacy.it/" target="_blank" rel="noopener">Garante per la protezione dei dati personali</a>.</p>
     <h2>7. Cookie</h2>
     <p>Il sito non usa cookie di profilazione. Il tema chiaro o scuro che scegli viene ricordato solo nel tuo browser. Se attivo il calendario di prenotazione di un servizio esterno, che può usare cookie, si carica solo quando premi il pulsante per aprirlo.</p>
     <h2>8. Aziende e professionisti</h2>

@@ -21,9 +21,12 @@
   <link rel="manifest" href="site.webmanifest">
   <link rel="stylesheet" href="assets/style.css">
   <script>document.documentElement.classList.add("js");try{var t=localStorage.getItem("gt-theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
-  <script type="importmap">{ "imports": { "three": "assets/vendor/three.module.min.js" } }</script>
+  <script type="importmap">{ "imports": { "three": "./assets/vendor/three.module.min.js" } }</script>
   <script src="assets/config.js" defer></script>
   <script src="assets/main.js" defer></script>
+  <link rel="alternate" hreflang="it" href="https://www.example.com/aziende.html">
+  <link rel="alternate" hreflang="en" href="https://www.example.com/en/aziende.html">
+  <link rel="alternate" hreflang="x-default" href="https://www.example.com/aziende.html">
 </head>
 <body>
 <a class="skip" href="#main">Vai al contenuto</a>
@@ -89,6 +92,7 @@
     <a href="index.html#contatti">Contatti</a>
     <a class="nav__only-mobile" href="prenota.html">Prenota un orario</a>
   </nav>
+  <a class="lang-btn" href="en/aziende.html" data-lang-switch hreflang="en" lang="en" aria-label="English version">EN</a>
   <button class="theme-btn" type="button" data-theme-toggle aria-pressed="false" aria-label="Passa al tema scuro"><svg class="i i-moon"><use href="#i-moon"/></svg><svg class="i i-sun"><use href="#i-sun"/></svg></button>
   <a class="btn btn--ghost btn--sm nav__cta nav__book" href="prenota.html"><svg class="i"><use href="#i-calendar"/></svg>Prenota</a>
   <a class="btn btn--wa btn--sm nav__cta" href="index.html#contatti" data-wa><svg class="i"><use href="#i-chat"/></svg>WhatsApp</a>
@@ -126,7 +130,7 @@
   <div class="cards">
     <div class="card-sm glass reveal" data-tilt><span class="ico ico--blue"><svg class="i"><use href="#i-monitor"/></svg></span><h3>Postazioni e utenti</h3><p>PC pronti, aggiornati e sicuri. Nuovi dipendenti operativi dal primo giorno.</p></div>
     <div class="card-sm glass reveal" data-tilt><span class="ico ico--sky"><svg class="i"><use href="#i-mail"/></svg></span><h3>Email e Microsoft 365</h3><p>Caselle aziendali, PEC, calendari condivisi, Teams e OneDrive.</p></div>
-    <div class="card-sm glass reveal" data-tilt><span class="ico ico--teal"><svg class="i"><use href="#i-cloud"/></svg></span><h3>Backup e ripristino</h3><p>Backup automatici e controllati ogni mese, per non perdere il lavoro.</p></div>
+    <div class="card-sm glass reveal" data-tilt><span class="ico ico--teal"><svg class="i"><use href="#i-cloud"/></svg></span><h3>Backup e monitoraggio</h3><p>Backup automatici e un controllo quotidiano di ogni PC: ti avviso prima che un problema fermi il lavoro.</p></div>
     <div class="card-sm glass reveal" data-tilt><span class="ico ico--red"><svg class="i"><use href="#i-shield"/></svg></span><h3>Sicurezza</h3><p>Antivirus, aggiornamenti, verifica in due passaggi, password e formazione contro il phishing.</p></div>
     <div class="card-sm glass reveal" data-tilt><span class="ico ico--gray"><svg class="i"><use href="#i-printer"/></svg></span><h3>Stampanti e rete</h3><p>Stampanti condivise, Wi-Fi dell'ufficio, cartelle in rete.</p></div>
     <div class="card-sm glass reveal" data-tilt><span class="ico ico--green"><svg class="i"><use href="#i-lock"/></svg></span><h3>GDPR</h3><p>Nomina a responsabile del trattamento, accessi remoti solo autorizzati, riservatezza.</p></div>
@@ -153,7 +157,7 @@
       <ul>
         <li><svg class="i"><use href="#i-check"/></svg>Fino a 2 ore di assistenza al mese</li>
         <li><svg class="i"><use href="#i-check"/></svg>Email, PEC e Microsoft 365</li>
-        <li><svg class="i"><use href="#i-check"/></svg>Controllo mensile dei backup</li>
+        <li><svg class="i"><use href="#i-check"/></svg>Monitoraggio automatico di PC e backup</li>
         <li><svg class="i"><use href="#i-check"/></svg>Risposta entro 2 ore lavorative</li>
       </ul>
       <div class="plan__actions">
@@ -168,7 +172,7 @@
       <ul>
         <li><svg class="i"><use href="#i-check"/></svg>Assistenza per tutto l'ufficio</li>
         <li><svg class="i"><use href="#i-check"/></svg>Accesso non presidiato, solo se autorizzato</li>
-        <li><svg class="i"><use href="#i-check"/></svg>Report mensile degli interventi</li>
+        <li><svg class="i"><use href="#i-check"/></svg>Monitoraggio di tutte le postazioni</li>
         <li><svg class="i"><use href="#i-check"/></svg>Nomina a responsabile del trattamento (GDPR)</li>
       </ul>
       <div class="plan__actions"><a class="btn btn--ghost btn--block" href="#preventivo">Chiedi un preventivo</a></div>
@@ -189,6 +193,7 @@
 <section class="section section--tight wrap" id="preventivo">
   <form class="form card glass reveal narrow" name="preventivo-aziende" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-form data-wa-intro="Ciao! Vorrei un preventivo per l'assistenza alla mia azienda." data-success="Grazie! Ti contatto per fissare la chiamata conoscitiva.">
     <input type="hidden" name="form-name" value="preventivo-aziende">
+    <input type="hidden" name="lingua" value="it" data-lang-field>
     <p class="hp"><label>Non compilare questo campo: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
     <h2>Chiamata conoscitiva gratuita</h2>
     <p class="muted">Lasciami i tuoi dati: ti richiamo per fissare 20 minuti insieme.</p>

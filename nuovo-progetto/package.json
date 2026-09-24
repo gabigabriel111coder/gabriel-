@@ -5,9 +5,14 @@
   "description": "Sito di Gabriel Tech: assistenza informatica da remoto",
   "scripts": {
     "genera": "node strumenti/genera-pagine.mjs",
-    "anteprima": "python3 -m http.server 8080 --directory sito"
+    "anteprima": "python3 -m http.server 8080 --directory sito",
+    "test": "node --test test/*.test.mjs"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.128.0"
+    "@anthropic-ai/sdk": "^0.128.0",
+    "@netlify/blobs": "^11.1.1"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }

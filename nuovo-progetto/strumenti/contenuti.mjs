@@ -7,8 +7,8 @@ export const SERVIZI = [
   {
     slug: "pc-lento", titolo: "PC lento o bloccato", icona: "gauge", colore: "blue",
     h1: "PC lento o bloccato? Lo rimetto in forma da remoto.",
-    pacchetto: "Completo", prezzo: 45, durata: "fino a 60 minuti",
-    descrizione: "PC lento, che si blocca o ci mette minuti ad accendersi? Pulizia, ottimizzazione e controllo virus da remoto con AnyDesk. 45 €, se non risolvo non paghi.",
+    pacchetto: "Completo", durata: "fino a 60 minuti",
+    descrizione: "PC lento, che si blocca o ci mette minuti ad accendersi? Pulizia, ottimizzazione e controllo virus da remoto con AnyDesk. {{p.completo}} €, se non risolvo non paghi.",
     lead: "Avvio lentissimo, programmi che si bloccano, ventola sempre accesa: mi collego al tuo computer, trovo la causa e lo sistemo mentre guardi.",
     sintomi: ["Ci mette minuti ad accendersi", "Programmi e browser si bloccano", "Ventola sempre accesa e disco al 100%", "Messaggi di spazio quasi pieno"],
     cosa: ["Pulizia di file inutili e temporanei", "Disattivo i programmi inutili all'avvio", "Controllo virus, estensioni e software indesiderato", "Aggiornamenti di sistema e driver", "Controllo della salute del disco, e ti dico se conviene un SSD"],
@@ -22,8 +22,8 @@ export const SERVIZI = [
   {
     slug: "virus", titolo: "Virus, pop-up e finti avvisi", icona: "bug", colore: "red",
     h1: "Virus, pop-up e finti avvisi: li rimuovo da remoto.",
-    pacchetto: "Completo", prezzo: 45, durata: "fino a 60 minuti",
-    descrizione: "Rimozione di virus, malware, pop-up e finti avvisi da remoto. Pulizia del browser e messa in sicurezza degli account dopo una truffa. 45 €.",
+    pacchetto: "Completo", durata: "fino a 60 minuti",
+    descrizione: "Rimozione di virus, malware, pop-up e finti avvisi da remoto. Pulizia del browser e messa in sicurezza degli account dopo una truffa. {{p.completo}} €.",
     lead: "Pubblicità che si aprono da sole, avvisi di «virus rilevato», programmi che non hai installato tu: li tolgo e rimetto in sicurezza il computer e i tuoi account.",
     sintomi: ["Finestre e pubblicità che si aprono da sole", "Il browser apre pagine strane", "Avvisi di «virus rilevato» con un numero da chiamare", "Hai dato accesso al PC a uno sconosciuto"],
     cosa: ["Scansione completa e rimozione di malware e adware", "Pulizia del browser e delle estensioni sospette", "Rimozione dei programmi di controllo remoto installati da altri", "Antivirus attivo e aggiornamenti in regola", "Messa in sicurezza degli account principali"],
@@ -37,9 +37,9 @@ export const SERVIZI = [
   {
     slug: "windows-11", titolo: "Windows 11 e aggiornamenti", icona: "up", colore: "indigo",
     h1: "Passa a Windows 11, o metti in sicurezza Windows 10.",
-    pacchetto: "Completo", prezzo: 45, durata: "circa 60 minuti di lavoro",
+    pacchetto: "Completo", durata: "circa 60 minuti di lavoro",
     nota: "Se l'installazione è lunga, il PC lavora da solo: ti avviso io quando ha finito.",
-    descrizione: "Windows 10 non è più supportato: passaggio a Windows 11 senza perdere dati, oppure aggiornamenti di sicurezza estesi (ESU). Assistenza da remoto, 45 €.",
+    descrizione: "Windows 10 non è più supportato: passaggio a Windows 11 senza perdere dati, oppure aggiornamenti di sicurezza estesi (ESU). Assistenza da remoto, {{p.completo}} €.",
     lead: "Windows 10 non riceve più gli aggiornamenti normali. Verifico se il tuo PC può passare a Windows 11 e lo aggiorno senza perdere nulla; se non si può, lo mettiamo comunque in sicurezza.",
     sintomi: ["Il PC ti avvisa che Windows 10 non è più supportato", "Gli aggiornamenti si bloccano o danno errore", "Non sai se il PC può passare a Windows 11", "Spazio insufficiente per aggiornare"],
     cosa: ["Verifico se il PC è compatibile con Windows 11", "Backup dei tuoi file prima di iniziare", "Aggiornamento a Windows 11 senza perdere dati e programmi", "Se non è compatibile, attivo gli aggiornamenti di sicurezza estesi (ESU)", "Sistemo gli aggiornamenti bloccati"],
@@ -52,8 +52,8 @@ export const SERVIZI = [
   {
     slug: "email-pec", titolo: "Email, PEC e Outlook", icona: "mail", colore: "sky",
     h1: "Email e PEC che funzionano, su PC e telefono.",
-    pacchetto: "Rapido", prezzo: 25, durata: "fino a 30 minuti",
-    descrizione: "Configurazione di email e PEC su Outlook, PC e smartphone, caselle piene, messaggi che non partono. Assistenza da remoto, 25 €.",
+    pacchetto: "Rapido", durata: "fino a 30 minuti",
+    descrizione: "Configurazione di email e PEC su Outlook, PC e smartphone, caselle piene, messaggi che non partono. Assistenza da remoto, {{p.rapido}} €.",
     lead: "Posta che non parte, casella piena, PEC da configurare su Outlook o sul telefono: sistemo tutto da remoto e ti lascio una casella in ordine.",
     sintomi: ["Le email non partono o non arrivano", "La casella è piena", "Devi configurare la PEC su Outlook o sul telefono", "Telefono nuovo e la posta non si sincronizza"],
     cosa: ["Configurazione delle caselle più diffuse su PC e telefono", "Configurazione della PEC", "Pulizia e archiviazione della casella piena", "Firme, cartelle e regole automatiche", "Protezione dalle email truffa (phishing)"],
@@ -66,9 +66,9 @@ export const SERVIZI = [
   {
     slug: "spid-cie", titolo: "SPID, CIE e servizi pubblici online", icona: "id", colore: "green",
     h1: "SPID, CIE e servizi online: ti guido passo passo.",
-    pacchetto: "Rapido", prezzo: 25, durata: "fino a 30 minuti",
+    pacchetto: "Rapido", durata: "fino a 30 minuti",
     nota: "Per una richiesta completa dello SPID a volte serve l'intervento Completo: te lo dico prima.",
-    descrizione: "Aiuto per SPID, CIE, app IO, INPS, Agenzia delle Entrate, Fascicolo sanitario e pagoPA. Assistenza da remoto con calma, da 25 €.",
+    descrizione: "Aiuto per SPID, CIE, app IO, INPS, Agenzia delle Entrate, Fascicolo sanitario e pagoPA. Assistenza da remoto con calma, da {{p.rapido}} €.",
     lead: "Richiedere lo SPID, attivare la CIE, entrare su INPS o sul Fascicolo sanitario: ti accompagno passo passo, con calma, finché non riesci da solo.",
     sintomi: ["Devi richiedere lo SPID o attivare la CIE", "Non riesci ad accedere a INPS, Agenzia delle Entrate o Fascicolo sanitario", "Hai cambiato telefono e l'app non funziona più", "Hai dimenticato password o codici"],
     cosa: ["Ti guido nella richiesta dello SPID o nell'attivazione della CIE", "Installo e configuro le app (IO, CieID, app del gestore)", "Recupero degli accessi con le procedure ufficiali", "Ti accompagno su INPS, Agenzia delle Entrate, Fascicolo sanitario e pagoPA", "Ti insegno a farlo da solo la prossima volta"],
@@ -82,8 +82,8 @@ export const SERVIZI = [
   {
     slug: "stampanti", titolo: "Stampanti e scanner", icona: "printer", colore: "gray",
     h1: "Stampanti e scanner: li faccio funzionare da remoto.",
-    pacchetto: "Rapido", prezzo: 25, durata: "fino a 30 minuti",
-    descrizione: "Stampante non in linea, stampa via Wi-Fi, scanner non rilevato, driver: configurazione da remoto per tutte le marche. 25 €.",
+    pacchetto: "Rapido", durata: "fino a 30 minuti",
+    descrizione: "Stampante non in linea, stampa via Wi-Fi, scanner non rilevato, driver: configurazione da remoto per tutte le marche. {{p.rapido}} €.",
     lead: "Stampante «non in linea», stampa via Wi-Fi che non va, scanner che il PC non vede: sistemo driver e collegamenti direttamente dal tuo computer.",
     sintomi: ["La stampante risulta «non in linea»", "Non stampa via Wi-Fi", "Lo scanner non viene rilevato", "Hai una stampante nuova da installare"],
     cosa: ["Installazione dei driver e dei programmi ufficiali", "Collegamento alla rete Wi-Fi", "Stampa da telefono e tablet", "Scansione su PC e in PDF", "Code di stampa bloccate"],
@@ -97,9 +97,9 @@ export const SERVIZI = [
   {
     slug: "account-password", titolo: "Account e password", icona: "key", colore: "orange",
     h1: "Account bloccati e password dimenticate: li recuperiamo insieme.",
-    pacchetto: "Rapido", prezzo: 25, durata: "fino a 30 minuti",
+    pacchetto: "Rapido", durata: "fino a 30 minuti",
     nota: "I recuperi più complessi possono richiedere l'intervento Completo: te lo dico prima.",
-    descrizione: "Recupero account Google, Apple, Microsoft e social, verifica in due passaggi, gestore di password. Assistenza da remoto, da 25 €.",
+    descrizione: "Recupero account Google, Apple, Microsoft e social, verifica in due passaggi, gestore di password. Assistenza da remoto, da {{p.rapido}} €.",
     lead: "Non riesci più a entrare in Google, Apple, Microsoft o sui social? Recuperiamo l'accesso con le procedure ufficiali e mettiamo tutto in sicurezza.",
     sintomi: ["Non riesci più ad accedere a Google, Apple o Microsoft", "Account social bloccato o rubato", "Hai dimenticato le password", "Ricevi avvisi di accessi sospetti"],
     cosa: ["Recupero con le procedure ufficiali di ogni servizio", "Attivo la verifica in due passaggi", "Ti configuro un gestore di password", "Controllo i dispositivi collegati e chiudo gli accessi sospetti", "Metto in sicurezza l'email, che è la chiave di tutto"],
@@ -113,8 +113,8 @@ export const SERVIZI = [
   {
     slug: "backup-foto", titolo: "Backup e foto", icona: "cloud", colore: "teal",
     h1: "Backup e foto al sicuro, in automatico.",
-    pacchetto: "Completo", prezzo: 45, durata: "fino a 60 minuti",
-    descrizione: "Backup automatici su cloud o disco esterno, spazio pieno, trasferimento dati su PC nuovo, recupero di file cancellati. Da remoto, 45 €.",
+    pacchetto: "Completo", durata: "fino a 60 minuti",
+    descrizione: "Backup automatici su cloud o disco esterno, spazio pieno, trasferimento dati su PC nuovo, recupero di file cancellati. Da remoto, {{p.completo}} €.",
     lead: "Foto e documenti sono la cosa più preziosa del computer. Imposto un backup automatico, libero spazio senza perdere nulla e sposto i dati sul PC nuovo.",
     sintomi: ["Non hai mai fatto un backup", "Telefono o PC con lo spazio pieno", "Vuoi ritrovare foto o file cancellati", "Devi passare i dati su un PC nuovo"],
     cosa: ["Backup automatico su cloud (OneDrive, iCloud, Google Drive) o su disco esterno", "Liberare spazio senza perdere nulla", "Trasferimento dei dati dal vecchio al nuovo PC", "Recupero di file cancellati da poco, quando è possibile", "Ordine in foto e documenti"],
@@ -128,8 +128,8 @@ export const SERVIZI = [
   {
     slug: "programmi-office", titolo: "Programmi e Office", icona: "apps", colore: "purple",
     h1: "Programmi e Office installati e configurati bene.",
-    pacchetto: "Rapido", prezzo: 25, durata: "fino a 30 minuti",
-    descrizione: "Installazione e configurazione di Microsoft 365, Office, programmi per PDF, firma digitale e videochiamate. Assistenza da remoto, 25 €.",
+    pacchetto: "Rapido", durata: "fino a 30 minuti",
+    descrizione: "Installazione e configurazione di Microsoft 365, Office, programmi per PDF, firma digitale e videochiamate. Assistenza da remoto, {{p.rapido}} €.",
     lead: "Microsoft 365, programmi di lavoro, PDF, videochiamate che non funzionano: installo, configuro e ripario, solo con software regolare.",
     sintomi: ["Devi installare Microsoft 365, un antivirus o un programma di lavoro", "Un programma non si apre o dà errore", "Documenti Word o Excel che non si aprono", "Microfono o webcam che non vanno nelle videochiamate"],
     cosa: ["Installazione e attivazione di Microsoft 365 e Office", "Programmi per PDF, firma digitale e videochiamate", "Riparazione dei programmi che danno errore", "Configurazione di microfono, webcam e audio", "Solo software con licenza regolare"],
@@ -142,8 +142,8 @@ export const SERVIZI = [
   {
     slug: "wifi-rete", titolo: "Wi-Fi e rete", icona: "wifi", colore: "blue",
     h1: "Wi-Fi lento o instabile? Sistemiamo la rete di casa.",
-    pacchetto: "Rapido", prezzo: 25, durata: "fino a 30 minuti",
-    descrizione: "Wi-Fi lento o instabile, configurazione del router, rete ospiti, condivisione di stampanti e cartelle. Assistenza da remoto, 25 €.",
+    pacchetto: "Rapido", durata: "fino a 30 minuti",
+    descrizione: "Wi-Fi lento o instabile, configurazione del router, rete ospiti, condivisione di stampanti e cartelle. Assistenza da remoto, {{p.rapido}} €.",
     lead: "Internet che va e viene, Wi-Fi debole in alcune stanze, dispositivi che non si collegano: capiamo insieme se è la linea o la rete, e sistemiamo quello che si può.",
     sintomi: ["Internet va e viene", "Wi-Fi lento in alcune stanze", "Un dispositivo non si collega", "Vuoi condividere stampante o cartelle"],
     cosa: ["Test della velocità e dei problemi della connessione", "Configurazione di router e Wi-Fi, quando si può fare da remoto", "Consigli su posizione del router e ripetitori", "Rete per gli ospiti e password sicura", "Condivisione di cartelle e stampanti in casa o in ufficio"],
@@ -157,8 +157,8 @@ export const SERVIZI = [
   {
     slug: "smartphone", titolo: "Smartphone e tablet", icona: "mobile", colore: "pink",
     h1: "Smartphone e tablet configurati e sotto controllo.",
-    pacchetto: "Rapido", prezzo: 25, durata: "fino a 30 minuti",
-    descrizione: "Configurazione di smartphone e tablet Android e iPhone, trasferimento di WhatsApp e foto, memoria piena, sicurezza. Assistenza da remoto, 25 €.",
+    pacchetto: "Rapido", durata: "fino a 30 minuti",
+    descrizione: "Configurazione di smartphone e tablet Android e iPhone, trasferimento di WhatsApp e foto, memoria piena, sicurezza. Assistenza da remoto, {{p.rapido}} €.",
     lead: "Telefono nuovo da configurare, memoria piena, WhatsApp da trasferire: ti aiuto da remoto, su Android e su iPhone.",
     sintomi: ["Hai un telefono nuovo da configurare", "La memoria è piena", "Devi trasferire o recuperare WhatsApp", "Non sai usare un'app"],
     cosa: ["Configurazione di telefoni e tablet nuovi", "Trasferimento di contatti, foto e WhatsApp", "Liberare spazio senza perdere le foto", "Sicurezza: blocco schermo, aggiornamenti, app sospette", "Ti insegno le funzioni che ti servono"],
@@ -172,9 +172,9 @@ export const SERVIZI = [
   {
     slug: "lezioni", titolo: "Lezioni e corsi a distanza", icona: "cap", colore: "yellow",
     h1: "Lezioni a distanza e piccoli corsi, con calma.",
-    pacchetto: "Lezione", prezzo: 25, durata: "30 minuti (60 minuti: 45 €)",
+    pacchetto: "Lezione", durata: "30 minuti (60 minuti: {{p.completo}} €)",
     nota: "Con il Pacchetto 5 ore ogni lezione costa meno.",
-    descrizione: "Lezioni a distanza su PC, smartphone, SPID, email e sicurezza online, anche per genitori e nonni. Corsi in piccoli gruppi. Da 25 €.",
+    descrizione: "Lezioni a distanza su PC, smartphone, SPID, email e sicurezza online, anche per genitori e nonni. Corsi in piccoli gruppi. Da {{p.rapido}} €.",
     lead: "Impari a usare PC, smartphone e servizi online con i tuoi tempi, con parole semplici. Anche per genitori e nonni, anche in piccoli gruppi.",
     sintomiTitolo: "Per chi è",
     sintomi: ["Genitori e nonni che vogliono essere autonomi", "Chi ha un PC o un telefono nuovo", "Chi deve usare SPID, email o videochiamate", "Piccole attività con strumenti nuovi"],
@@ -289,7 +289,7 @@ export const GUIDE = [
 <h2>Strada 3: cambiare computer</h2>
 <p>Se il PC ha molti anni ed è lento, a volte conviene cambiarlo. In quel caso ti aiuto a scegliere senza spendere più del necessario e a trasferire tutti i dati dal vecchio al nuovo, da remoto.</p>
 <h2>Come posso aiutarti</h2>
-<p>Verifico la compatibilità, faccio il backup, aggiorno a Windows 11 o attivo l'ESU e sistemo gli aggiornamenti bloccati. È l'intervento Completo, 45 €: se non risolvo, non paghi.</p>`,
+<p>Verifico la compatibilità, faccio il backup, aggiorno a Windows 11 o attivo l'ESU e sistemo gli aggiornamenti bloccati. È l'intervento Completo, {{p.completo}} €: se non risolvo, non paghi.</p>`,
     correlati: ["servizi/windows-11", "servizi/backup-foto", "guide/pc-lento"]
   }
 ];

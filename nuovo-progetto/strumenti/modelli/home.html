@@ -1,0 +1,643 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Gabriel Tech · Assistenza informatica da remoto in tutta Italia</title>
+  <meta name="description" content="Assistenza informatica da remoto con AnyDesk: PC lento, virus, email e PEC, SPID, stampanti, Windows 11, backup. Prezzi chiari e paghi solo a problema risolto.">
+  <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#050507" media="(prefers-color-scheme: dark)">
+  <link rel="canonical" href="{{sito}}/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="it_IT">
+  <meta property="og:site_name" content="Gabriel Tech">
+  <meta property="og:title" content="Gabriel Tech · Assistenza informatica da remoto">
+  <meta property="og:description" content="Il tuo computer, sistemato a distanza. Prezzi chiari, paghi solo a problema risolto.">
+  <meta property="og:url" content="{{sito}}/">
+  <meta property="og:image" content="{{sito}}/assets/brand/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="stylesheet" href="assets/style.css">
+  <script>document.documentElement.classList.add("js");try{var t=localStorage.getItem("gt-theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+  <script type="importmap">{ "imports": { "three": "./assets/vendor/three.module.min.js" } }</script>
+  <script src="assets/config.js" defer></script>
+  <script src="assets/main.js" defer></script>
+  <!-- JSONLD -->
+  <!--HREFLANG-->
+</head>
+<body>
+<a class="skip" href="#main">Vai al contenuto</a>
+<div class="backdrop" aria-hidden="true"><span></span><span></span><span></span></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="gt-bg" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="120" y2="120"><stop offset="0" stop-color="#0a84ff"/><stop offset=".55" stop-color="#5e5ce6"/><stop offset="1" stop-color="#9b5cff"/></linearGradient>
+    <linearGradient id="gt-gloss" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".32"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></linearGradient>
+  </defs>
+  <symbol id="logo-mark" viewBox="0 0 120 120"><rect width="120" height="120" rx="28" fill="url(#gt-bg)"/><rect width="120" height="120" rx="28" fill="url(#gt-gloss)"/><path d="M78.1 39.9A27 27 0 1 0 87 60H63" fill="none" stroke="#fff" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/><path d="M67 64v29l7.6-7.2 5 11.2 5.4-2.4-5-11h10.8z" fill="#fff" stroke="url(#gt-bg)" stroke-width="5" stroke-linejoin="round" paint-order="stroke"/></symbol>
+  <symbol id="i-cursor" viewBox="0 0 24 24"><path d="M5 3l14 7-6 1.8L10 19z"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M20.5 11.5a8.5 8.5 0 0 1-12.6 7.4L3.5 20l1.2-4.2A8.5 8.5 0 1 1 20.5 11.5z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-1 .8a3.5 3.5 0 0 1-1.8-1.8l.8-1-1-2z"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h3.5l2 5-2.5 1.5a11 11 0 0 0 5.5 5.5L15 13.5l5 2V19a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2.5"/><path d="M8 11V7.5a4 4 0 0 1 8 0V11"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-power" viewBox="0 0 24 24"><path d="M12 3v8"/><path d="M6.3 7a8 8 0 1 0 11.4 0"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7.5 3v6c0 4.5-3.2 8-7.5 9-4.3-1-7.5-4.5-7.5-9V6z"/><path d="M8.8 12.2l2.2 2.2 4.2-4.4"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17"/></symbol>
+  <symbol id="i-gauge" viewBox="0 0 24 24"><path d="M3.5 17a8.5 8.5 0 1 1 17 0"/><path d="M12 17l4.5-5.5"/><circle cx="12" cy="17" r="1.2"/></symbol>
+  <symbol id="i-bug" viewBox="0 0 24 24"><rect x="7" y="8" width="10" height="12" rx="5"/><path d="M12 12v8M9.5 4.5 11 7M14.5 4.5 13 7M3 13h4M17 13h4M4 19l3-1.8M20 19l-3-1.8M4 7.5l3 1.8M20 7.5l-3 1.8"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 16.5v-9M8.3 11.2 12 7.5l3.7 3.7"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 7.5 12 13l8.5-5.5"/></symbol>
+  <symbol id="i-id" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><circle cx="9" cy="11" r="2"/><path d="M5.8 16c.7-1.4 1.8-2 3.2-2s2.5.6 3.2 2M14.5 10h4M14.5 13.5h3"/></symbol>
+  <symbol id="i-printer" viewBox="0 0 24 24"><path d="M7 9V3.5h10V9"/><rect x="3" y="9" width="18" height="8" rx="2.5"/><path d="M7 14h10v6.5H7z"/></symbol>
+  <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15.5" r="4"/><path d="M11 12.5 20 3.5M16 7.5l3 3M13.5 10l2 2"/></symbol>
+  <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7 18.5a5 5 0 0 1-.9-9.9 6 6 0 0 1 11.6 1 4.5 4.5 0 0 1-.7 8.9z"/><path d="M12 15.5v-5M9.7 12.7 12 10.4l2.3 2.3"/></symbol>
+  <symbol id="i-apps" viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="2"/><rect x="13" y="4" width="7" height="7" rx="2"/><rect x="4" y="13" width="7" height="7" rx="2"/><path d="M16.5 13v7M13 16.5h7"/></symbol>
+  <symbol id="i-wifi" viewBox="0 0 24 24"><path d="M2.5 9a14 14 0 0 1 19 0M5.5 12.5a9.5 9.5 0 0 1 13 0M8.7 15.8a5 5 0 0 1 6.6 0"/><circle cx="12" cy="19" r="1"/></symbol>
+  <symbol id="i-mobile" viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></symbol>
+  <symbol id="i-cap" viewBox="0 0 24 24"><path d="M2 9.5 12 4.5l10 5-10 5z"/><path d="M6 11.5v4.5c3.5 2.3 8.5 2.3 12 0v-4.5M22 9.5v5"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3.5v11M7.5 10.5 12 15l4.5-4.5M4.5 20h15"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2.5 4.5 14H11l-1 7.5L18.5 10H12z"/></symbol>
+  <symbol id="i-card" viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="M3 10h18M7 15h3"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3.5 21.5 20h-19z"/><path d="M12 10v4.5M12 17.2v.1"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5c1.2-3.6 4-5.5 7.5-5.5s6.3 1.9 7.5 5.5"/></symbol>
+  <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7.5A2.5 2.5 0 0 1 5.5 5H10l2 2.5h6.5A2.5 2.5 0 0 1 21 10v7.5a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5z"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6 6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-gift" viewBox="0 0 24 24"><rect x="3.5" y="8.5" width="17" height="4" rx="1"/><path d="M5 12.5v8h14v-8M12 8.5v12M12 8.5C10.5 5 7 4.5 7 6.8S10 8.5 12 8.5zM12 8.5c1.5-3.5 5-4 5-1.7s-3 1.7-5 1.7z"/></symbol>
+  <symbol id="i-building" viewBox="0 0 24 24"><rect x="4.5" y="3.5" width="15" height="17" rx="2"/><path d="M9.5 20.5v-4h5v4M8.5 7.5H10M14 7.5h1.5M8.5 11H10M14 11h1.5"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M5 4.5h11a3 3 0 0 1 3 3v12.5H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8.5" y="8.5" width="12" height="12" rx="2.5"/><path d="M15.5 8.5V6A2.5 2.5 0 0 0 13 3.5H6A2.5 2.5 0 0 0 3.5 6v7A2.5 2.5 0 0 0 6 15.5h2.5"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24"><path d="M3.5 12.3V4.5a1 1 0 0 1 1-1h7.8l8.2 8.2a1.5 1.5 0 0 1 0 2.1l-6.8 6.8a1.5 1.5 0 0 1-2.1 0z"/><circle cx="8.5" cy="8.5" r="1.4"/></symbol>
+  <symbol id="i-qr" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><path d="M13.5 13.5h3v3h-3zM17.5 17.5h3v3h-3zM13.5 19.5h2M19.5 13.5v2"/></symbol>
+  <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12.5" rx="2"/><path d="M9 20.5h6M12 16.5v4"/></symbol>
+</svg>
+
+<!-- NAV -->
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="hero wrap" id="top">
+    <div class="hero__copy">
+      <div class="hero__pills">
+        <a class="offer glass" href="#contatti" data-offer hidden><span class="offer__tag">Offerta</span><span data-offer-text></span><svg class="i"><use href="#i-arrow"/></svg></a>
+        <p class="status glass" data-status><span class="dot"></span><span data-status-text>Scrivimi su WhatsApp, anche adesso</span></p>
+      </div>
+      <h1>Il tuo computer,<br><span class="grad">sistemato a distanza.</span></h1>
+      <p class="lead">Assistenza informatica da remoto per privati e piccole attività. Mi collego al tuo PC o Mac in sicurezza, risolvo il problema mentre guardi e paghi solo a lavoro finito.</p>
+      <div class="cta-row">
+        <a class="btn btn--wa btn--lg" href="#contatti" data-wa><svg class="i"><use href="#i-chat"/></svg>Scrivimi su WhatsApp</a>
+        <a class="btn btn--ghost btn--lg" href="#prezzi">Vedi i prezzi</a>
+      </div>
+      <ul class="hero__facts">
+        <li><svg class="i"><use href="#i-check"/></svg>Nessun tecnico in casa</li>
+        <li><svg class="i"><use href="#i-check"/></svg>Windows, Mac, Android, iPhone</li>
+        <li><svg class="i"><use href="#i-check"/></svg>In tutta Italia</li>
+      </ul>
+    </div>
+
+    <div class="stage" data-3d-anchor data-tilt-zone>
+      <div class="stage__fallback" aria-hidden="true"><svg class="stage__logo"><use href="#logo-mark"/></svg></div>
+      <div class="hchip hc1 glass" aria-hidden="true"><svg class="i"><use href="#i-lock"/></svg>Connessione cifrata</div>
+      <div class="hchip hc2 glass" aria-hidden="true"><svg class="i"><use href="#i-check"/></svg>Risolto mentre guardi</div>
+      <div class="hchip hc3 glass" aria-hidden="true"><small>interventi da</small><b>{{p.rapido}} €</b></div>
+      <p class="stage__hint" aria-hidden="true"><svg class="i"><use href="#i-cursor"/></svg>Muovi il mouse o trascina la G</p>
+    </div>
+  </section>
+
+  <!-- TRUST -->
+  <section class="wrap trust" aria-label="Perché è sicuro">
+    <div class="trust__item glass reveal"><svg class="i"><use href="#i-lock"/></svg><p><b>Connessione cifrata</b><span>AnyDesk protegge tutta la sessione.</span></p></div>
+    <div class="trust__item glass reveal"><svg class="i"><use href="#i-eye"/></svg><p><b>Vedi tutto in diretta</b><span>Ogni clic avviene sul tuo schermo.</span></p></div>
+    <div class="trust__item glass reveal"><svg class="i"><use href="#i-power"/></svg><p><b>La chiudi tu</b><span>Interrompi la sessione quando vuoi.</span></p></div>
+    <div class="trust__item glass reveal"><svg class="i"><use href="#i-shield"/></svg><p><b>Non risolto? Non paghi</b><span>Il prezzo lo sai prima di iniziare.</span></p></div>
+  </section>
+
+  <!-- SERVIZI -->
+  <section class="section wrap" id="servizi">
+    <div class="head reveal">
+      <p class="eyebrow">Servizi</p>
+      <h2>Tutto quello che si risolve da remoto.</h2>
+      <p>I problemi più richiesti da chi usa computer e smartphone ogni giorno, a casa e al lavoro.</p>
+      <ul class="platforms"><li>Windows</li><li>macOS</li><li>Android</li><li>iPhone e iPad</li></ul>
+    </div>
+
+    <div class="bento">
+      <article class="tile t-xl glass reveal" data-tilt>
+        <span class="ico ico--blue"><svg class="i"><use href="#i-gauge"/></svg></span>
+        <span class="tag">Il più richiesto</span>
+        <h3><a class="stretched" href="servizi/pc-lento.html">PC lento o bloccato</a></h3>
+        <p>Avvio lento, programmi che si bloccano, ventola sempre accesa. Pulisco il sistema, tolgo il superfluo e ottimizzo l'avvio: il computer torna reattivo.</p>
+        <ul class="pills"><li>Pulizia file inutili</li><li>Programmi all'avvio</li><li>Driver e aggiornamenti</li><li>Controllo del disco</li></ul>
+        <span class="more">Scopri<svg class="i"><use href="#i-arrow"/></svg></span>
+      </article>
+      <article class="tile t-wide glass reveal" data-tilt>
+        <span class="ico ico--red"><svg class="i"><use href="#i-bug"/></svg></span>
+        <h3><a class="stretched" href="servizi/virus.html">Virus, pop-up e finti avvisi</a></h3>
+        <p>Rimuovo malware, estensioni sospette e pubblicità invadenti. Se temi di aver subito una truffa, controllo il PC e ti aiuto a mettere al sicuro gli account.</p>
+        <span class="more">Scopri<svg class="i"><use href="#i-arrow"/></svg></span>
+      </article>
+      <article class="tile glass reveal" data-tilt>
+        <span class="ico ico--indigo"><svg class="i"><use href="#i-up"/></svg></span>
+        <h3><a class="stretched" href="servizi/windows-11.html">Windows 11 e aggiornamenti</a></h3>
+        <p>Passaggio da Windows 10, aggiornamenti bloccati, aggiornamenti di sicurezza estesi (ESU).</p>
+        <span class="more">Scopri<svg class="i"><use href="#i-arrow"/></svg></span>
+      </article>
+      <article class="tile glass reveal" data-tilt>
+        <span class="ico ico--sky"><svg class="i"><use href="#i-mail"/></svg></span>
+        <h3><a class="stretched" href="servizi/email-pec.html">Email, PEC e Outlook</a></h3>
+        <p>Configurazione su PC e telefono, caselle piene, messaggi che non partono.</p>
+        <span class="more">Scopri<svg class="i"><use href="#i-arrow"/></svg></span>
+      </article>
+      <article class="tile t-wide glass reveal" data-tilt>
+        <span class="ico ico--green"><svg class="i"><use href="#i-id"/></svg></span>
+        <h3><a class="stretched" href="servizi/spid-cie.html">SPID, CIE e servizi pubblici online</a></h3>
+        <p>App IO, Fascicolo sanitario, INPS, Agenzia delle Entrate, pagoPA: ti guido passo passo, con calma, finché non riesci da solo.</p>
+        <span class="more">Scopri<svg class="i"><use href="#i-arrow"/></svg></span>
+      </article>
+      <article class="tile glass reveal" data-tilt>
+        <span class="ico ico--gray"><svg class="i"><use href="#i-printer"/></svg></span>
+        <h3><a class="stretched" href="servizi/stampanti.html">Stampanti e scanner</a></h3>
+        <p>Driver, stampa via Wi-Fi, scansione sul PC. Sistemo tutto dal computer.</p>
+        <span class="more">Scopri<svg class="i"><use href="#i-arrow"/></svg></span>
+      </article>
+      <article class="tile glass reveal" data-tilt>
+        <span class="ico ico--orange"><svg class="i"><use href="#i-key"/></svg></span>
+        <h3><a class="stretched" href="servizi/account-password.html">Account e password</a></h3>
+        <p>Recupero account Google, Apple, Microsoft e social. Attivo la verifica in due passaggi.</p>
+        <span class="more">Scopri<svg class="i"><use href="#i-arrow"/></svg></span>
+      </article>
+      <article class="tile glass reveal" data-tilt>
+        <span class="ico ico--teal"><svg class="i"><use href="#i-cloud"/></svg></span>
+        <h3><a class="stretched" href="servizi/backup-foto.html">Backup e foto</a></h3>
+        <p>Backup automatici, OneDrive, iCloud, Google Foto, spazio pieno, file da ritrovare.</p>
+        <span class="more">Scopri<svg class="i"><use href="#i-arrow"/></svg></span>
+      </article>
+      <article class="tile glass reveal" data-tilt>
+        <span class="ico ico--purple"><svg class="i"><use href="#i-apps"/></svg></span>
+        <h3><a class="stretched" href="servizi/programmi-office.html">Programmi e Office</a></h3>
+        <p>Microsoft 365, antivirus, PDF, videochiamate e programmi di lavoro.</p>
+        <span class="more">Scopri<svg class="i"><use href="#i-arrow"/></svg></span>
+      </article>
+      <article class="tile glass reveal" data-tilt>
+        <span class="ico ico--blue"><svg class="i"><use href="#i-wifi"/></svg></span>
+        <h3><a class="stretched" href="servizi/wifi-rete.html">Wi-Fi e rete</a></h3>
+        <p>Connessione lenta o instabile, rete di casa, cartelle e stampanti condivise.</p>
+        <span class="more">Scopri<svg class="i"><use href="#i-arrow"/></svg></span>
+      </article>
+      <article class="tile glass reveal" data-tilt>
+        <span class="ico ico--pink"><svg class="i"><use href="#i-mobile"/></svg></span>
+        <h3><a class="stretched" href="servizi/smartphone.html">Smartphone e tablet</a></h3>
+        <p>Android e iPhone: configurazione, WhatsApp, trasferimento dati, spazio pieno.</p>
+        <span class="more">Scopri<svg class="i"><use href="#i-arrow"/></svg></span>
+      </article>
+      <article class="tile t-wide glass reveal" data-tilt>
+        <span class="ico ico--yellow"><svg class="i"><use href="#i-cap"/></svg></span>
+        <h3><a class="stretched" href="servizi/lezioni.html">Lezioni a distanza</a></h3>
+        <p>Impari a usare PC, smartphone e servizi online con i tuoi tempi. Ideale anche per genitori e nonni.</p>
+        <span class="more">Scopri<svg class="i"><use href="#i-arrow"/></svg></span>
+      </article>
+      <article class="tile t-wide t-cta reveal">
+        <h3>Non trovi il tuo problema?</h3>
+        <p>Scrivimelo: ti dico subito se si risolve da remoto e quanto costa.</p>
+        <a class="btn btn--light" href="#contatti" data-wa="Ciao! Ho un problema che non trovo nell'elenco dei servizi:">Descrivimi il problema<svg class="i"><use href="#i-chat"/></svg></a>
+      </article>
+    </div>
+  </section>
+
+  <!-- SOLO REMOTO -->
+  <section class="section section--tight wrap" aria-labelledby="remoto-title">
+    <div class="head reveal">
+      <p class="eyebrow">Solo da remoto</p>
+      <h2 id="remoto-title">Niente di fisico. Tutto più veloce.</h2>
+      <p>Lavoro esclusivamente a distanza: per questo posso intervenire in pochi minuti e a un prezzo onesto. Ecco cosa posso fare, e cosa no.</p>
+    </div>
+    <div class="split">
+      <div class="card glass reveal">
+        <h3>Si risolve da remoto</h3>
+        <ul class="list">
+          <li><svg class="i"><use href="#i-check"/></svg>Programmi, sistema operativo e aggiornamenti</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Virus, sicurezza e account</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Email, stampanti e rete</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Backup, cloud e trasferimento dati</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Spiegazioni e lezioni passo passo</li>
+        </ul>
+      </div>
+      <div class="card glass reveal">
+        <h3>Serve un tecnico sul posto</h3>
+        <ul class="list list--no">
+          <li><svg class="i"><use href="#i-x"/></svg>Schermi rotti o pezzi da sostituire</li>
+          <li><svg class="i"><use href="#i-x"/></svg>Computer che non si accende</li>
+          <li><svg class="i"><use href="#i-x"/></svg>PC senza nessuna connessione a internet</li>
+          <li><svg class="i"><use href="#i-x"/></svg>Pulizia interna e ventole</li>
+          <li><svg class="i"><use href="#i-x"/></svg>Recupero dati da dischi guasti</li>
+        </ul>
+        <p class="card__note">In questi casi ti dico con onestà a chi rivolgerti.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIAGNOSI IN 3 DOMANDE -->
+  <section class="section wrap" id="diagnosi">
+    <div class="head reveal">
+      <p class="eyebrow">Diagnosi in 20 secondi</p>
+      <h2>Non sai cosa scegliere?</h2>
+      <p>Rispondi a tre domande: ti dico se si risolve da remoto, quanto costa e quanto ci vuole.</p>
+    </div>
+    <div class="quiz glass reveal" data-quiz>
+      <div class="quiz__bar" aria-hidden="true"><span></span></div>
+      <fieldset class="quiz__q">
+        <legend><small>Domanda 1 di 3</small>Che dispositivo usi?</legend>
+        <div class="quiz__opts">
+          <label class="opt"><input type="radio" name="dispositivo" value="win"><span><svg class="i"><use href="#i-monitor"/></svg>PC Windows</span></label>
+          <label class="opt"><input type="radio" name="dispositivo" value="mac"><span><svg class="i"><use href="#i-monitor"/></svg>Mac</span></label>
+          <label class="opt"><input type="radio" name="dispositivo" value="android"><span><svg class="i"><use href="#i-mobile"/></svg>Android</span></label>
+          <label class="opt"><input type="radio" name="dispositivo" value="ios"><span><svg class="i"><use href="#i-mobile"/></svg>iPhone o iPad</span></label>
+        </div>
+      </fieldset>
+      <fieldset class="quiz__q" hidden>
+        <legend><small>Domanda 2 di 3</small>Qual è il problema?</legend>
+        <div class="quiz__opts">
+          <label class="opt"><input type="radio" name="problema" value="lento"><span><svg class="i"><use href="#i-gauge"/></svg>È lento o si blocca</span></label>
+          <label class="opt"><input type="radio" name="problema" value="virus"><span><svg class="i"><use href="#i-bug"/></svg>Virus o pubblicità strane</span></label>
+          <label class="opt"><input type="radio" name="problema" value="windows"><span><svg class="i"><use href="#i-up"/></svg>Windows 11 e aggiornamenti</span></label>
+          <label class="opt"><input type="radio" name="problema" value="email"><span><svg class="i"><use href="#i-mail"/></svg>Email o PEC</span></label>
+          <label class="opt"><input type="radio" name="problema" value="spid"><span><svg class="i"><use href="#i-id"/></svg>SPID, CIE, siti pubblici</span></label>
+          <label class="opt"><input type="radio" name="problema" value="stampante"><span><svg class="i"><use href="#i-printer"/></svg>Stampante o scanner</span></label>
+          <label class="opt"><input type="radio" name="problema" value="account"><span><svg class="i"><use href="#i-key"/></svg>Account o password</span></label>
+          <label class="opt"><input type="radio" name="problema" value="backup"><span><svg class="i"><use href="#i-cloud"/></svg>Backup, foto, spazio pieno</span></label>
+          <label class="opt"><input type="radio" name="problema" value="altro"><span><svg class="i"><use href="#i-chat"/></svg>Altro</span></label>
+        </div>
+      </fieldset>
+      <fieldset class="quiz__q" hidden>
+        <legend><small>Domanda 3 di 3</small>Si accende e va su internet?</legend>
+        <div class="quiz__opts">
+          <label class="opt"><input type="radio" name="stato" value="ok"><span><svg class="i"><use href="#i-check"/></svg>Sì, funziona e va su internet</span></label>
+          <label class="opt"><input type="radio" name="stato" value="offline"><span><svg class="i"><use href="#i-wifi"/></svg>Si accende ma non va su internet</span></label>
+          <label class="opt"><input type="radio" name="stato" value="spento"><span><svg class="i"><use href="#i-power"/></svg>Non si accende</span></label>
+        </div>
+      </fieldset>
+      <div class="quiz__result" data-quiz-result tabindex="-1" aria-live="polite" hidden></div>
+      <div class="quiz__nav">
+        <button type="button" class="btn btn--ghost btn--xs" data-quiz-back hidden>← Indietro</button>
+        <button type="button" class="btn btn--ghost btn--xs" data-quiz-restart hidden>Ricomincia</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- COME FUNZIONA -->
+  <section class="section wrap story" id="come-funziona" data-story data-active="3">
+    <div class="head reveal">
+      <p class="eyebrow">Come funziona</p>
+      <h2>Tre passi. Zero spostamenti.</h2>
+      <p>Scorri: il Mac ti mostra cosa succede a ogni passo.</p>
+    </div>
+    <div class="story__grid">
+      <div class="story__sticky">
+        <div class="mac-stage" aria-hidden="true" data-tilt-zone>
+          <div class="scene">
+            <div class="float">
+              <div class="device">
+                <div class="lid">
+                  <div class="screen">
+                    <div class="menubar"><b>Assistenza</b><span><i></i>Sessione remota attiva</span></div>
+                    <div class="sv" data-screen="1">
+                      <div class="win">
+                        <div class="win__bar"><i></i><i></i><i></i><span>WhatsApp · Gabriel Tech</span></div>
+                        <div class="chat-mock">
+                          <p class="in">Ciao, il PC è lentissimo e si blocca</p>
+                          <p class="out">Ciao! Si risolve da remoto: intervento Completo, {{p.completo}} €. Se non risolvo, non paghi.</p>
+                          <p class="in">Perfetto, iniziamo!</p>
+                          <p class="out">Apri AnyDesk e dimmi il numero che vedi.</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="sv" data-screen="2">
+                      <div class="win">
+                        <div class="win__bar"><i></i><i></i><i></i><span>AnyDesk</span></div>
+                        <div class="connect">
+                          <p class="connect__label">Il tuo indirizzo</p>
+                          <p class="connect__id">123 456 789</p>
+                          <div class="connect__req"><b>Richiesta di connessione</b><span>Gabriel Tech vuole collegarsi</span><div class="connect__btns"><i>Rifiuta</i><i class="ok">Accetta</i></div></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="sv" data-screen="3">
+                <div class="win">
+                  <div class="win__bar"><i></i><i></i><i></i><span>Intervento in corso · connessione cifrata</span></div>
+                  <div class="win__body">
+                    <div>
+                      <p class="win__label">Controllo completo</p>
+                      <ul class="tasks">
+                        <li class="ok">Scansione antivirus</li>
+                        <li class="ok">Programmi all'avvio</li>
+                        <li class="run">Aggiornamenti</li>
+                        <li>Backup sul cloud</li>
+                      </ul>
+                      <div class="bar"><span></span></div>
+                    </div>
+                    <div class="gauge-wrap">
+                      <div class="gauge"><svg viewBox="0 0 120 120"><circle class="gauge__track" cx="60" cy="60" r="50"/><circle class="gauge__val" cx="60" cy="60" r="50"/></svg><b>96<small>%</small></b></div>
+                      <p class="win__label">Salute del sistema</p>
+                    </div>
+                  </div>
+                </div>
+                    </div>
+                    <svg class="cursor" viewBox="0 0 24 24"><path d="M5 3l14 7-6 1.8L10 19z"/></svg>
+                  </div>
+                </div>
+                <div class="base"></div>
+              <div class="chip c1"><svg class="i"><use href="#i-shield"/></svg>Virus rimossi</div>
+              <div class="chip c2"><svg class="i"><use href="#i-up"/></svg>Aggiornamenti installati</div>
+              <div class="chip c3"><svg class="i"><use href="#i-bolt"/></svg>PC di nuovo veloce</div>
+              </div>
+            </div>
+            <div class="scene__shadow"></div>
+          </div>
+        </div>
+      </div>
+      <ol class="story__steps">
+        <li class="story__step glass" data-step="1">
+          <span class="step__n">1</span>
+          <h3>Scrivimi</h3>
+          <p>Su WhatsApp, con la diagnosi o prenotando un orario. Mi descrivi il problema e ti dico subito se si risolve da remoto e quanto costa.</p>
+          <a class="more" href="#diagnosi">Fai la diagnosi<svg class="i"><use href="#i-arrow"/></svg></a>
+        </li>
+        <li class="story__step glass" data-step="2">
+          <span class="step__n">2</span>
+          <h3>Apri AnyDesk</h3>
+          <p>Scarichi AnyDesk dal sito ufficiale e mi detti il numero che vedi sullo schermo. La connessione parte solo quando premi «Accetta».</p>
+          <a class="more" href="collegati.html">Guida per collegarti in 2 minuti<svg class="i"><use href="#i-arrow"/></svg></a>
+        </li>
+        <li class="story__step glass" data-step="3">
+          <span class="step__n">3</span>
+          <h3>Risolvo mentre guardi</h3>
+          <p>Vedi ogni passaggio e puoi chiudere quando vuoi. Alla fine controlliamo insieme che sia tutto a posto, e solo allora paghi.</p>
+          <a class="more" href="prenota.html">Prenota un orario<svg class="i"><use href="#i-arrow"/></svg></a>
+        </li>
+      </ol>
+    </div>
+    <div class="dl glass reveal">
+      <span class="ico ico--red"><svg class="i"><use href="#i-download"/></svg></span>
+      <p><b>Scarica AnyDesk solo dal sito ufficiale.</b><span>Funziona su Windows, macOS, Linux, Android e iOS. Non installare mai versioni ricevute da sconosciuti.</span></p>
+      <a class="btn btn--primary" href="collegati.html">Guida passo passo<svg class="i"><use href="#i-arrow"/></svg></a>
+    </div>
+  </section>
+
+  <!-- PREZZI -->
+  <section class="section wrap" id="prezzi">
+    <div class="head reveal">
+      <p class="eyebrow">Prezzi</p>
+      <h2>Prezzi chiari. Nessuna sorpresa.</h2>
+      <p>Il prezzo lo concordiamo prima di iniziare. Se il problema non si risolve da remoto, non paghi.</p>
+    </div>
+
+    <div class="seg glass reveal" role="tablist" aria-label="Tipo di offerta" data-tabs>
+      <button type="button" role="tab" id="tab-once" aria-controls="panel-once" aria-selected="true">Singoli interventi</button>
+      <button type="button" role="tab" id="tab-sub" aria-controls="panel-sub" aria-selected="false" tabindex="-1">Abbonamenti</button>
+      <span class="seg__thumb" aria-hidden="true"></span>
+    </div>
+
+    <div class="plans" id="panel-once" role="tabpanel" aria-labelledby="tab-once">
+      <article class="plan glass reveal" data-tilt>
+        <h3 class="plan__name">Rapido</h3>
+        <p class="price"><b>{{p.rapido}}</b><span>€</span></p>
+        <p class="plan__sub">Fino a 30 minuti · un problema preciso</p>
+        <ul>
+          <li><svg class="i"><use href="#i-check"/></svg>Email, PEC o Outlook</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Stampante o scanner</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Installare un programma</li>
+          <li><svg class="i"><use href="#i-check"/></svg>SPID, CIE e app IO</li>
+        </ul>
+        <div class="plan__actions"><a class="btn btn--ghost btn--block" href="prenota.html?servizio=rapido">Prenota</a></div>
+      </article>
+      <article class="plan plan--hot glass reveal" data-tilt>
+        <span class="badge">Il più scelto</span>
+        <h3 class="plan__name">Completo</h3>
+        <p class="price"><b>{{p.completo}}</b><span>€</span></p>
+        <p class="plan__sub">Fino a 60 minuti · problemi più complessi</p>
+        <ul>
+          <li><svg class="i"><use href="#i-check"/></svg>Rimozione virus e pop-up</li>
+          <li><svg class="i"><use href="#i-check"/></svg>PC lento: pulizia e ottimizzazione</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Passaggio a Windows 11</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Backup e sicurezza degli account</li>
+        </ul>
+        <div class="plan__actions"><a class="btn btn--primary btn--block" href="prenota.html?servizio=completo">Prenota</a></div>
+      </article>
+      <article class="plan glass reveal" data-tilt>
+        <h3 class="plan__name">Pacchetto 5 ore</h3>
+        <p class="price"><b>{{p.pacchetto5}}</b><span>€</span></p>
+        <p class="plan__sub">Circa {{p.pacchetto5ora}} € l'ora · valido 12 mesi</p>
+        <ul>
+          <li><svg class="i"><use href="#i-check"/></svg>Da usare in più volte, a blocchi di 30 minuti</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Per tutta la famiglia e più dispositivi</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Lezioni a distanza incluse</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Risposta prioritaria</li>
+        </ul>
+        <div class="plan__actions"><a class="btn btn--primary btn--block" data-pay="pacchetto5" hidden>Paga online</a><a class="btn btn--ghost btn--block" href="#contatti" data-wa="Ciao! Mi interessa il Pacchetto 5 ore ({{p.pacchetto5}} €).">Acquista su WhatsApp</a></div>
+      </article>
+    </div>
+
+    <div class="plans" id="panel-sub" role="tabpanel" aria-labelledby="tab-sub" hidden>
+      <article class="plan glass" data-tilt>
+        <h3 class="plan__name">Famiglia</h3>
+        <p class="price"><b>{{p.famiglia}}</b><span>€</span><small>/mese</small></p>
+        <p class="plan__sub">Fino a 3 dispositivi · disdici quando vuoi</p>
+        <ul>
+          <li><svg class="i"><use href="#i-check"/></svg>1 intervento Rapido al mese incluso</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Monitoraggio del PC e check-up ogni 3 mesi</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Risposta prioritaria su WhatsApp</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Sconto del 20% sugli interventi extra</li>
+        </ul>
+        <div class="plan__actions"><a class="btn btn--primary btn--block" data-pay="famiglia" hidden>Attiva online</a><a class="btn btn--ghost btn--block" href="#contatti" data-wa="Ciao! Mi interessa l'abbonamento Famiglia ({{p.famiglia}} €/mese).">Attiva su WhatsApp</a></div>
+      </article>
+      <article class="plan plan--hot glass" data-tilt>
+        <span class="badge">Per partite IVA</span>
+        <h3 class="plan__name">Professionisti</h3>
+        <p class="price"><b>{{p.professionisti}}</b><span>€</span><small>/mese</small></p>
+        <p class="plan__sub">Fino a 3 postazioni · fattura mensile</p>
+        <ul>
+          <li><svg class="i"><use href="#i-check"/></svg>Fino a 2 ore di assistenza al mese</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Email, PEC e Microsoft 365</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Monitoraggio automatico di PC e backup</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Risposta entro 2 ore lavorative</li>
+        </ul>
+        <div class="plan__actions"><a class="btn btn--primary btn--block" data-pay="professionisti" hidden>Attiva online</a><a class="btn btn--ghost btn--block" href="#contatti" data-wa="Ciao! Mi interessa l'abbonamento Professionisti ({{p.professionisti}} €/mese).">Attiva su WhatsApp</a></div>
+      </article>
+      <article class="plan glass" data-tilt>
+        <h3 class="plan__name">Aziende</h3>
+        <p class="price price--text"><b>Su misura</b></p>
+        <p class="plan__sub">Oltre 3 postazioni</p>
+        <ul>
+          <li><svg class="i"><use href="#i-check"/></svg>Assistenza per tutto l'ufficio</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Accesso non presidiato, solo se autorizzato</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Monitoraggio di tutte le postazioni</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Nomina a responsabile del trattamento (GDPR)</li>
+        </ul>
+        <div class="plan__actions"><a class="btn btn--ghost btn--block" href="aziende.html">Scopri e chiedi un preventivo</a></div>
+      </article>
+    </div>
+
+    <p class="note reveal">Tempo extra: {{p.extra30}} € ogni 30 minuti, sempre concordato prima. Urgenze fuori orario: +{{p.urgenza}} €. Paghi a fine intervento con carta, PayPal, Satispay o bonifico istantaneo, e ricevi sempre la fattura. Vuoi regalarlo a qualcuno? <a href="regalo.html">Scopri il buono regalo</a>. <a data-pay="areaAbbonati" hidden>Area abbonati</a></p>
+  </section>
+
+  <!-- SICUREZZA -->
+  <section class="section wrap" id="sicurezza">
+    <div class="head reveal">
+      <p class="eyebrow">Sicurezza</p>
+      <h2>Le mie regole, per la tua tranquillità.</h2>
+      <p>Le truffe del «finto tecnico» esistono e usano proprio programmi come AnyDesk. Ecco come riconosci che sei nel posto giusto.</p>
+    </div>
+    <div class="rules">
+      <div class="rule glass reveal" data-tilt><span class="ico ico--blue"><svg class="i"><use href="#i-phone"/></svg></span><h3>Ti contatto solo se me lo chiedi tu</h3><p>Niente chiamate a sorpresa, niente finti allarmi sul tuo schermo.</p></div>
+      <div class="rule glass reveal" data-tilt><span class="ico ico--green"><svg class="i"><use href="#i-lock"/></svg></span><h3>Non ti chiedo mai i codici della banca</h3><p>Password, PIN, codici OTP e dati delle carte restano solo tuoi.</p></div>
+      <div class="rule glass reveal" data-tilt><span class="ico ico--orange"><svg class="i"><use href="#i-card"/></svg></span><h3>Niente gift card o criptovalute</h3><p>Si paga a fine intervento, con metodi tracciabili e fattura.</p></div>
+      <div class="rule glass reveal" data-tilt><span class="ico ico--red"><svg class="i"><use href="#i-alert"/></svg></span><h3>Non «recupero» soldi truffati</h3><p>Chi te lo promette è un truffatore. Se hai subito una truffa, segnalala alla <a href="https://www.commissariatodips.it/" target="_blank" rel="noopener">Polizia Postale</a>.</p></div>
+      <div class="rule glass reveal" data-tilt><span class="ico ico--indigo"><svg class="i"><use href="#i-power"/></svg></span><h3>La sessione la apri e la chiudi tu</h3><p>A fine intervento l'accesso si chiude. Nessun accesso permanente senza il tuo consenso.</p></div>
+      <div class="rule glass reveal" data-tilt><span class="ico ico--teal"><svg class="i"><use href="#i-folder"/></svg></span><h3>Tocco solo quello che serve</h3><p>Non apro file personali che non servono all'intervento e non copio i tuoi dati.</p></div>
+    </div>
+    <p class="note reveal"><a href="guide/finto-tecnico.html">Guida: come riconoscere la truffa del finto tecnico, e cosa fare se ci sei cascato</a></p>
+  </section>
+
+  <!-- CHI SONO -->
+  <section class="section section--tight wrap" id="chi-sono">
+    <div class="about glass reveal">
+      <div class="avatar" aria-hidden="true"><svg class="i"><use href="#i-user"/></svg></div>
+      <div>
+        <p class="eyebrow">Chi sono</p>
+        <h2>Un tecnico vero, con nome e cognome.</h2>
+        <p class="about__text">Sono {{cfg.titolare}}, tecnico informatico. Da {{cfg.anni}} anni aiuto privati e piccole attività con computer, smartphone e reti. Ho scelto di lavorare solo da remoto: così posso aiutarti in pochi minuti, ovunque tu sia, a un prezzo onesto. E ti spiego sempre cosa sto facendo, con parole semplici.</p>
+        <div class="about__video" data-video hidden></div>
+        <ul class="pills"><li>Windows</li><li>macOS</li><li>Android e iPhone</li><li>Microsoft 365</li><li>Reti e Wi-Fi</li><li>Sicurezza</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECENSIONI: compaiono quando le aggiungi in assets/config.js -->
+  <section class="section wrap" id="recensioni" data-reviews hidden>
+    <div class="head reveal">
+      <p class="eyebrow">Recensioni</p>
+      <h2>Cosa dicono di me.</h2>
+    </div>
+    <div class="reviews__list" data-reviews-list></div>
+    <p class="reviews__more"><a class="btn btn--ghost" data-google-reviews hidden><svg class="i"><use href="#i-star"/></svg>Leggi e lascia una recensione su Google</a></p>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section wrap" id="faq">
+    <div class="head reveal">
+      <p class="eyebrow">Domande frequenti</p>
+      <h2>Tutto quello che vuoi sapere.</h2>
+    </div>
+    <div class="faq">
+      <details class="glass reveal"><summary>È sicuro far entrare qualcuno nel mio computer?</summary><p>Sì, se sai chi è. La connessione AnyDesk è cifrata, parte solo quando la accetti tu e vedi tutto quello che faccio. Puoi chiuderla in qualsiasi momento con un clic. Leggi anche le <a href="#sicurezza">mie regole di sicurezza</a>.</p></details>
+      <details class="glass reveal"><summary>Cosa mi serve per iniziare?</summary><p>Un computer o uno smartphone acceso e collegato a internet, e AnyDesk scaricato dal sito ufficiale. Se non sai come fare, ti guido io al telefono.</p></details>
+      <details class="glass reveal"><summary>Quanto dura un intervento?</summary><p>Molti problemi semplici si risolvono in meno di mezz'ora. Per i casi più complessi ti do una stima prima di iniziare, e se serve più tempo te lo chiedo prima di continuare.</p></details>
+      <details class="glass reveal"><summary>E se il problema non si risolve?</summary><p>Se il problema non si può risolvere da remoto, non paghi. Ti dico con onestà cosa fare e a chi rivolgerti.</p></details>
+      <details class="glass reveal"><summary>Come si paga? Ricevo la fattura?</summary><p>Paghi a fine intervento con carta, PayPal, Satispay o bonifico istantaneo. Ricevi sempre la fattura elettronica.</p></details>
+      <details class="glass reveal"><summary>Lavori anche su Mac, iPhone e Android?</summary><p>Sì. Su Mac e Android posso controllare il dispositivo a distanza. Su iPhone e iPad vedo lo schermo che condividi e ti guido passo passo.</p></details>
+      <details class="glass reveal"><summary>Posso fare altro mentre lavori?</summary><p>Sì. Per operazioni lunghe, come aggiornamenti o backup, puoi lasciare il computer acceso: ti scrivo io quando ho finito. L'accesso vale solo per quella sessione.</p></details>
+      <details class="glass reveal"><summary>Cos'è il monitoraggio del PC incluso negli abbonamenti?</summary><p>Un piccolo programma, installato solo con il tuo consenso, che una volta al giorno mi manda lo stato di salute del computer: spazio sul disco, antivirus, aggiornamenti e backup. Se qualcosa non va ti avviso prima che diventi un problema. Non legge i tuoi file e non permette di controllare il PC.</p></details>
+      <details class="glass reveal"><summary>Quali sono le condizioni del servizio?</summary><p>Prezzi, pagamenti, garanzia «se non risolvo non paghi» e diritto di recesso sono spiegati nelle <a href="condizioni.html">condizioni di servizio</a>, con parole semplici.</p></details>
+      <details class="glass reveal"><summary>Lavori con aziende e partite IVA?</summary><p>Sì, con l'abbonamento Professionisti o con un piano su misura. Se nel tuo lavoro tratti dati di clienti, firmiamo la nomina a responsabile del trattamento prevista dal GDPR. <a href="aziende.html">Scopri l'assistenza per le aziende</a>.</p></details>
+    </div>
+  </section>
+
+  <!-- CONTATTI -->
+  <section class="section wrap" id="contatti">
+    <div class="head reveal">
+      <p class="eyebrow">Contatti</p>
+      <h2>Parliamone.<br>Il preventivo è gratis.</h2>
+      <p>Scrivimi su WhatsApp oppure lascia il tuo numero: ti richiamo io, negli orari di disponibilità.</p>
+    </div>
+    <div class="contact">
+      <div class="card glass reveal">
+        <p class="status status--inline" data-status><span class="dot"></span><span data-status-text>Orari qui sotto</span></p>
+        <p class="label">Telefono e WhatsApp</p>
+        <a class="phone" href="tel:{{cfg.phoneLink}}" data-phone>{{cfg.phoneDisplay}}</a>
+        <div class="cta-row cta-row--tight">
+          <a class="btn btn--wa" href="#contatti" data-wa><svg class="i"><use href="#i-chat"/></svg>WhatsApp</a>
+          <a class="btn btn--ghost" href="tel:{{cfg.phoneLink}}" data-call><svg class="i"><use href="#i-phone"/></svg>Chiama</a>
+          <a class="btn btn--ghost" href="prenota.html"><svg class="i"><use href="#i-calendar"/></svg>Prenota</a>
+        </div>
+        <table class="hours" data-hours>
+          <caption>Orari (ora italiana)</caption>
+          <tbody>
+{{orari.righe}}
+          </tbody>
+        </table>
+        <p class="card__note">Fuori orario puoi scrivermi lo stesso: ti rispondo appena torno disponibile. Email: <a href="mailto:{{cfg.email}}" data-email>{{cfg.email}}</a></p>
+      </div>
+
+      <form class="form card glass reveal" name="richiamata" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-form data-wa-intro="Ciao! Vorrei essere ricontattato." data-success="Grazie! Ho ricevuto la richiesta: ti richiamo appena possibile, negli orari di disponibilità." data-success-link="collegati.html" data-success-link-text="Intanto prepara AnyDesk in 2 minuti.">
+        <input type="hidden" name="form-name" value="richiamata">
+        <input type="hidden" name="lingua" value="it" data-lang-field>
+        <p class="hp"><label>Non compilare questo campo: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+        <h3>Ti richiamo io</h3>
+        <div class="field">
+          <label for="f-nome">Nome</label>
+          <input id="f-nome" name="nome" autocomplete="given-name" required maxlength="60">
+        </div>
+        <div class="field">
+          <label for="f-tel">Telefono</label>
+          <input id="f-tel" name="telefono" type="tel" inputmode="tel" autocomplete="tel" required pattern="[0-9+ ]{6,20}" title="Solo numeri, spazi e il segno +">
+        </div>
+        <div class="row">
+          <div class="field">
+            <label for="f-tipo">Problema</label>
+            <select id="f-tipo" name="problema">
+              <option>PC lento o bloccato</option>
+              <option>Virus o pop-up</option>
+              <option>Email o PEC</option>
+              <option>SPID, CIE e servizi online</option>
+              <option>Stampante o scanner</option>
+              <option>Windows 11 e aggiornamenti</option>
+              <option>Account e password</option>
+              <option>Backup e foto</option>
+              <option>Smartphone o tablet</option>
+              <option>Abbonamento o pacchetto</option>
+              <option>Altro</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-quando">Quando preferisci</label>
+            <select id="f-quando" name="quando">
+              <option>Appena possibile</option>
+              <option>Mattina</option>
+              <option>Pomeriggio</option>
+              <option>Sera</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-msg">Descrivi il problema <span>(facoltativo)</span></label>
+          <textarea id="f-msg" name="messaggio" rows="3" maxlength="800"></textarea>
+        </div>
+        <div class="field">
+          <label for="f-email">Email <span>(facoltativa: ti mando la conferma)</span></label>
+          <input id="f-email" name="email" type="email" autocomplete="email" maxlength="100">
+        </div>
+        <label class="check"><input type="checkbox" name="aggiornamenti" value="si"><span>Mandami su WhatsApp la conferma e un promemoria dell'appuntamento e, dopo l'intervento, una richiesta di recensione (anche via email, se la lasci). Al massimo 3 messaggi.</span></label>
+        <label class="check"><input type="checkbox" name="privacy" value="letta" required><span>Ho letto l'<a href="privacy.html">informativa privacy</a> e chiedo di essere ricontattato.</span></label>
+        <div class="cta-row cta-row--tight">
+          <button class="btn btn--primary" type="submit">Richiamami</button>
+          <button class="btn btn--ghost" type="button" data-form-wa><svg class="i"><use href="#i-chat"/></svg>Invia su WhatsApp</button>
+        </div>
+        <p class="form__status" role="status" aria-live="polite" data-form-status></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER -->
+</body>
+</html>

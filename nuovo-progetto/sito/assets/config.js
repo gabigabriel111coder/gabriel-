@@ -4,6 +4,12 @@
    Tutto quello che lasci vuoto ("") resta nascosto sul sito finché non lo compili.
    ========================================================================== */
 window.CONFIG = {
+  /* ---------- Chi sei: compare in «Chi sono», nel footer e nei documenti ---------- */
+  titolare: "[Nome Cognome]",
+  piva: "[00000000000]",
+  indirizzo: "[indirizzo]",          // serve per condizioni di servizio e privacy
+  anniEsperienza: "[X]",
+
   /* ---------- Contatti ---------- */
   phoneDisplay: "+39 000 000 0000", // come appare sul sito
   phoneLink: "+390000000000",       // per il tasto "Chiama": + prefisso e numero, senza spazi
@@ -23,6 +29,24 @@ window.CONFIG = {
     0: []
   },
   whatsappText: "Ciao! Ho bisogno di assistenza informatica da remoto.",
+  whatsappTextEn: "Hi! I need remote IT support.",
+
+  /* ---------- Prezzi in euro: cambiali solo qui ----------
+     Dopo una modifica il sito si aggiorna da solo alla pubblicazione su Netlify
+     (oppure lancia "npm run genera" sul computer). */
+  prezzi: {
+    rapido: 25,          // intervento Rapido, fino a 30 minuti
+    completo: 45,        // intervento Completo, fino a 60 minuti
+    extra30: 20,         // tempo extra, ogni 30 minuti
+    urgenza: 10,         // supplemento urgenze fuori orario
+    pacchetto5: 179,     // Pacchetto 5 ore
+    famiglia: 14.9,      // abbonamento Famiglia, al mese
+    professionisti: 39   // abbonamento Professionisti, al mese
+  },
+
+  /* ---------- Lingue del sito ----------
+     Tieni "en" solo se puoi fare assistenza anche in inglese: togliendolo, la versione inglese sparisce. */
+  lingue: ["it", "en"],
 
   /* ---------- Prenotazioni ----------
      Vuoto = il sito mostra il suo calendario e ti manda la richiesta (modulo + WhatsApp).
@@ -56,10 +80,10 @@ window.CONFIG = {
   /* ---------- Offerte stagionali ----------
      Compaiono da sole in alto nella home tra le date indicate (AAAA-MM-GG). */
   offerte: [
-    { dal: "2026-09-01", al: "2026-09-30", testo: "Settembre: preparo il PC per la scuola, da remoto", link: "#contatti" },
-    { dal: "2026-12-01", al: "2026-12-24", testo: "Natale: regala assistenza a chi ami", link: "regalo.html" }
+    { dal: "2026-09-01", al: "2026-09-30", testo: "Settembre: preparo il PC per la scuola, da remoto", testoEn: "September: get your PC ready for school, remotely", link: "#contatti" },
+    { dal: "2026-12-01", al: "2026-12-24", testo: "Natale: regala assistenza a chi ami", testoEn: "Christmas: give the gift of tech support", link: "regalo.html" }
     // Esempio da attivare togliendo le due barre:
-    // , { dal: "2026-11-23", al: "2026-11-30", testo: "Black Friday: −20% sul Pacchetto 5 ore", link: "#prezzi" }
+    // , { dal: "2026-11-23", al: "2026-11-30", testo: "Black Friday: −20% sul Pacchetto 5 ore", testoEn: "Black Friday: 20% off the 5-hour pack", link: "#prezzi" }
   ],
 
   /* ---------- Statistiche senza cookie ----------
@@ -69,4 +93,7 @@ window.CONFIG = {
   /* ---------- Assistente virtuale ----------
      Metti true solo dopo aver inserito la chiave su Netlify (vedi PIANO-DI-AZIONE.md). */
   assistente: false
+
+  /* Messaggi automatici ai clienti, gestionale e monitoraggio dei PC non si attivano da qui:
+     bastano le variabili su Netlify (vedi PIANO-DI-AZIONE.md, sezione 5bis). */
 };

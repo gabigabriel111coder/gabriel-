@@ -1,0 +1,716 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Gabriel Tech · Remote IT support anywhere in Italy</title>
+  <meta name="description" content="Remote IT support with AnyDesk: slow PC, viruses, email and PEC, SPID, printers, Windows 11, backups. Clear prices, and you only pay if the problem is fixed.">
+  <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#050507" media="(prefers-color-scheme: dark)">
+  <link rel="canonical" href="https://www.example.com/en/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:site_name" content="Gabriel Tech">
+  <meta property="og:title" content="Gabriel Tech · Remote IT support">
+  <meta property="og:description" content="Your computer, fixed remotely. Clear prices, and you only pay if the problem is fixed.">
+  <meta property="og:url" content="https://www.example.com/en/">
+  <meta property="og:image" content="https://www.example.com/assets/brand/og-image-en.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../assets/brand/apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
+  <link rel="stylesheet" href="../assets/style.css">
+  <script>document.documentElement.classList.add("js");try{var t=localStorage.getItem("gt-theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+  <script type="importmap">{ "imports": { "three": "../assets/vendor/three.module.min.js" } }</script>
+  <script src="../assets/config.js" defer></script>
+  <script src="../assets/main.js" defer></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Gabriel Tech","description":"Remote IT support for individuals and small businesses.","url":"https://www.example.com/en/","logo":"https://www.example.com/assets/brand/icon-512.png","image":"https://www.example.com/assets/brand/og-image-en.png","telephone":"+390000000000","email":"info@example.com","areaServed":{"@type":"Country","name":"Italy"},"priceRange":"€€","openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"09:00","closes":"13:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"14:30","closes":"19:30"}]}</script>
+  <link rel="alternate" hreflang="it" href="https://www.example.com/">
+  <link rel="alternate" hreflang="en" href="https://www.example.com/en/">
+  <link rel="alternate" hreflang="x-default" href="https://www.example.com/">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="backdrop" aria-hidden="true"><span></span><span></span><span></span></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="gt-bg" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="120" y2="120"><stop offset="0" stop-color="#0a84ff"/><stop offset=".55" stop-color="#5e5ce6"/><stop offset="1" stop-color="#9b5cff"/></linearGradient>
+    <linearGradient id="gt-gloss" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".32"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></linearGradient>
+  </defs>
+  <symbol id="logo-mark" viewBox="0 0 120 120"><rect width="120" height="120" rx="28" fill="url(#gt-bg)"/><rect width="120" height="120" rx="28" fill="url(#gt-gloss)"/><path d="M78.1 39.9A27 27 0 1 0 87 60H63" fill="none" stroke="#fff" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/><path d="M67 64v29l7.6-7.2 5 11.2 5.4-2.4-5-11h10.8z" fill="#fff" stroke="url(#gt-bg)" stroke-width="5" stroke-linejoin="round" paint-order="stroke"/></symbol>
+  <symbol id="i-cursor" viewBox="0 0 24 24"><path d="M5 3l14 7-6 1.8L10 19z"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M20.5 11.5a8.5 8.5 0 0 1-12.6 7.4L3.5 20l1.2-4.2A8.5 8.5 0 1 1 20.5 11.5z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-1 .8a3.5 3.5 0 0 1-1.8-1.8l.8-1-1-2z"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h3.5l2 5-2.5 1.5a11 11 0 0 0 5.5 5.5L15 13.5l5 2V19a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2.5"/><path d="M8 11V7.5a4 4 0 0 1 8 0V11"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-power" viewBox="0 0 24 24"><path d="M12 3v8"/><path d="M6.3 7a8 8 0 1 0 11.4 0"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7.5 3v6c0 4.5-3.2 8-7.5 9-4.3-1-7.5-4.5-7.5-9V6z"/><path d="M8.8 12.2l2.2 2.2 4.2-4.4"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17"/></symbol>
+  <symbol id="i-gauge" viewBox="0 0 24 24"><path d="M3.5 17a8.5 8.5 0 1 1 17 0"/><path d="M12 17l4.5-5.5"/><circle cx="12" cy="17" r="1.2"/></symbol>
+  <symbol id="i-bug" viewBox="0 0 24 24"><rect x="7" y="8" width="10" height="12" rx="5"/><path d="M12 12v8M9.5 4.5 11 7M14.5 4.5 13 7M3 13h4M17 13h4M4 19l3-1.8M20 19l-3-1.8M4 7.5l3 1.8M20 7.5l-3 1.8"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 16.5v-9M8.3 11.2 12 7.5l3.7 3.7"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 7.5 12 13l8.5-5.5"/></symbol>
+  <symbol id="i-id" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><circle cx="9" cy="11" r="2"/><path d="M5.8 16c.7-1.4 1.8-2 3.2-2s2.5.6 3.2 2M14.5 10h4M14.5 13.5h3"/></symbol>
+  <symbol id="i-printer" viewBox="0 0 24 24"><path d="M7 9V3.5h10V9"/><rect x="3" y="9" width="18" height="8" rx="2.5"/><path d="M7 14h10v6.5H7z"/></symbol>
+  <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15.5" r="4"/><path d="M11 12.5 20 3.5M16 7.5l3 3M13.5 10l2 2"/></symbol>
+  <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7 18.5a5 5 0 0 1-.9-9.9 6 6 0 0 1 11.6 1 4.5 4.5 0 0 1-.7 8.9z"/><path d="M12 15.5v-5M9.7 12.7 12 10.4l2.3 2.3"/></symbol>
+  <symbol id="i-apps" viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="2"/><rect x="13" y="4" width="7" height="7" rx="2"/><rect x="4" y="13" width="7" height="7" rx="2"/><path d="M16.5 13v7M13 16.5h7"/></symbol>
+  <symbol id="i-wifi" viewBox="0 0 24 24"><path d="M2.5 9a14 14 0 0 1 19 0M5.5 12.5a9.5 9.5 0 0 1 13 0M8.7 15.8a5 5 0 0 1 6.6 0"/><circle cx="12" cy="19" r="1"/></symbol>
+  <symbol id="i-mobile" viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></symbol>
+  <symbol id="i-cap" viewBox="0 0 24 24"><path d="M2 9.5 12 4.5l10 5-10 5z"/><path d="M6 11.5v4.5c3.5 2.3 8.5 2.3 12 0v-4.5M22 9.5v5"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3.5v11M7.5 10.5 12 15l4.5-4.5M4.5 20h15"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2.5 4.5 14H11l-1 7.5L18.5 10H12z"/></symbol>
+  <symbol id="i-card" viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="M3 10h18M7 15h3"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3.5 21.5 20h-19z"/><path d="M12 10v4.5M12 17.2v.1"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5c1.2-3.6 4-5.5 7.5-5.5s6.3 1.9 7.5 5.5"/></symbol>
+  <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7.5A2.5 2.5 0 0 1 5.5 5H10l2 2.5h6.5A2.5 2.5 0 0 1 21 10v7.5a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5z"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6 6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-gift" viewBox="0 0 24 24"><rect x="3.5" y="8.5" width="17" height="4" rx="1"/><path d="M5 12.5v8h14v-8M12 8.5v12M12 8.5C10.5 5 7 4.5 7 6.8S10 8.5 12 8.5zM12 8.5c1.5-3.5 5-4 5-1.7s-3 1.7-5 1.7z"/></symbol>
+  <symbol id="i-building" viewBox="0 0 24 24"><rect x="4.5" y="3.5" width="15" height="17" rx="2"/><path d="M9.5 20.5v-4h5v4M8.5 7.5H10M14 7.5h1.5M8.5 11H10M14 11h1.5"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M5 4.5h11a3 3 0 0 1 3 3v12.5H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8.5" y="8.5" width="12" height="12" rx="2.5"/><path d="M15.5 8.5V6A2.5 2.5 0 0 0 13 3.5H6A2.5 2.5 0 0 0 3.5 6v7A2.5 2.5 0 0 0 6 15.5h2.5"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24"><path d="M3.5 12.3V4.5a1 1 0 0 1 1-1h7.8l8.2 8.2a1.5 1.5 0 0 1 0 2.1l-6.8 6.8a1.5 1.5 0 0 1-2.1 0z"/><circle cx="8.5" cy="8.5" r="1.4"/></symbol>
+  <symbol id="i-qr" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><path d="M13.5 13.5h3v3h-3zM17.5 17.5h3v3h-3zM13.5 19.5h2M19.5 13.5v2"/></symbol>
+  <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12.5" rx="2"/><path d="M9 20.5h6M12 16.5v4"/></symbol>
+</svg>
+
+<header class="nav glass" data-nav>
+  <a class="brand" href="#top" aria-label="Gabriel Tech, back to the top">
+    <svg class="brand__logo" aria-hidden="true"><use href="#logo-mark"/></svg>
+    <span class="brand__name">Gabriel <b>Tech</b></span>
+  </a>
+  <nav class="nav__links" id="menu" aria-label="Main">
+    <a href="#servizi">Services</a>
+    <a href="#prezzi">Prices</a>
+    <a href="aziende.html">Business</a>
+    <a href="guide/index.html">Guides</a>
+    <a href="regalo.html">Gift</a>
+    <a href="#contatti">Contact</a>
+    <a class="nav__only-mobile" href="prenota.html">Book a time slot</a>
+  </nav>
+  <a class="lang-btn" href="../index.html" data-lang-switch hreflang="it" lang="it" aria-label="Versione italiana">EN</a>
+  <button class="theme-btn" type="button" data-theme-toggle aria-pressed="false" aria-label="Switch to dark theme"><svg class="i i-moon"><use href="#i-moon"/></svg><svg class="i i-sun"><use href="#i-sun"/></svg></button>
+  <a class="btn btn--ghost btn--sm nav__cta nav__book" href="prenota.html"><svg class="i"><use href="#i-calendar"/></svg>Book</a>
+  <a class="btn btn--wa btn--sm nav__cta" href="#contatti" data-wa><svg class="i"><use href="#i-chat"/></svg>WhatsApp</a>
+  <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Open the menu" data-menu><span></span><span></span></button>
+</header>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="hero wrap" id="top">
+    <div class="hero__copy">
+      <div class="hero__pills">
+        <a class="offer glass" href="#contatti" data-offer hidden><span class="offer__tag">Offer</span><span data-offer-text></span><svg class="i"><use href="#i-arrow"/></svg></a>
+        <p class="status glass" data-status><span class="dot"></span><span data-status-text>Message me on WhatsApp, even now</span></p>
+      </div>
+      <h1>Your computer,<br><span class="grad">fixed remotely.</span></h1>
+      <p class="lead">Remote IT support for individuals and small businesses. I connect securely to your PC or Mac, fix the problem while you watch, and you only pay once the job is done.</p>
+      <div class="cta-row">
+        <a class="btn btn--wa btn--lg" href="#contatti" data-wa><svg class="i"><use href="#i-chat"/></svg>Message me on WhatsApp</a>
+        <a class="btn btn--ghost btn--lg" href="#prezzi">See prices</a>
+      </div>
+      <ul class="hero__facts">
+        <li><svg class="i"><use href="#i-check"/></svg>No technician in your home</li>
+        <li><svg class="i"><use href="#i-check"/></svg>Windows, Mac, Android, iPhone</li>
+        <li><svg class="i"><use href="#i-check"/></svg>Anywhere in Italy</li>
+      </ul>
+    </div>
+
+    <div class="stage" data-3d-anchor data-tilt-zone>
+      <div class="stage__fallback" aria-hidden="true"><svg class="stage__logo"><use href="#logo-mark"/></svg></div>
+      <div class="hchip hc1 glass" aria-hidden="true"><svg class="i"><use href="#i-lock"/></svg>Encrypted connection</div>
+      <div class="hchip hc2 glass" aria-hidden="true"><svg class="i"><use href="#i-check"/></svg>Fixed while you watch</div>
+      <div class="hchip hc3 glass" aria-hidden="true"><small>sessions from</small><b>25 €</b></div>
+      <p class="stage__hint" aria-hidden="true"><svg class="i"><use href="#i-cursor"/></svg>Move your mouse or drag the G</p>
+    </div>
+  </section>
+
+  <!-- TRUST -->
+  <section class="wrap trust" aria-label="Why it's safe">
+    <div class="trust__item glass reveal"><svg class="i"><use href="#i-lock"/></svg><p><b>Encrypted connection</b><span>AnyDesk protects the whole session.</span></p></div>
+    <div class="trust__item glass reveal"><svg class="i"><use href="#i-eye"/></svg><p><b>See everything live</b><span>Every click happens on your screen.</span></p></div>
+    <div class="trust__item glass reveal"><svg class="i"><use href="#i-power"/></svg><p><b>You end it</b><span>Stop the session whenever you like.</span></p></div>
+    <div class="trust__item glass reveal"><svg class="i"><use href="#i-shield"/></svg><p><b>Not fixed? You don't pay</b><span>You know the price before we start.</span></p></div>
+  </section>
+
+  <!-- SERVIZI -->
+  <section class="section wrap" id="servizi">
+    <div class="head reveal">
+      <p class="eyebrow">Services</p>
+      <h2>Everything that can be fixed remotely.</h2>
+      <p>The most common problems for people who use computers and smartphones every day, at home and at work.</p>
+      <ul class="platforms"><li>Windows</li><li>macOS</li><li>Android</li><li>iPhone and iPad</li></ul>
+    </div>
+
+    <div class="bento">
+      <article class="tile t-xl glass reveal" data-tilt>
+        <span class="ico ico--blue"><svg class="i"><use href="#i-gauge"/></svg></span>
+        <span class="tag">Most requested</span>
+        <h3><a class="stretched" href="servizi/pc-lento.html">Slow or frozen PC</a></h3>
+        <p>Slow start-up, programs that freeze, a fan that never stops. I clean up the system, remove what you don't need and speed up start-up: your computer feels quick again.</p>
+        <ul class="pills"><li>Junk file clean-up</li><li>Start-up programs</li><li>Drivers and updates</li><li>Disk check</li></ul>
+        <span class="more">Learn more<svg class="i"><use href="#i-arrow"/></svg></span>
+      </article>
+      <article class="tile t-wide glass reveal" data-tilt>
+        <span class="ico ico--red"><svg class="i"><use href="#i-bug"/></svg></span>
+        <h3><a class="stretched" href="servizi/virus.html">Viruses, pop-ups and fake alerts</a></h3>
+        <p>I remove malware, suspicious extensions and intrusive ads. If you're worried you've been scammed, I check your PC and help you secure your accounts.</p>
+        <span class="more">Learn more<svg class="i"><use href="#i-arrow"/></svg></span>
+      </article>
+      <article class="tile glass reveal" data-tilt>
+        <span class="ico ico--indigo"><svg class="i"><use href="#i-up"/></svg></span>
+        <h3><a class="stretched" href="servizi/windows-11.html">Windows 11 and updates</a></h3>
+        <p>Moving from Windows 10, stuck updates, Extended Security Updates (ESU).</p>
+        <span class="more">Learn more<svg class="i"><use href="#i-arrow"/></svg></span>
+      </article>
+      <article class="tile glass reveal" data-tilt>
+        <span class="ico ico--sky"><svg class="i"><use href="#i-mail"/></svg></span>
+        <h3><a class="stretched" href="servizi/email-pec.html">Email, PEC and Outlook</a></h3>
+        <p>Setup on PC and phone, full mailboxes, messages that won't send.</p>
+        <span class="more">Learn more<svg class="i"><use href="#i-arrow"/></svg></span>
+      </article>
+      <article class="tile t-wide glass reveal" data-tilt>
+        <span class="ico ico--green"><svg class="i"><use href="#i-id"/></svg></span>
+        <h3><a class="stretched" href="servizi/spid-cie.html">SPID, CIE and Italian public services online</a></h3>
+        <p>IO app, health records, INPS, Revenue Agency, pagoPA: I guide you step by step, calmly, until you can do it on your own.</p>
+        <span class="more">Learn more<svg class="i"><use href="#i-arrow"/></svg></span>
+      </article>
+      <article class="tile glass reveal" data-tilt>
+        <span class="ico ico--gray"><svg class="i"><use href="#i-printer"/></svg></span>
+        <h3><a class="stretched" href="servizi/stampanti.html">Printers and scanners</a></h3>
+        <p>Drivers, Wi-Fi printing, scanning to your PC. I sort it all out from your computer.</p>
+        <span class="more">Learn more<svg class="i"><use href="#i-arrow"/></svg></span>
+      </article>
+      <article class="tile glass reveal" data-tilt>
+        <span class="ico ico--orange"><svg class="i"><use href="#i-key"/></svg></span>
+        <h3><a class="stretched" href="servizi/account-password.html">Accounts and passwords</a></h3>
+        <p>Recovering Google, Apple, Microsoft and social media accounts. I set up two-step verification.</p>
+        <span class="more">Learn more<svg class="i"><use href="#i-arrow"/></svg></span>
+      </article>
+      <article class="tile glass reveal" data-tilt>
+        <span class="ico ico--teal"><svg class="i"><use href="#i-cloud"/></svg></span>
+        <h3><a class="stretched" href="servizi/backup-foto.html">Backups and photos</a></h3>
+        <p>Automatic backups, OneDrive, iCloud, Google Photos, full storage, files to recover.</p>
+        <span class="more">Learn more<svg class="i"><use href="#i-arrow"/></svg></span>
+      </article>
+      <article class="tile glass reveal" data-tilt>
+        <span class="ico ico--purple"><svg class="i"><use href="#i-apps"/></svg></span>
+        <h3><a class="stretched" href="servizi/programmi-office.html">Software and Office</a></h3>
+        <p>Microsoft 365, antivirus, PDF, video calls and work software.</p>
+        <span class="more">Learn more<svg class="i"><use href="#i-arrow"/></svg></span>
+      </article>
+      <article class="tile glass reveal" data-tilt>
+        <span class="ico ico--blue"><svg class="i"><use href="#i-wifi"/></svg></span>
+        <h3><a class="stretched" href="servizi/wifi-rete.html">Wi-Fi and network</a></h3>
+        <p>Slow or unstable connection, home network, shared folders and printers.</p>
+        <span class="more">Learn more<svg class="i"><use href="#i-arrow"/></svg></span>
+      </article>
+      <article class="tile glass reveal" data-tilt>
+        <span class="ico ico--pink"><svg class="i"><use href="#i-mobile"/></svg></span>
+        <h3><a class="stretched" href="servizi/smartphone.html">Smartphones and tablets</a></h3>
+        <p>Android and iPhone: setup, WhatsApp, data transfer, full storage.</p>
+        <span class="more">Learn more<svg class="i"><use href="#i-arrow"/></svg></span>
+      </article>
+      <article class="tile t-wide glass reveal" data-tilt>
+        <span class="ico ico--yellow"><svg class="i"><use href="#i-cap"/></svg></span>
+        <h3><a class="stretched" href="servizi/lezioni.html">Remote lessons</a></h3>
+        <p>Learn to use your PC, smartphone and online services at your own pace. Great for parents and grandparents too.</p>
+        <span class="more">Learn more<svg class="i"><use href="#i-arrow"/></svg></span>
+      </article>
+      <article class="tile t-wide t-cta reveal">
+        <h3>Can't find your problem?</h3>
+        <p>Tell me about it: I'll tell you straight away whether it can be fixed remotely and how much it costs.</p>
+        <a class="btn btn--light" href="#contatti" data-wa="Hi! I have a problem that isn't in your list of services:">Describe your problem<svg class="i"><use href="#i-chat"/></svg></a>
+      </article>
+    </div>
+  </section>
+
+  <!-- SOLO REMOTO -->
+  <section class="section section--tight wrap" aria-labelledby="remoto-title">
+    <div class="head reveal">
+      <p class="eyebrow">Remote only</p>
+      <h2 id="remoto-title">Nothing physical. Everything faster.</h2>
+      <p>I work exclusively remotely: that's why I can help within minutes and at a fair price. Here's what I can do, and what I can't.</p>
+    </div>
+    <div class="split">
+      <div class="card glass reveal">
+        <h3>Can be fixed remotely</h3>
+        <ul class="list">
+          <li><svg class="i"><use href="#i-check"/></svg>Software, operating system and updates</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Viruses, security and accounts</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Email, printers and network</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Backups, cloud and data transfer</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Step-by-step explanations and lessons</li>
+        </ul>
+      </div>
+      <div class="card glass reveal">
+        <h3>Needs an on-site technician</h3>
+        <ul class="list list--no">
+          <li><svg class="i"><use href="#i-x"/></svg>Broken screens or parts to replace</li>
+          <li><svg class="i"><use href="#i-x"/></svg>A computer that won't turn on</li>
+          <li><svg class="i"><use href="#i-x"/></svg>A PC with no internet connection at all</li>
+          <li><svg class="i"><use href="#i-x"/></svg>Internal cleaning and fans</li>
+          <li><svg class="i"><use href="#i-x"/></svg>Data recovery from failed disks</li>
+        </ul>
+        <p class="card__note">In these cases I'll honestly tell you who to turn to.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIAGNOSI IN 3 DOMANDE -->
+  <section class="section wrap" id="diagnosi">
+    <div class="head reveal">
+      <p class="eyebrow">Diagnosis in 20 seconds</p>
+      <h2>Not sure what to choose?</h2>
+      <p>Answer three questions: I'll tell you whether it can be fixed remotely, how much it costs and how long it takes.</p>
+    </div>
+    <div class="quiz glass reveal" data-quiz>
+      <div class="quiz__bar" aria-hidden="true"><span></span></div>
+      <fieldset class="quiz__q">
+        <legend><small>Question 1 of 3</small>Which device do you use?</legend>
+        <div class="quiz__opts">
+          <label class="opt"><input type="radio" name="dispositivo" value="win"><span><svg class="i"><use href="#i-monitor"/></svg>Windows PC</span></label>
+          <label class="opt"><input type="radio" name="dispositivo" value="mac"><span><svg class="i"><use href="#i-monitor"/></svg>Mac</span></label>
+          <label class="opt"><input type="radio" name="dispositivo" value="android"><span><svg class="i"><use href="#i-mobile"/></svg>Android</span></label>
+          <label class="opt"><input type="radio" name="dispositivo" value="ios"><span><svg class="i"><use href="#i-mobile"/></svg>iPhone or iPad</span></label>
+        </div>
+      </fieldset>
+      <fieldset class="quiz__q" hidden>
+        <legend><small>Question 2 of 3</small>What's the problem?</legend>
+        <div class="quiz__opts">
+          <label class="opt"><input type="radio" name="problema" value="lento"><span><svg class="i"><use href="#i-gauge"/></svg>It's slow or freezes</span></label>
+          <label class="opt"><input type="radio" name="problema" value="virus"><span><svg class="i"><use href="#i-bug"/></svg>Viruses or strange ads</span></label>
+          <label class="opt"><input type="radio" name="problema" value="windows"><span><svg class="i"><use href="#i-up"/></svg>Windows 11 and updates</span></label>
+          <label class="opt"><input type="radio" name="problema" value="email"><span><svg class="i"><use href="#i-mail"/></svg>Email or PEC</span></label>
+          <label class="opt"><input type="radio" name="problema" value="spid"><span><svg class="i"><use href="#i-id"/></svg>SPID, CIE, public websites</span></label>
+          <label class="opt"><input type="radio" name="problema" value="stampante"><span><svg class="i"><use href="#i-printer"/></svg>Printer or scanner</span></label>
+          <label class="opt"><input type="radio" name="problema" value="account"><span><svg class="i"><use href="#i-key"/></svg>Account or password</span></label>
+          <label class="opt"><input type="radio" name="problema" value="backup"><span><svg class="i"><use href="#i-cloud"/></svg>Backups, photos, full storage</span></label>
+          <label class="opt"><input type="radio" name="problema" value="altro"><span><svg class="i"><use href="#i-chat"/></svg>Other</span></label>
+        </div>
+      </fieldset>
+      <fieldset class="quiz__q" hidden>
+        <legend><small>Question 3 of 3</small>Does it turn on and connect to the internet?</legend>
+        <div class="quiz__opts">
+          <label class="opt"><input type="radio" name="stato" value="ok"><span><svg class="i"><use href="#i-check"/></svg>Yes, it works and connects to the internet</span></label>
+          <label class="opt"><input type="radio" name="stato" value="offline"><span><svg class="i"><use href="#i-wifi"/></svg>It turns on but won't connect to the internet</span></label>
+          <label class="opt"><input type="radio" name="stato" value="spento"><span><svg class="i"><use href="#i-power"/></svg>It won't turn on</span></label>
+        </div>
+      </fieldset>
+      <div class="quiz__result" data-quiz-result tabindex="-1" aria-live="polite" hidden></div>
+      <div class="quiz__nav">
+        <button type="button" class="btn btn--ghost btn--xs" data-quiz-back hidden>← Back</button>
+        <button type="button" class="btn btn--ghost btn--xs" data-quiz-restart hidden>Start again</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- COME FUNZIONA -->
+  <section class="section wrap story" id="come-funziona" data-story data-active="3">
+    <div class="head reveal">
+      <p class="eyebrow">How it works</p>
+      <h2>Three steps. No travel.</h2>
+      <p>Scroll: the Mac shows you what happens at each step.</p>
+    </div>
+    <div class="story__grid">
+      <div class="story__sticky">
+        <div class="mac-stage" aria-hidden="true" data-tilt-zone>
+          <div class="scene">
+            <div class="float">
+              <div class="device">
+                <div class="lid">
+                  <div class="screen">
+                    <div class="menubar"><b>Assistenza</b><span><i></i>Remote session active</span></div>
+                    <div class="sv" data-screen="1">
+                      <div class="win">
+                        <div class="win__bar"><i></i><i></i><i></i><span>WhatsApp · Gabriel Tech</span></div>
+                        <div class="chat-mock">
+                          <p class="in">Hi, my PC is really slow and keeps freezing</p>
+                          <p class="out">Hi! This can be fixed remotely: Complete session, €45. If I can't fix it, you don't pay.</p>
+                          <p class="in">Perfect, let's start!</p>
+                          <p class="out">Open AnyDesk and tell me the number you see.</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="sv" data-screen="2">
+                      <div class="win">
+                        <div class="win__bar"><i></i><i></i><i></i><span>AnyDesk</span></div>
+                        <div class="connect">
+                          <p class="connect__label">Your address</p>
+                          <p class="connect__id">123 456 789</p>
+                          <div class="connect__req"><b>Connection request</b><span>Gabriel Tech wants to connect</span><div class="connect__btns"><i>Dismiss</i><i class="ok">Accept</i></div></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="sv" data-screen="3">
+                <div class="win">
+                  <div class="win__bar"><i></i><i></i><i></i><span>Session in progress · encrypted connection</span></div>
+                  <div class="win__body">
+                    <div>
+                      <p class="win__label">Full check-up</p>
+                      <ul class="tasks">
+                        <li class="ok">Antivirus scan</li>
+                        <li class="ok">Start-up programs</li>
+                        <li class="run">Updates</li>
+                        <li>Cloud backup</li>
+                      </ul>
+                      <div class="bar"><span></span></div>
+                    </div>
+                    <div class="gauge-wrap">
+                      <div class="gauge"><svg viewBox="0 0 120 120"><circle class="gauge__track" cx="60" cy="60" r="50"/><circle class="gauge__val" cx="60" cy="60" r="50"/></svg><b>96<small>%</small></b></div>
+                      <p class="win__label">System health</p>
+                    </div>
+                  </div>
+                </div>
+                    </div>
+                    <svg class="cursor" viewBox="0 0 24 24"><path d="M5 3l14 7-6 1.8L10 19z"/></svg>
+                  </div>
+                </div>
+                <div class="base"></div>
+              <div class="chip c1"><svg class="i"><use href="#i-shield"/></svg>Viruses removed</div>
+              <div class="chip c2"><svg class="i"><use href="#i-up"/></svg>Updates installed</div>
+              <div class="chip c3"><svg class="i"><use href="#i-bolt"/></svg>PC fast again</div>
+              </div>
+            </div>
+            <div class="scene__shadow"></div>
+          </div>
+        </div>
+      </div>
+      <ol class="story__steps">
+        <li class="story__step glass" data-step="1">
+          <span class="step__n">1</span>
+          <h3>Message me</h3>
+          <p>On WhatsApp, with the diagnosis or by booking a time slot. Describe the problem and I'll tell you straight away whether it can be fixed remotely and how much it costs.</p>
+          <a class="more" href="#diagnosi">Take the diagnosis<svg class="i"><use href="#i-arrow"/></svg></a>
+        </li>
+        <li class="story__step glass" data-step="2">
+          <span class="step__n">2</span>
+          <h3>Open AnyDesk</h3>
+          <p>Download AnyDesk from the official website and read me the number you see on the screen. The connection only starts when you press «Accept».</p>
+          <a class="more" href="collegati.html">How to connect in 2 minutes<svg class="i"><use href="#i-arrow"/></svg></a>
+        </li>
+        <li class="story__step glass" data-step="3">
+          <span class="step__n">3</span>
+          <h3>I fix it while you watch</h3>
+          <p>You see every step and can end it whenever you like. At the end we check together that everything works, and only then do you pay.</p>
+          <a class="more" href="prenota.html">Book a time slot<svg class="i"><use href="#i-arrow"/></svg></a>
+        </li>
+      </ol>
+    </div>
+    <div class="dl glass reveal">
+      <span class="ico ico--red"><svg class="i"><use href="#i-download"/></svg></span>
+      <p><b>Only download AnyDesk from the official website.</b><span>It works on Windows, macOS, Linux, Android and iOS. Never install versions sent to you by strangers.</span></p>
+      <a class="btn btn--primary" href="collegati.html">Step-by-step guide<svg class="i"><use href="#i-arrow"/></svg></a>
+    </div>
+  </section>
+
+  <!-- PREZZI -->
+  <section class="section wrap" id="prezzi">
+    <div class="head reveal">
+      <p class="eyebrow">Prices</p>
+      <h2>Clear prices. No surprises.</h2>
+      <p>We agree on the price before we start. If the problem can't be fixed remotely, you don't pay.</p>
+    </div>
+
+    <div class="seg glass reveal" role="tablist" aria-label="Type of offer" data-tabs>
+      <button type="button" role="tab" id="tab-once" aria-controls="panel-once" aria-selected="true">One-off sessions</button>
+      <button type="button" role="tab" id="tab-sub" aria-controls="panel-sub" aria-selected="false" tabindex="-1">Subscriptions</button>
+      <span class="seg__thumb" aria-hidden="true"></span>
+    </div>
+
+    <div class="plans" id="panel-once" role="tabpanel" aria-labelledby="tab-once">
+      <article class="plan glass reveal" data-tilt>
+        <h3 class="plan__name">Quick</h3>
+        <p class="price"><b>25</b><span>€</span></p>
+        <p class="plan__sub">Up to 30 minutes · one specific problem</p>
+        <ul>
+          <li><svg class="i"><use href="#i-check"/></svg>Email, PEC or Outlook</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Printer or scanner</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Installing a program</li>
+          <li><svg class="i"><use href="#i-check"/></svg>SPID, CIE and IO app</li>
+        </ul>
+        <div class="plan__actions"><a class="btn btn--ghost btn--block" href="prenota.html?servizio=rapido">Book</a></div>
+      </article>
+      <article class="plan plan--hot glass reveal" data-tilt>
+        <span class="badge">Most popular</span>
+        <h3 class="plan__name">Complete</h3>
+        <p class="price"><b>45</b><span>€</span></p>
+        <p class="plan__sub">Up to 60 minutes · more complex problems</p>
+        <ul>
+          <li><svg class="i"><use href="#i-check"/></svg>Virus and pop-up removal</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Slow PC: clean-up and optimisation</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Upgrade to Windows 11</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Backups and account security</li>
+        </ul>
+        <div class="plan__actions"><a class="btn btn--primary btn--block" href="prenota.html?servizio=completo">Book</a></div>
+      </article>
+      <article class="plan glass reveal" data-tilt>
+        <h3 class="plan__name">5-hour pack</h3>
+        <p class="price"><b>179</b><span>€</span></p>
+        <p class="plan__sub">About €36 an hour · valid for 12 months</p>
+        <ul>
+          <li><svg class="i"><use href="#i-check"/></svg>Use it over several sessions, in 30-minute blocks</li>
+          <li><svg class="i"><use href="#i-check"/></svg>For the whole family and several devices</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Remote lessons included</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Priority replies</li>
+        </ul>
+        <div class="plan__actions"><a class="btn btn--primary btn--block" data-pay="pacchetto5" hidden>Pay online</a><a class="btn btn--ghost btn--block" href="#contatti" data-wa="Hi! I'm interested in the 5-hour pack (€179).">Buy on WhatsApp</a></div>
+      </article>
+    </div>
+
+    <div class="plans" id="panel-sub" role="tabpanel" aria-labelledby="tab-sub" hidden>
+      <article class="plan glass" data-tilt>
+        <h3 class="plan__name">Family</h3>
+        <p class="price"><b>14.90</b><span>€</span><small>/month</small></p>
+        <p class="plan__sub">Up to 3 devices · cancel any time</p>
+        <ul>
+          <li><svg class="i"><use href="#i-check"/></svg>1 Quick session per month included</li>
+          <li><svg class="i"><use href="#i-check"/></svg>PC monitoring and a check-up every 3 months</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Priority replies on WhatsApp</li>
+          <li><svg class="i"><use href="#i-check"/></svg>20% off extra sessions</li>
+        </ul>
+        <div class="plan__actions"><a class="btn btn--primary btn--block" data-pay="famiglia" hidden>Activate online</a><a class="btn btn--ghost btn--block" href="#contatti" data-wa="Hi! I'm interested in the Family subscription (€14.90/month).">Activate on WhatsApp</a></div>
+      </article>
+      <article class="plan plan--hot glass" data-tilt>
+        <span class="badge">For freelancers and firms</span>
+        <h3 class="plan__name">Professional</h3>
+        <p class="price"><b>39</b><span>€</span><small>/month</small></p>
+        <p class="plan__sub">Up to 3 workstations · monthly invoice</p>
+        <ul>
+          <li><svg class="i"><use href="#i-check"/></svg>Up to 2 hours of support per month</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Email, PEC and Microsoft 365</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Automatic monitoring of PCs and backups</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Reply within 2 working hours</li>
+        </ul>
+        <div class="plan__actions"><a class="btn btn--primary btn--block" data-pay="professionisti" hidden>Activate online</a><a class="btn btn--ghost btn--block" href="#contatti" data-wa="Hi! I'm interested in the Professional subscription (€39/month).">Activate on WhatsApp</a></div>
+      </article>
+      <article class="plan glass" data-tilt>
+        <h3 class="plan__name">Business</h3>
+        <p class="price price--text"><b>Custom</b></p>
+        <p class="plan__sub">More than 3 workstations</p>
+        <ul>
+          <li><svg class="i"><use href="#i-check"/></svg>Support for the whole office</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Unattended access, only if authorised</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Monitoring of every workstation</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Data processor agreement (GDPR)</li>
+        </ul>
+        <div class="plan__actions"><a class="btn btn--ghost btn--block" href="aziende.html">Learn more and get a quote</a></div>
+      </article>
+    </div>
+
+    <p class="note reveal">Extra time: €20 per 30 minutes, always agreed in advance. Out-of-hours emergencies: +€10. You pay at the end of the session by card, PayPal, Satispay or instant bank transfer, and you always get an invoice. Want to give it as a gift? <a href="regalo.html">Discover the gift voucher</a>. <a data-pay="areaAbbonati" hidden>Subscriber area</a></p>
+  </section>
+
+  <!-- SICUREZZA -->
+  <section class="section wrap" id="sicurezza">
+    <div class="head reveal">
+      <p class="eyebrow">Safety</p>
+      <h2>My rules, for your peace of mind.</h2>
+      <p>«Fake technician» scams are real, and they use programs like AnyDesk. Here's how to tell you're in the right place.</p>
+    </div>
+    <div class="rules">
+      <div class="rule glass reveal" data-tilt><span class="ico ico--blue"><svg class="i"><use href="#i-phone"/></svg></span><h3>I only contact you if you ask me to</h3><p>No surprise calls, no fake alarms on your screen.</p></div>
+      <div class="rule glass reveal" data-tilt><span class="ico ico--green"><svg class="i"><use href="#i-lock"/></svg></span><h3>I never ask for your bank codes</h3><p>Passwords, PINs, OTP codes and card details stay yours alone.</p></div>
+      <div class="rule glass reveal" data-tilt><span class="ico ico--orange"><svg class="i"><use href="#i-card"/></svg></span><h3>No gift cards or crypto</h3><p>You pay at the end of the session, with traceable methods and an invoice.</p></div>
+      <div class="rule glass reveal" data-tilt><span class="ico ico--red"><svg class="i"><use href="#i-alert"/></svg></span><h3>I don't «recover» scammed money</h3><p>Anyone who promises that is a scammer. If you've been scammed, report it to the <a href="https://www.commissariatodips.it/" target="_blank" rel="noopener">Italian Postal Police</a>.</p></div>
+      <div class="rule glass reveal" data-tilt><span class="ico ico--indigo"><svg class="i"><use href="#i-power"/></svg></span><h3>You open and close the session</h3><p>When the job is done, access ends. No permanent access without your consent.</p></div>
+      <div class="rule glass reveal" data-tilt><span class="ico ico--teal"><svg class="i"><use href="#i-folder"/></svg></span><h3>I only touch what's needed</h3><p>I don't open personal files the job doesn't need, and I don't copy your data.</p></div>
+    </div>
+    <p class="note reveal"><a href="guide/finto-tecnico.html">Guide: how to spot the fake technician scam, and what to do if you fell for it</a></p>
+  </section>
+
+  <!-- CHI SONO -->
+  <section class="section section--tight wrap" id="chi-sono">
+    <div class="about glass reveal">
+      <div class="avatar" aria-hidden="true"><svg class="i"><use href="#i-user"/></svg></div>
+      <div>
+        <p class="eyebrow">About me</p>
+        <h2>A real technician, with a name.</h2>
+        <p class="about__text">I'm [Nome Cognome], an IT technician. For [X] years I've been helping individuals and small businesses with computers, smartphones and networks. I chose to work remotely only: that way I can help you within minutes, wherever you are, at a fair price. And I always explain what I'm doing, in plain words.</p>
+        <div class="about__video" data-video hidden></div>
+        <ul class="pills"><li>Windows</li><li>macOS</li><li>Android and iPhone</li><li>Microsoft 365</li><li>Networks and Wi-Fi</li><li>Safety</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECENSIONI: compaiono quando le aggiungi in assets/config.js -->
+  <section class="section wrap" id="recensioni" data-reviews hidden>
+    <div class="head reveal">
+      <p class="eyebrow">Reviews</p>
+      <h2>What people say about me.</h2>
+    </div>
+    <div class="reviews__list" data-reviews-list></div>
+    <p class="reviews__more"><a class="btn btn--ghost" data-google-reviews hidden><svg class="i"><use href="#i-star"/></svg>Read and leave a review on Google</a></p>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section wrap" id="faq">
+    <div class="head reveal">
+      <p class="eyebrow">Frequently asked questions</p>
+      <h2>Everything you want to know.</h2>
+    </div>
+    <div class="faq">
+      <details class="glass reveal"><summary>Is it safe to let someone into my computer?</summary><p>Yes, if you know who they are. The AnyDesk connection is encrypted, it only starts when you accept it, and you see everything I do. You can close it at any moment with one click. Also read <a href="#sicurezza">my safety rules</a>.</p></details>
+      <details class="glass reveal"><summary>What do I need to get started?</summary><p>A computer or smartphone that's switched on and connected to the internet, and AnyDesk downloaded from the official website. If you're not sure how, I'll guide you over the phone.</p></details>
+      <details class="glass reveal"><summary>How long does a session take?</summary><p>Many simple problems are fixed in under half an hour. For more complex cases I give you an estimate before we start, and if more time is needed I ask you before carrying on.</p></details>
+      <details class="glass reveal"><summary>What if the problem can't be fixed?</summary><p>If the problem can't be fixed remotely, you don't pay. I'll honestly tell you what to do and who to turn to.</p></details>
+      <details class="glass reveal"><summary>How do I pay? Do I get an invoice?</summary><p>You pay at the end of the session by card, PayPal, Satispay or instant bank transfer. You always get an electronic invoice.</p></details>
+      <details class="glass reveal"><summary>Do you also work on Mac, iPhone and Android?</summary><p>Yes. On Mac and Android I can control the device remotely. On iPhone and iPad I see the screen you share and guide you step by step.</p></details>
+      <details class="glass reveal"><summary>Can I do something else while you work?</summary><p>Yes. For long tasks, like updates or backups, you can leave the computer on: I'll message you when I'm done. Access only lasts for that session.</p></details>
+      <details class="glass reveal"><summary>What is the PC monitoring included in the subscriptions?</summary><p>A small program, installed only with your consent, that sends me your computer's health once a day: disk space, antivirus, updates and backups. If something is wrong, I warn you before it becomes a problem. It doesn't read your files and can't be used to control your PC.</p></details>
+      <details class="glass reveal"><summary>What are the terms of service?</summary><p>Prices, payments, the «not fixed, not paid» guarantee and your right of withdrawal are explained in the <a href="condizioni.html">terms of service</a>, in plain words.</p></details>
+      <details class="glass reveal"><summary>Do you work with businesses and freelancers?</summary><p>Yes, with the Professional subscription or a custom plan. If your work involves customer data, we sign the data processor agreement required by the GDPR. <a href="aziende.html">Discover support for businesses</a>.</p></details>
+    </div>
+  </section>
+
+  <!-- CONTATTI -->
+  <section class="section wrap" id="contatti">
+    <div class="head reveal">
+      <p class="eyebrow">Contact</p>
+      <h2>Let's talk.<br>The quote is free.</h2>
+      <p>Message me on WhatsApp or leave your number: I'll call you back during my opening hours.</p>
+    </div>
+    <div class="contact">
+      <div class="card glass reveal">
+        <p class="status status--inline" data-status><span class="dot"></span><span data-status-text>Opening hours below</span></p>
+        <p class="label">Phone and WhatsApp</p>
+        <a class="phone" href="tel:+390000000000" data-phone>+39 000 000 0000</a>
+        <div class="cta-row cta-row--tight">
+          <a class="btn btn--wa" href="#contatti" data-wa><svg class="i"><use href="#i-chat"/></svg>WhatsApp</a>
+          <a class="btn btn--ghost" href="tel:+390000000000" data-call><svg class="i"><use href="#i-phone"/></svg>Call</a>
+          <a class="btn btn--ghost" href="prenota.html"><svg class="i"><use href="#i-calendar"/></svg>Book</a>
+        </div>
+        <table class="hours" data-hours>
+          <caption>Opening hours (Italian time)</caption>
+          <tbody>
+          <tr><th scope="row">Monday</th><td>9:00–13:00 · 14:30–19:30</td></tr>
+          <tr><th scope="row">Tuesday</th><td>9:00–13:00 · 14:30–19:30</td></tr>
+          <tr><th scope="row">Wednesday</th><td>9:00–13:00 · 14:30–19:30</td></tr>
+          <tr><th scope="row">Thursday</th><td>9:00–13:00 · 14:30–19:30</td></tr>
+          <tr><th scope="row">Friday</th><td>9:00–13:00 · 14:30–19:30</td></tr>
+          <tr><th scope="row">Saturday</th><td>9:00–13:00</td></tr>
+          <tr><th scope="row">Sunday</th><td>Closed</td></tr>
+          </tbody>
+        </table>
+        <p class="card__note">Outside opening hours you can still message me: I'll reply as soon as I'm back. Email: <a href="mailto:info@example.com" data-email>info@example.com</a></p>
+      </div>
+
+      <form class="form card glass reveal" name="richiamata" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-form data-wa-intro="Hi! I'd like to be contacted." data-success="Thank you! I've received your request: I'll call you back as soon as possible, during my opening hours." data-success-link="collegati.html" data-success-link-text="Meanwhile, get AnyDesk ready in 2 minutes.">
+        <input type="hidden" name="form-name" value="richiamata">
+        <input type="hidden" name="lingua" value="it" data-lang-field>
+        <p class="hp"><label>Don't fill in this field: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+        <h3>I'll call you back</h3>
+        <div class="field">
+          <label for="f-nome">Name</label>
+          <input id="f-nome" name="nome" autocomplete="given-name" required maxlength="60">
+        </div>
+        <div class="field">
+          <label for="f-tel">Phone</label>
+          <input id="f-tel" name="telefono" type="tel" inputmode="tel" autocomplete="tel" required pattern="[0-9+ ]{6,20}" title="Only digits, spaces and the + sign">
+        </div>
+        <div class="row">
+          <div class="field">
+            <label for="f-tipo">Problem</label>
+            <select id="f-tipo" name="problema">
+              <option>Slow or frozen PC</option>
+              <option>Viruses or pop-ups</option>
+              <option>Email or PEC</option>
+              <option>SPID, CIE and online services</option>
+              <option>Printer or scanner</option>
+              <option>Windows 11 and updates</option>
+              <option>Accounts and passwords</option>
+              <option>Backups and photos</option>
+              <option>Smartphone or tablet</option>
+              <option>Subscription or pack</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-quando">When do you prefer</label>
+            <select id="f-quando" name="quando">
+              <option>As soon as possible</option>
+              <option>Morning</option>
+              <option>Afternoon</option>
+              <option>Evening</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-msg">Describe the problem <span>(optional)</span></label>
+          <textarea id="f-msg" name="messaggio" rows="3" maxlength="800"></textarea>
+        </div>
+        <div class="field">
+          <label for="f-email">Email <span>(optional: I'll send you a confirmation)</span></label>
+          <input id="f-email" name="email" type="email" autocomplete="email" maxlength="100">
+        </div>
+        <label class="check"><input type="checkbox" name="aggiornamenti" value="si"><span>Send me the appointment confirmation and a reminder on WhatsApp and, after the session, a review request (by email too, if you leave one). 3 messages at most.</span></label>
+        <label class="check"><input type="checkbox" name="privacy" value="letta" required><span>I have read the<a href="privacy.html">privacy notice</a> and ask to be contacted.</span></label>
+        <div class="cta-row cta-row--tight">
+          <button class="btn btn--primary" type="submit">Call me back</button>
+          <button class="btn btn--ghost" type="button" data-form-wa><svg class="i"><use href="#i-chat"/></svg>Send on WhatsApp</button>
+        </div>
+        <p class="form__status" role="status" aria-live="polite" data-form-status></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__cols">
+      <div class="footer__brand">
+        <a class="brand" href="#top"><svg class="brand__logo" aria-hidden="true"><use href="#logo-mark"/></svg><span class="brand__name">Gabriel <b>Tech</b></span></a>
+        <p>Remote-only IT support · Anywhere in Italy</p>
+        <p><a href="tel:+390000000000" data-phone>+39 000 000 0000</a><br><a href="mailto:info@example.com" data-email>info@example.com</a></p>
+        <p><a data-channel hidden>Follow the WhatsApp channel</a></p>
+      </div>
+      <nav aria-label="Services">
+        <h2>Services</h2>
+        <ul>
+          <li><a href="servizi/pc-lento.html">Slow PC</a></li>
+          <li><a href="servizi/virus.html">Viruses and pop-ups</a></li>
+          <li><a href="servizi/windows-11.html">Windows 11</a></li>
+          <li><a href="servizi/spid-cie.html">SPID and CIE</a></li>
+          <li><a href="servizi/email-pec.html">Email and PEC</a></li>
+          <li><a href="servizi/backup-foto.html">Backups and photos</a></li>
+          <li><a href="#servizi">All services</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Resources">
+        <h2>Resources</h2>
+        <ul>
+          <li><a href="guide/index.html">Guides and tips</a></li>
+          <li><a href="collegati.html">Connect with AnyDesk</a></li>
+          <li><a href="prenota.html">Book a time slot</a></li>
+          <li><a href="#diagnosi">3-question diagnosis</a></li>
+          <li><a href="regalo.html">Give tech support as a gift</a></li>
+          <li><a href="aziende.html">For businesses</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Information">
+        <h2>Information</h2>
+        <ul>
+          <li><a href="condizioni.html">Terms of service</a></li>
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="#sicurezza">Safety</a></li>
+          <li><a href="#faq">Frequently asked questions</a></li>
+          <li><a data-pay="areaAbbonati" hidden>Subscriber area</a></li>
+        </ul>
+      </nav>
+    </div>
+    <p class="footer__legal">© <span data-year>2026</span> [Nome Cognome] · VAT no. [00000000000] · AnyDesk is a trademark of AnyDesk Software GmbH, which is not affiliated with this website.</p>
+  </div>
+</footer>
+<a class="fab" href="#contatti" data-wa aria-label="Message me on WhatsApp"><svg class="i"><use href="#i-chat"/></svg></a>
+</body>
+</html>

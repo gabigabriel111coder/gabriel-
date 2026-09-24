@@ -1,58 +1,54 @@
 /* ==========================================================================
-   Notifica su Telegram per ogni richiesta arrivata dai moduli del sito.
-   Netlify la esegue da sola a ogni invio valido (evento "submission-created").
-   Si attiva impostando su Netlify le variabili TELEGRAM_BOT_TOKEN e TELEGRAM_CHAT_ID
-   (vedi PIANO-DI-AZIONE.md). Senza variabili non fa nulla.
+   Nuova richiesta da un modulo del sito. Netlify esegue questa funzione da sola
+   a ogni invio valido (evento "submission-created"):
+   1. salva la richiesta nel gestionale (pannello → Richieste);
+   2. avvisa il tecnico su Telegram (TELEGRAM_BOT_TOKEN e TELEGRAM_CHAT_ID);
+   3. manda al cliente l'email di ricevuta, se l'ha lasciata e l'email è attiva.
+   Ogni passo che non è configurato viene saltato: il modulo arriva comunque
+   anche nella sezione Forms di Netlify.
    ========================================================================== */
-const TITOLI = {
-  richiamata: "📞 Nuova richiesta di richiamata",
-  prenotazione: "📅 Nuova prenotazione",
-  "preventivo-aziende": "🏢 Nuova richiesta da un'azienda"
-};
-const NASCOSTI = new Set(["form-name", "bot-field", "privacy", "condizioni", "ip", "user_agent", "referrer"]);
+import { connectLambda } from "@netlify/blobs";
+import DATI from "../lib/dati.mjs";
+import { richieste, superaLimite } from "../lib/archivio.mjs";
+import { avvisoNuova, daModulo } from "../lib/gestione.mjs";
+import { inviaAlCliente, registra, telegram } from "../lib/notifiche.mjs";
 
-// "333 123 4567" o "+39 333…" → "39333…" per aprire la chat WhatsApp con un tocco
-export function waNumber(phone = "") {
-  let digits = String(phone).replace(/[^\d+]/g, "");
-  if (digits.startsWith("+")) digits = digits.slice(1);
-  else if (digits.startsWith("00")) digits = digits.slice(2);
-  else if (/^3\d{8,9}$/.test(digits)) digits = `39${digits}`;
-  return digits.replace(/\D/g, "");
-}
-
-export function formatMessage(payload) {
-  const data = payload?.data || {};
-  const lines = [TITOLI[payload?.form_name] || `Nuovo modulo: ${payload?.form_name}`, ""];
-  for (const [key, value] of Object.entries(data)) {
-    if (!value || NASCOSTI.has(key)) continue;
-    lines.push(`${key}: ${String(value).slice(0, 600)}`);
-  }
-  const wa = waNumber(data.telefono);
-  if (wa.length >= 10) lines.push("", `Scrivi su WhatsApp: https://wa.me/${wa}`);
-  return lines.join("\n");
-}
+const SITO = (process.env.SITE_URL || process.env.URL || DATI.sito).replace(/\/$/, "");
 
 export const handler = async (event) => {
-  const token = process.env.TELEGRAM_BOT_TOKEN;
-  const chatId = process.env.TELEGRAM_CHAT_ID;
-  if (!token || !chatId) return { statusCode: 200, body: "Notifica Telegram non configurata" };
-
   let payload;
   try {
     payload = JSON.parse(event.body || "{}").payload;
   } catch {
     return { statusCode: 400, body: "Richiesta non valida" };
   }
+  const richiesta = daModulo(payload);
 
+  // 1. Gestionale
+  let salvata = false;
   try {
-    const res = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ chat_id: chatId, text: formatMessage(payload), disable_web_page_preview: true })
-    });
-    if (!res.ok) console.error("Telegram ha risposto", res.status, await res.text());
+    connectLambda(event);
+    await richieste.salva(richiesta);
+    salvata = true;
   } catch (err) {
-    console.error("Invio a Telegram non riuscito:", err);
+    console.error("Salvataggio nel gestionale non riuscito:", err.message);
+  }
+
+  // 2. Avviso al tecnico
+  const avviso = await telegram(avvisoNuova(richiesta, salvata ? SITO : ""));
+  if (!avviso.ok && avviso.errore !== "Telegram non configurato") console.error(avviso.errore);
+
+  // 3. Ricevuta al cliente (al massimo 3 all'ora per indirizzo, contro gli abusi)
+  if (richiesta.email) {
+    const troppe = salvata ? await superaLimite("ricevuta", richiesta.email, 3).catch(() => false) : false;
+    if (!troppe) {
+      const esiti = await inviaAlCliente(richiesta, "ricevuta");
+      for (const e of esiti) if (!e.ok) console.error(e.errore);
+      if (salvata && esiti.length) {
+        registra(richiesta, "ricevuta", esiti);
+        await richieste.salva(richiesta).catch((err) => console.error("Aggiornamento non riuscito:", err.message));
+      }
+    }
   }
   // La richiesta resta comunque salvata su Netlify: non blocchiamo mai l'invio del modulo.
   return { statusCode: 200, body: "ok" };

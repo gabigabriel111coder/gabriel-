@@ -21,9 +21,12 @@
   <link rel="manifest" href="site.webmanifest">
   <link rel="stylesheet" href="assets/style.css">
   <script>document.documentElement.classList.add("js");try{var t=localStorage.getItem("gt-theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
-  <script type="importmap">{ "imports": { "three": "assets/vendor/three.module.min.js" } }</script>
+  <script type="importmap">{ "imports": { "three": "./assets/vendor/three.module.min.js" } }</script>
   <script src="assets/config.js" defer></script>
   <script src="assets/main.js" defer></script>
+  <link rel="alternate" hreflang="it" href="https://www.example.com/prenota.html">
+  <link rel="alternate" hreflang="en" href="https://www.example.com/en/prenota.html">
+  <link rel="alternate" hreflang="x-default" href="https://www.example.com/prenota.html">
 </head>
 <body>
 <a class="skip" href="#main">Vai al contenuto</a>
@@ -89,6 +92,7 @@
     <a href="index.html#contatti">Contatti</a>
     <a class="nav__only-mobile" href="prenota.html">Prenota un orario</a>
   </nav>
+  <a class="lang-btn" href="en/prenota.html" data-lang-switch hreflang="en" lang="en" aria-label="English version">EN</a>
   <button class="theme-btn" type="button" data-theme-toggle aria-pressed="false" aria-label="Passa al tema scuro"><svg class="i i-moon"><use href="#i-moon"/></svg><svg class="i i-sun"><use href="#i-sun"/></svg></button>
   <a class="btn btn--ghost btn--sm nav__cta nav__book" href="prenota.html"><svg class="i"><use href="#i-calendar"/></svg>Prenota</a>
   <a class="btn btn--wa btn--sm nav__cta" href="index.html#contatti" data-wa><svg class="i"><use href="#i-chat"/></svg>WhatsApp</a>
@@ -113,17 +117,19 @@
   <div class="contact" data-booking-internal>
     <form class="form card glass reveal" name="prenotazione" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-form data-booking data-wa-intro="Ciao! Vorrei prenotare un intervento." data-success="Richiesta inviata! Ti confermo l'orario su WhatsApp appena possibile." data-success-link="collegati.html" data-success-link-text="Intanto prepara AnyDesk.">
       <input type="hidden" name="form-name" value="prenotazione">
+      <input type="hidden" name="lingua" value="it" data-lang-field>
+      <input type="hidden" name="data">
       <p class="hp"><label>Non compilare questo campo: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
       <div class="field">
         <label for="b-servizio">Cosa ti serve</label>
         <select id="b-servizio" name="servizio">
-          <option>Intervento Rapido · 25 € · fino a 30 minuti</option>
-          <option>Intervento Completo · 45 € · fino a 60 minuti</option>
-          <option>Lezione a distanza</option>
-          <option>Pacchetto 5 ore</option>
-          <option>Abbonamento Famiglia o Professionisti</option>
-          <option>Aziende: prima chiamata gratuita</option>
-          <option>Non so, aiutami a scegliere</option>
+          <option data-servizio="rapido">Intervento Rapido · 25 € · fino a 30 minuti</option>
+          <option data-servizio="completo">Intervento Completo · 45 € · fino a 60 minuti</option>
+          <option data-servizio="lezione">Lezione a distanza</option>
+          <option data-servizio="pacchetto5">Pacchetto 5 ore</option>
+          <option data-servizio="abbonamento">Abbonamento Famiglia o Professionisti</option>
+          <option data-servizio="aziende">Aziende: prima chiamata gratuita</option>
+          <option data-servizio="nonso">Non so, aiutami a scegliere</option>
         </select>
       </div>
       <div class="field">
@@ -156,6 +162,11 @@
         <label for="b-msg">Descrivi il problema <span>(facoltativo)</span></label>
         <textarea id="b-msg" name="messaggio" rows="3" maxlength="800"></textarea>
       </div>
+      <div class="field">
+        <label for="b-email">Email <span>(facoltativa: ti mando conferma e promemoria)</span></label>
+        <input id="b-email" name="email" type="email" autocomplete="email" maxlength="100">
+      </div>
+      <label class="check"><input type="checkbox" name="aggiornamenti" value="si"><span>Mandami su WhatsApp la conferma e un promemoria dell'appuntamento e, dopo l'intervento, una richiesta di recensione (anche via email, se la lasci). Al massimo 3 messaggi.</span></label>
       <label class="check"><input type="checkbox" name="condizioni" value="accettate" required><span>Ho letto le <a href="condizioni.html">condizioni di servizio</a> e l'<a href="privacy.html">informativa privacy</a>.</span></label>
       <div class="cta-row cta-row--tight">
         <button class="btn btn--primary" type="submit"><svg class="i"><use href="#i-calendar"/></svg>Invia la prenotazione</button>
@@ -175,7 +186,11 @@
       <table class="hours" data-hours>
         <caption>Orari (ora italiana)</caption>
         <tbody>
-          <tr><th scope="row">Lunedì – Venerdì</th><td>9:00–13:00 · 14:30–19:30</td></tr>
+          <tr><th scope="row">Lunedì</th><td>9:00–13:00 · 14:30–19:30</td></tr>
+          <tr><th scope="row">Martedì</th><td>9:00–13:00 · 14:30–19:30</td></tr>
+          <tr><th scope="row">Mercoledì</th><td>9:00–13:00 · 14:30–19:30</td></tr>
+          <tr><th scope="row">Giovedì</th><td>9:00–13:00 · 14:30–19:30</td></tr>
+          <tr><th scope="row">Venerdì</th><td>9:00–13:00 · 14:30–19:30</td></tr>
           <tr><th scope="row">Sabato</th><td>9:00–13:00</td></tr>
           <tr><th scope="row">Domenica</th><td>Chiuso</td></tr>
         </tbody>

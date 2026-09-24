@@ -21,9 +21,12 @@
   <link rel="manifest" href="site.webmanifest">
   <link rel="stylesheet" href="assets/style.css">
   <script>document.documentElement.classList.add("js");try{var t=localStorage.getItem("gt-theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
-  <script type="importmap">{ "imports": { "three": "assets/vendor/three.module.min.js" } }</script>
+  <script type="importmap">{ "imports": { "three": "./assets/vendor/three.module.min.js" } }</script>
   <script src="assets/config.js" defer></script>
   <script src="assets/main.js" defer></script>
+  <link rel="alternate" hreflang="it" href="https://www.example.com/condizioni.html">
+  <link rel="alternate" hreflang="en" href="https://www.example.com/en/condizioni.html">
+  <link rel="alternate" hreflang="x-default" href="https://www.example.com/condizioni.html">
 </head>
 <body>
 <a class="skip" href="#main">Vai al contenuto</a>
@@ -89,6 +92,7 @@
     <a href="index.html#contatti">Contatti</a>
     <a class="nav__only-mobile" href="prenota.html">Prenota un orario</a>
   </nav>
+  <a class="lang-btn" href="en/condizioni.html" data-lang-switch hreflang="en" lang="en" aria-label="English version">EN</a>
   <button class="theme-btn" type="button" data-theme-toggle aria-pressed="false" aria-label="Passa al tema scuro"><svg class="i i-moon"><use href="#i-moon"/></svg><svg class="i i-sun"><use href="#i-sun"/></svg></button>
   <a class="btn btn--ghost btn--sm nav__cta nav__book" href="prenota.html"><svg class="i"><use href="#i-calendar"/></svg>Prenota</a>
   <a class="btn btn--wa btn--sm nav__cta" href="index.html#contatti" data-wa><svg class="i"><use href="#i-chat"/></svg>WhatsApp</a>
@@ -105,7 +109,7 @@
   <article class="prose glass reveal">
     <p class="callout callout--warn">Modello da completare con i tuoi dati e da far verificare da un commercialista o da un legale prima di pubblicare il sito.</p>
     <h2>1. Chi fornisce il servizio</h2>
-    <p>Il servizio Gabriel Tech è fornito da [Nome Cognome], [indirizzo], P.IVA [00000000000], email [info@example.com], di seguito «il tecnico».</p>
+    <p>Il servizio Gabriel Tech è fornito da [Nome Cognome], [indirizzo], P.IVA [00000000000], email info@example.com, di seguito «il tecnico».</p>
     <h2>2. Il servizio</h2>
     <p>Assistenza informatica <strong>esclusivamente da remoto</strong>, tramite un programma di controllo remoto (AnyDesk o equivalente), telefono e WhatsApp. Il collegamento avviene solo con il consenso del cliente, che accetta ogni sessione e può interromperla in qualsiasi momento. Non sono compresi interventi sul posto né riparazioni hardware.</p>
     <h2>3. Preventivo e prezzi</h2>
@@ -118,9 +122,13 @@
     <p>Chi acquista come consumatore a distanza ha 14 giorni per recedere dal contratto (art. 52 del Codice del Consumo). Chiedendo di iniziare subito l'intervento, il cliente richiede espressamente l'esecuzione durante questo periodo e riconosce che, a servizio completamente eseguito, perde il diritto di recesso (art. 59). Se recede prima che il servizio sia completato, paga solo la parte già fornita (art. 57). Per pacchetti e abbonamenti il recesso nei 14 giorni dà diritto al rimborso della parte non ancora usata.</p>
     <h2>7. Abbonamenti</h2>
     <p>Gli abbonamenti sono mensili e si rinnovano automaticamente. Si possono disdire in qualsiasi momento, senza penali, con effetto dal mese successivo. Gli interventi inclusi in un mese non si sommano ai mesi successivi.</p>
-    <h2>8. Pacchetti e buoni regalo</h2>
+    <h2>8. Monitoraggio dei computer</h2>
+    <p>Per gli abbonati che lo chiedono, il tecnico installa un piccolo programma che una volta al giorno invia lo stato di salute del computer: spazio sui dischi, antivirus, firewall, aggiornamenti, salute dei dischi e data dell'ultimo backup. Il programma non legge i file personali, non registra cosa fa l'utente e non permette di controllare il computer a distanza. Si può chiedere di toglierlo in qualsiasi momento; alla fine dell'abbonamento viene disattivato e si disinstalla da solo.</p>
+    <h2>9. Messaggi automatici</h2>
+    <p>Chi lascia un'email riceve la ricevuta della richiesta e, per gli appuntamenti, conferma e promemoria. Su WhatsApp i messaggi automatici partono solo se il cliente lo ha chiesto spuntando l'apposita casella, e sono al massimo tre per richiesta: conferma, promemoria e richiesta di recensione. Anche la richiesta di recensione via email parte solo con quel consenso.</p>
+    <h2>10. Pacchetti e buoni regalo</h2>
     <p>Il Pacchetto 5 ore e i buoni regalo valgono 12 mesi dall'acquisto. Il pacchetto si usa a blocchi di 30 minuti. I buoni non si possono convertire in denaro ma si possono cedere ad altre persone.</p>
-    <h2>9. Cosa chiedo al cliente</h2>
+    <h2>11. Cosa chiedo al cliente</h2>
     <ul>
       <li>Avere un backup dei dati importanti, oppure chiedermi di farlo prima dell'intervento.</li>
       <li>Usare solo programmi con licenza regolare.</li>
@@ -128,12 +136,12 @@
       <li>Restare disponibile durante l'intervento.</li>
       <li>Custodire le proprie password: non le chiedo e non le salvo.</li>
     </ul>
-    <h2>10. Responsabilità</h2>
+    <h2>12. Responsabilità</h2>
     <p>Il tecnico lavora con la diligenza professionale richiesta. Nei limiti consentiti dalla legge, non risponde di perdite di dati dovute alla mancanza di un backup o a guasti dell'hardware, salvo dolo o colpa grave. Restano sempre validi i diritti che la legge riconosce ai consumatori.</p>
-    <h2>11. Riservatezza e dati personali</h2>
+    <h2>13. Riservatezza e dati personali</h2>
     <p>Durante le sessioni il tecnico accede solo a quello che serve per l'intervento e non copia i file del cliente. Le sessioni vengono registrate solo se il cliente ne è informato prima. I dati personali sono trattati come descritto nell'<a href="privacy.html">informativa privacy</a>.</p>
-    <h2>12. Reclami e legge applicabile</h2>
-    <p>Per qualsiasi reclamo scrivi a [info@example.com]: ti rispondo il prima possibile. Si applica la legge italiana. Per i consumatori è competente il giudice del luogo in cui il consumatore risiede.</p>
+    <h2>14. Reclami e legge applicabile</h2>
+    <p>Per qualsiasi reclamo scrivi a info@example.com: ti rispondo il prima possibile. Si applica la legge italiana. Per i consumatori è competente il giudice del luogo in cui il consumatore risiede.</p>
   </article>
 </section>
 </main>

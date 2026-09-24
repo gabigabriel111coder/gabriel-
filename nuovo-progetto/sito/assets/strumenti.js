@@ -79,6 +79,7 @@
       [!/000 000 0000|0000000000/.test(`${C.phoneDisplay}${C.whatsapp}`), "Numero di telefono e WhatsApp", "Sostituisci il numero finto con il tuo."],
       [!/example\.com/.test(C.email || "example.com"), "Email", "Sostituisci info@example.com con la tua email."],
       [!/example\.com/.test(C.sito || "example.com"), "Dominio del sito", "Serve per codici QR e messaggi: mettilo quando lo compri."],
+      [![C.titolare, C.piva, C.indirizzo, C.anniEsperienza].some((v) => !v || /^\[.*\]$/.test(String(v))), "Dati dell'attività", "Scrivi nome e cognome, P.IVA, indirizzo e anni di esperienza (titolare, piva, indirizzo, anniEsperienza)."],
       [!!C.linkRecensioneGoogle, "Link per le recensioni Google", "Lo trovi nel profilo dell'attività su Google, alla voce «Chiedi recensioni»."],
       [payCount > 0, `Link di pagamento (${payCount} impostati)`, "Crea i link con Stripe, PayPal, SumUp o Satispay."],
       [Array.isArray(C.recensioni) && C.recensioni.length > 0, "Recensioni sul sito", "Aggiungi le prime recensioni vere, con il permesso dei clienti."],

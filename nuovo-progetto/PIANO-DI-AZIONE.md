@@ -13,7 +13,7 @@ Questo piano spiega cosa c'è nel sito, perché è fatto così e cosa fare, in o
 - [ ] **3. WhatsApp Business:** configuralo su un numero dedicato, con gli stessi orari del sito.
 - [ ] **4. Pagamenti:** attiva un sistema di pagamento con link (carta, PayPal, Satispay) e un programma per la fattura elettronica.
 - [ ] **5. Sito:** inserisci i tuoi dati in `sito/assets/config.js` e i segnaposto indicati nella Fase 3. Nome, logo e grafica sono già pronti (vedi `BRAND.md`).
-- [ ] **5bis. Funzioni in più:** attiva pagamenti, notifiche Telegram, recensioni e il resto quando sei pronto (vedi Fase 5bis).
+- [ ] **5bis. Funzioni in più:** attiva pagamenti, notifiche Telegram, gestionale con messaggi automatici, monitoraggio dei PC, recensioni e il resto quando sei pronto (vedi Fase 5bis).
 - [ ] **6. Online:** pubblica il sito su Netlify e collega il tuo dominio (vedi Fase 4).
 - [ ] **7. Google:** crea il profilo dell'attività su Google e registra il sito su Search Console.
 - [ ] **8. Procedura:** prepara i messaggi pronti e le condizioni di servizio (vedi Fase 6).
@@ -75,13 +75,13 @@ I prezzi del sito sono in linea con il mercato, con un posizionamento medio:
 | Rapido | 25 € | fino a 30 minuti |
 | Completo | 45 € | fino a 60 minuti, messo in evidenza |
 | Pacchetto 5 ore | 179 € | circa 36 € l'ora, valido 12 mesi |
-| Famiglia | 14,90 €/mese | 1 intervento rapido al mese, fino a 3 dispositivi |
-| Professionisti | 39 €/mese | fino a 2 ore al mese, fino a 3 postazioni |
-| Aziende | su preventivo | oltre 3 postazioni |
+| Famiglia | 14,90 €/mese | 1 intervento rapido al mese, fino a 3 dispositivi, monitoraggio del PC |
+| Professionisti | 39 €/mese | fino a 2 ore al mese, fino a 3 postazioni, monitoraggio di PC e backup |
+| Aziende | su preventivo | oltre 3 postazioni, monitoraggio di tutte le postazioni |
 
-Gli abbonamenti sono importanti: ti danno un'entrata fissa ogni mese.
+Gli abbonamenti sono importanti: ti danno un'entrata fissa ogni mese. Il monitoraggio dei PC (Fase 5bis) li rende più convincenti, perché spesso risolvi un problema prima che il cliente se ne accorga.
 
-**Decisioni da confermare tu:** i prezzi, la garanzia «se non risolvo, non paghi», il supplemento di 10 € per le urgenze fuori orario, il tempo extra a 20 € ogni 30 minuti e gli orari. Sono tutte modificabili (vedi Fase 3).
+**Decisioni da confermare tu:** i prezzi, la garanzia «se non risolvo, non paghi», il supplemento di 10 € per le urgenze fuori orario, il tempo extra a 20 € ogni 30 minuti e gli orari. Si cambiano tutte in `sito/assets/config.js` (vedi Fase 3).
 
 ### La fiducia
 Le truffe del «finto supporto tecnico» usano proprio AnyDesk e TeamViewer. La Polizia Postale segnala anche falsi tecnici che promettono di «recuperare» i soldi rubati da una truffa precedente.
@@ -165,28 +165,43 @@ Per questo il sito ha una sezione **Sicurezza** con regole chiare:
 | Cartella o file | Cosa contiene |
 |---|---|
 | `sito/` | **Il sito vero e proprio**: l'unica cartella che va online |
-| `sito/assets/config.js` | **Il pannello di controllo**: numero, WhatsApp, email, orari, link di pagamento, recensioni, video, offerte e altro. Tutto quello che lasci vuoto resta nascosto sul sito |
+| `sito/assets/config.js` | **Il pannello di controllo**: numero, WhatsApp, email, orari, prezzi, dati dell'attività, dominio, link di pagamento, recensioni, video, offerte e altro. Tutto quello che lasci vuoto resta nascosto sul sito |
+| `sito/en/` | La versione in inglese, creata dal generatore: non modificarla a mano |
+| `sito/agent/` | I programmi di monitoraggio da installare sui PC degli abbonati (Windows e Mac) |
+| `strumenti/modelli/home.html` | Il modello della home: testi, sezioni e foto |
 | `strumenti/contenuti.mjs` | I testi delle 12 pagine dei servizi e delle 4 guide |
-| `strumenti/genera-pagine.mjs` | Il generatore: ricrea tutte le pagine interne con la stessa grafica. Si lancia con `node strumenti/genera-pagine.mjs` oppure `npm run genera` |
-| `netlify/functions/` | Le automazioni: notifica Telegram e assistente virtuale |
+| `strumenti/traduzioni/en.mjs` | Il dizionario italiano → inglese di tutte le frasi del sito |
+| `strumenti/genera-pagine.mjs` | Il generatore: ricrea tutte le pagine, in italiano e in inglese, con la stessa grafica. Si lancia con `npm run genera` |
+| `netlify/functions/` | Le automazioni: richieste dai moduli, gestionale, promemoria, monitoraggio e assistente virtuale |
+| `netlify/lib/` | Parti comuni delle automazioni. `dati.mjs` lo crea il generatore da `config.js` |
+| `test/` | Le prove automatiche delle automazioni: `npm test` |
 | `PIANO-DI-AZIONE.md`, `BRAND.md`, `README.md` | Documenti per te: non vanno online |
 
-Le pagine interne (servizi, guide, prenotazione, regalo, aziende, condizioni, privacy) sono **generate**. Se modifichi a mano una di queste pagine, la prossima rigenerazione cancella la modifica. Per cambiarle modifica `strumenti/contenuti.mjs` o il generatore e poi rigenera, oppure chiedimelo.
+**Tutte le pagine sono generate**, compresa la home (dal modello `strumenti/modelli/home.html`) e la versione inglese. Se modifichi a mano un file dentro `sito/`, la prossima rigenerazione cancella la modifica: cambia il modello, `strumenti/contenuti.mjs` o il generatore e poi rigenera, oppure chiedimelo. Con Netlify collegato a GitHub la rigenerazione parte da sola a ogni pubblicazione.
 
 ### Cosa cambiare prima di pubblicare
+Quasi tutto si cambia **in un solo posto**, `sito/assets/config.js`, e poi si rigenera (`npm run genera`, oppure pubblicando su Netlify). I nuovi valori finiscono da soli in tutte le pagine italiane e inglesi, nei dati per Google, nelle email ai clienti e nelle risposte dell'assistente.
+
 | Cosa | Dove |
 |---|---|
-| **Numero, WhatsApp, email, orari** | `sito/assets/config.js`: si aggiornano da soli in tutte le pagine, compreso lo stato «Disponibile ora» e il calendario delle prenotazioni |
-| Stessi dati, per Google | `sito/index.html`: il blocco `application/ld+json` in alto (telefono, email, orari) |
-| **[Nome Cognome], [X] anni, P.IVA** | `sito/index.html` (sezione «Chi sono») e `strumenti/genera-pagine.mjs` (footer, condizioni e privacy), poi rigenera. Nel footer della home si aggiorna da solo, perché anche quello lo scrive il generatore |
-| **Tua foto** | Metti la foto in `sito/assets/` (per esempio `foto.jpg`). In `sito/index.html`, nella sezione «Chi sono», sostituisci `<svg class="i"><use href="#i-user"/></svg>` con `<img src="assets/foto.jpg" alt="Nome Cognome">` e togli `aria-hidden="true"` dal riquadro |
-| **Prezzi** | `sito/index.html` (sezione `PREZZI`), `strumenti/contenuti.mjs` (prezzo di ogni servizio), `strumenti/genera-pagine.mjs` (buoni, aziende, condizioni), il quiz in `sito/assets/main.js` (`PACCHETTI`) e le istruzioni dell'assistente in `netlify/functions/assistente.mjs`. È il cambiamento più sparso: se cambi i prezzi, chiedimelo e li aggiorno ovunque |
-| **Dominio** (dopo averlo comprato) | `sito/assets/config.js` (`sito`), `strumenti/genera-pagine.mjs` (`DOMINIO`, poi rigenera) e la testata di `sito/index.html` (`canonical`, `og:url`, `og:image`, blocco `ld+json`) |
-| **Condizioni e privacy** | Completa le parti tra parentesi quadre nel generatore e falle verificare |
+| **Numero, WhatsApp, email, orari** | `config.js`. Si aggiornano anche lo stato «Disponibile ora» e il calendario delle prenotazioni |
+| **Nome e cognome, P.IVA, indirizzo, anni di esperienza** | `config.js` (`titolare`, `piva`, `indirizzo`, `anniEsperienza`): compaiono in «Chi sono», nel footer, nelle condizioni e nella privacy |
+| **Prezzi** | `config.js` (`prezzi`): home, pagine dei servizi, buoni regalo, aziende, condizioni, diagnosi, versione inglese e assistente virtuale |
+| **Dominio** (dopo averlo comprato) | `config.js` (`sito`): indirizzi per Google, sitemap, codici QR e link nelle email |
+| **Tua foto** | Metti la foto in `sito/assets/` (per esempio `foto.jpg`). In `strumenti/modelli/home.html`, sezione «Chi sono», sostituisci `<svg class="i"><use href="#i-user"/></svg>` con `<img src="assets/foto.jpg" alt="Nome Cognome">`, togli `aria-hidden="true"` dal riquadro e rigenera |
+| **Testi della home** | `strumenti/modelli/home.html`. Se aggiungi frasi nuove, il generatore te le elenca in `strumenti/traduzioni/mancanti-en.json`: aggiungi la traduzione in `strumenti/traduzioni/en.mjs`, oppure chiedimelo |
+| **Condizioni e privacy** | Nel generatore: falle verificare prima di pubblicare |
 
 **Attenzione:** il numero `+39 000 000 0000` e l'email `info@example.com` sono finti. Non pubblicare il sito prima di averli sostituiti. Il **pannello del tecnico** (`/tecnico/`) ti mostra cosa manca ancora.
 
 Per vedere il sito sul computer, apri `sito/index.html` con un doppio clic. Per provare anche il 3D serve un piccolo server: dalla cartella `nuovo-progetto` lancia `npm run anteprima` e apri `http://localhost:8080`.
+
+### Il sito in altre lingue
+La versione inglese (`/en/`) si crea da sola a ogni rigenerazione, con il dizionario `strumenti/traduzioni/en.mjs`. Ogni pagina ha il pulsante **EN/IT** in alto e, se il browser del visitatore è in un'altra lingua, un piccolo avviso propone la versione giusta. Google riceve i collegamenti tra le due versioni (`hreflang`), quindi mostra a ogni persona la lingua giusta.
+
+Anche i messaggi automatici partono nella lingua della pagina da cui il cliente ha scritto, e l'assistente virtuale risponde nella lingua della domanda.
+
+**Per aggiungere un'altra lingua** (per esempio rumeno o spagnolo) serve un nuovo dizionario come `en.mjs`, le versioni tradotte dei messaggi automatici e dei modelli WhatsApp e la voce nell'elenco `lingue` di `config.js`. Chiedimelo: il generatore è già pronto.
 
 ---
 
@@ -199,7 +214,7 @@ Consiglio **Netlify**: hosting gratuito, HTTPS automatico, moduli di contatto se
 2. Trascina nella pagina la cartella **`sito`**, non tutta `nuovo-progetto`: così piano e documenti restano privati.
 3. Ricevi subito un indirizzo del tipo `nome-a-caso.netlify.app`.
 
-Con questa opzione notifica Telegram e assistente virtuale non funzionano: servono l'opzione B.
+Con questa opzione il sito funziona, in italiano e in inglese, ma le automazioni (Telegram, gestionale, messaggi, monitoraggio, assistente) no: servono l'opzione B.
 
 ### Opzione B: collegato a GitHub (consigliata)
 Ogni modifica caricata su GitHub aggiorna il sito da sola.
@@ -208,9 +223,9 @@ Ogni modifica caricata su GitHub aggiorna il sito da sola.
 3. Imposta:
    - **Branch:** `main`
    - **Base directory:** `nuovo-progetto`
-   - **Build command:** vuoto
+   - **Build command:** lascia quello che propone Netlify
 
-   Il resto, cioè cartella da pubblicare e funzioni, lo legge da solo dal file `netlify.toml`.
+   Il resto lo legge da solo dal file `netlify.toml`: la cartella da pubblicare, le funzioni e il comando `npm run genera`, che a ogni pubblicazione rigenera le pagine da `config.js`.
 4. Premi **Deploy**.
 
 ### Attivare i moduli
@@ -234,7 +249,8 @@ Il sito funziona già senza nessuna di queste. Ognuna si accende quando compili 
 
 ### Già attive, senza fare niente
 - **Diagnosi in 3 domande** nella home: consiglia il pacchetto e porta a WhatsApp o alla prenotazione.
-- **Prenotazione** (`prenota.html`) con i tuoi orari veri: il cliente sceglie giorno e ora, a te arriva la richiesta nel modulo di Netlify (e su Telegram, se lo attivi), poi confermi su WhatsApp.
+- **Prenotazione** (`prenota.html`) con i tuoi orari veri: il cliente sceglie giorno e ora e la richiesta arriva nei moduli di Netlify e, se lo attivi, nel gestionale e su Telegram.
+- **Versione in inglese** di tutto il sito, con il pulsante EN/IT (vedi «Il sito in altre lingue» nella Fase 3).
 - **Guida AnyDesk** (`collegati.html`): riconosce da sola Windows, Mac, Android o iPhone e prepara il messaggio WhatsApp con l'indirizzo AnyDesk del cliente.
 - **12 pagine di servizi e 4 guide**, per farti trovare su Google, più **regalo**, **aziende**, **condizioni**, **privacy** e la pagina **404** con la G in 3D.
 - **Offerte stagionali** in alto nella home: si accendono da sole tra le date scritte in `config.js` (`offerte`). Adesso c'è quella di settembre per il PC della scuola; a dicembre parte il buono regalo di Natale.
@@ -253,7 +269,7 @@ Il sito funziona già senza nessuna di queste. Ognuna si accende quando compili 
 | **Statistiche senza cookie** | Account gratuito Cloudflare → Web Analytics → aggiungi il sito e copia il «token» | `cloudflareAnalytics` |
 
 ### Notifica sul telefono con Telegram (gratis)
-Ogni richiesta dai moduli ti arriva subito su Telegram, con il link per scrivere al cliente su WhatsApp.
+Ogni richiesta dai moduli ti arriva subito su Telegram, con il link per scrivere al cliente su WhatsApp e quello per gestirla nel pannello. Qui arrivano anche gli avvisi del monitoraggio dei PC.
 1. Su Telegram apri **@BotFather**, scrivi `/newbot` e scegli un nome: ricevi un **token**.
 2. Manda un messaggio qualsiasi al tuo nuovo bot.
 3. Nel browser apri `https://api.telegram.org/bot<TOKEN>/getUpdates`, mettendo il tuo token al posto di `<TOKEN>`, e copia il numero dopo `"chat":{"id":`.
@@ -274,25 +290,112 @@ Una finestra «Domande?» risponde su servizi, prezzi e funzionamento e, quando 
 **Costi:** l'assistente usa `claude-opus-5`, il modello più affidabile. Le istruzioni fisse vengono messe in cache, quindi ogni risposta costa in genere intorno a 1–2 centesimi. Con qualche centinaio di domande al mese sono pochi euro. Se vuoi spendere meno si può usare un modello più economico: dimmelo e adatto la funzione.
 
 **Da ricordare:**
-- **Se cambi prezzi o servizi,** vanno aggiornati anche nelle istruzioni dell'assistente, in `netlify/functions/assistente.mjs`.
+- **Prezzi e orari** li prende da soli da `config.js`. Se aggiungi un servizio nuovo, va aggiunto anche nelle istruzioni in `netlify/functions/assistente.mjs`.
+- **Lingua:** risponde in italiano o in inglese, come la domanda.
+- **Protezione dalla spesa:** oltre al limite di spesa su Anthropic, ogni visitatore può fare al massimo 30 domande all'ora.
 - **Privacy:** le domande vengono elaborate da Anthropic, come già scritto nell'informativa privacy.
 
 ### Il pannello del tecnico (`/tecnico/`)
-Una pagina solo per te, non indicizzata da Google: salvala nei preferiti. Contiene:
-- **Controllo impostazioni:** cosa manca ancora in `config.js`.
-- **Messaggi pronti:** i messaggi della Fase 6, più conferma appuntamento, promemoria e richiesta recensione. Si copiano o si aprono in WhatsApp con un clic.
-- **Codici QR** di sito, WhatsApp, recensioni e guida AnyDesk, da scaricare in PNG o SVG.
-- **Da stampare:**
-  - **volantino A5**;
-  - **biglietto da visita** 85 × 55 mm fronte e retro;
-  - **buono regalo**, con codice e scadenza generati da soli.
+Una pagina solo per te, non indicizzata da Google: salvala nei preferiti. Ha tre sezioni:
+- **Strumenti:**
+  - controllo delle impostazioni di `config.js` e dei servizi collegati su Netlify, con i pulsanti per provarli;
+  - messaggi pronti per WhatsApp;
+  - codici QR di sito, WhatsApp, recensioni e guida AnyDesk;
+  - materiali da stampare: volantino A5, biglietto da visita e buono regalo. Dalla finestra di stampa scegli «Salva come PDF» e mandalo in tipografia.
+- **Richieste:** il gestionale di richieste e appuntamenti (sotto).
+- **Monitoraggio:** lo stato dei PC degli abbonati (sotto).
 
-  Dalla finestra di stampa scegli «Salva come PDF» e mandalo in tipografia.
+Le pagine del pannello si possono aprire, ma i dati dei clienti compaiono **solo dopo l'accesso con la tua chiave** (`ADMIN_TOKEN`), che resta salvata solo sul dispositivo che usi.
 
-Il pannello non è protetto da password: non scriverci mai dati dei clienti.
+### Gestionale e messaggi automatici
+Ogni richiesta dai moduli del sito finisce nel pannello, in **Richieste**. Da lì:
+1. **Confermi l'appuntamento** scegliendo data e ora: al cliente parte subito la conferma.
+2. **Qualche ora prima** gli arriva il promemoria, mai di notte (per gli appuntamenti presto al mattino arriva la sera prima).
+3. Quando premi **Fatto**, il giorno dopo gli arriva la richiesta di recensione.
 
-### Monitoraggio a distanza per gli abbonati (quando crescerai)
-Per offrire assistenza «preventiva» agli abbonati Professionisti e Aziende serve un programma di monitoraggio (RMM), come NinjaOne, Atera o Tactical RMM: avvisa se un disco si riempie o un backup fallisce. Sceglilo quando hai i primi clienti in abbonamento, e solo allora aggiungilo alla descrizione dei piani.
+Puoi anche inserire a mano i clienti che ti chiamano o ti scrivono su WhatsApp («Nuova voce»), spostare o annullare un appuntamento, aggiungere note ed eliminare una richiesta. Le richieste più vecchie di 12 mesi si cancellano da sole, come dice l'informativa privacy.
+
+**Chi riceve cosa:**
+- **Email:** ricevuta della richiesta, conferma e promemoria a chi lascia l'indirizzo. La richiesta di recensione solo a chi ha dato il consenso.
+- **WhatsApp:** solo a chi ha spuntato la casella del consenso, al massimo 3 messaggi: conferma, promemoria e recensione.
+- Ogni messaggio parte nella lingua del cliente (italiano o inglese). Nel pannello vedi quali messaggi sono partiti e quali no.
+
+**1. Attiva il gestionale.** Nel pannello, sotto «Accesso», premi «Genera una chiave sicura» e copiala. In Netlify apri **Site configuration → Environment variables** e aggiungi:
+- `ADMIN_TOKEN`: la chiave copiata;
+- `SITE_URL`: il tuo indirizzo, per esempio `https://www.gabrieltech.it`.
+
+Ripubblica il sito e accedi al pannello con la chiave. Non serve nessun database: l'archivio è Netlify Blobs, compreso nel piano gratuito.
+
+**2. Email automatiche.** Scegli uno dei due servizi, entrambi con un piano gratuito:
+- **Brevo** (azienda francese): circa 300 email al giorno gratis. In **SMTP & API → API Keys** crea una chiave, poi aggiungi la variabile `BREVO_API_KEY`.
+- **Resend**: circa 3.000 email al mese gratis. Crea una chiave, poi aggiungi la variabile `RESEND_API_KEY`.
+
+In entrambi i casi:
+1. Verifica il tuo dominio seguendo le istruzioni del servizio. Serve per non finire nello spam, quindi ti serve un dominio tuo.
+2. Aggiungi la variabile `EMAIL_MITTENTE`, per esempio `Gabriel Tech <assistenza@gabrieltech.it>`.
+
+Le risposte dei clienti arrivano all'email scritta in `config.js`.
+
+**3. WhatsApp automatico** (facoltativo, il più impegnativo). Usa la **WhatsApp Business Platform** (Cloud API) di Meta. Serve un numero diverso da quello che usi nell'app WhatsApp Business, oppure devi spostare quel numero sulla piattaforma.
+1. Su [developers.facebook.com](https://developers.facebook.com) crea un'app di tipo «Business» e aggiungi il prodotto **WhatsApp**.
+2. Collega il numero e verifica la tua attività nel Business Manager.
+3. Crea un **utente di sistema** con un token permanente e il permesso `whatsapp_business_messaging`.
+4. Aggiungi le variabili:
+   - `WHATSAPP_TOKEN`: il token;
+   - `WHATSAPP_PHONE_ID`: l'ID del numero, non il numero stesso.
+5. In **WhatsApp Manager → Modelli di messaggio** crea questi tre modelli, categoria **Utility**, in italiano (`it`) e in inglese (`en`), con questi nomi esatti. Il sito inserisce da solo nome e data al posto di {{1}} e {{2}}.
+
+| Nome | Italiano | Inglese |
+|---|---|---|
+| `gt_conferma` | Ciao {{1}}, confermo il nostro appuntamento di assistenza di {{2}} (ora italiana). Qualche minuto prima tieni pronto AnyDesk: trovi la guida sul sito. Per cambiare orario rispondi a questo messaggio. | Hi {{1}}, your remote support appointment is confirmed for {{2}} (Italian time). A few minutes before, please have AnyDesk ready: the guide is on the website. To change the time, just reply to this message. |
+| `gt_promemoria` | Ciao {{1}}, ti ricordo l'appuntamento di assistenza di {{2}} (ora italiana). Tieni il computer acceso e AnyDesk aperto. Se hai un imprevisto, rispondi a questo messaggio. | Hi {{1}}, a reminder of your remote support appointment on {{2}} (Italian time). Please keep your computer on and AnyDesk open. If something comes up, just reply to this message. |
+| `gt_recensione` | Ciao {{1}}, com'è andata con il tuo dispositivo dopo l'intervento? Se sei soddisfatto, una recensione mi aiuta tantissimo: {{2}} Grazie! | Hi {{1}}, how is your device doing after our session? If you're happy, a review helps me a lot: {{2}} Thank you! |
+
+Meta approva i modelli in genere in poche ore. Ogni messaggio ha un piccolo costo, di solito pochi centesimi: controlla il listino di Meta per l'Italia.
+
+**4. Prova tutto.** Nel pannello, in «Servizi collegati», usa i pulsanti **Prova Telegram**, **Prova email** e **Prova WhatsApp**. La prova WhatsApp usa il modello `hello_world`, che Meta crea da solo. Poi fai una prenotazione di prova dal sito, confermala nel pannello con il tuo numero e controlla che arrivino conferma e promemoria.
+
+I promemoria e le richieste di recensione li manda una funzione che Netlify esegue da sola ogni ora (`automazioni`): non devi attivare niente.
+
+### Monitoraggio dei PC degli abbonati
+Un piccolo programma, in **sola lettura**, controlla ogni giorno lo stato del computer dell'abbonato e te lo manda nel pannello, in **Monitoraggio**. Controlla:
+- spazio e salute dei dischi;
+- antivirus (acceso e aggiornato) e firewall;
+- aggiornamenti di Windows e riavvii in sospeso;
+- data dell'ultimo backup;
+- da quanti giorni il PC non viene riavviato;
+- sul Mac: FileVault, Gatekeeper e protezione di sistema.
+
+Se qualcosa non va ti arriva un avviso su Telegram, una volta sola per ogni problema nuovo. Se un PC non si fa sentire per 3 giorni, ricevi un avviso anche per quello. Così spesso sistemi un disco pieno o un backup fermo prima che il cliente se ne accorga: è il valore in più degli abbonamenti.
+
+**Cosa non fa:** non legge file, email o foto e non permette di controllare il computer. Per collegarti serve sempre AnyDesk, con il permesso del cliente.
+
+**Come si aggiunge un PC** (serve il gestionale attivo):
+1. **Prima chiedi il consenso al cliente** e spiegagli cosa controlla il programma. Il monitoraggio è già descritto nelle condizioni e nella privacy.
+2. Nel pannello, in **Monitoraggio**, premi «Aggiungi un PC», scrivi il nome (per esempio «Studio Rossi · PC reception») e, se c'è, la cartella del backup (per esempio `E:\Backup`, meglio un disco del computer o USB).
+3. Collegato con AnyDesk:
+   - scarica sul PC del cliente lo script dal link nel pannello;
+   - apri **PowerShell come amministratore** (sul Mac, il **Terminale**);
+   - incolla il comando che ti mostra il pannello.
+
+   Dopo un minuto il PC compare nell'elenco.
+
+**Per toglierlo** premi «Rimuovi il monitoraggio»: al controllo successivo il programma si disinstalla da solo e i dati dei controlli vengono cancellati. In alternativa puoi toglierlo dal PC con il comando indicato nel pannello. Toglilo sempre quando finisce un abbonamento.
+
+**Quando i PC diventano tanti** (per esempio oltre 30–50, o aziende che vogliono aggiornamenti automatici e antivirus gestito), valuta un programma professionale di gestione a distanza (RMM) come NinjaOne, Atera o Tactical RMM.
+
+### Riepilogo delle variabili di Netlify
+Si impostano in **Site configuration → Environment variables**. Dopo ogni modifica, ripubblica il sito.
+
+| Variabile | A cosa serve | Obbligatoria? |
+|---|---|---|
+| `SITE_URL` | Il tuo indirizzo, per esempio `https://www.gabrieltech.it` | Consigliata |
+| `ADMIN_TOKEN` | Chiave del pannello: gestionale e monitoraggio (almeno 24 caratteri) | Per il gestionale |
+| `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` | Avvisi sul tuo telefono | Facoltative |
+| `BREVO_API_KEY` oppure `RESEND_API_KEY`, e `EMAIL_MITTENTE` | Email automatiche ai clienti | Facoltative |
+| `WHATSAPP_TOKEN`, `WHATSAPP_PHONE_ID` | WhatsApp automatico | Facoltative |
+| `WHATSAPP_API_VERSION` | Versione delle API di Meta (se non la metti: `v23.0`) | Facoltativa |
+| `ANTHROPIC_API_KEY` | Assistente virtuale | Facoltativa |
 
 ---
 
@@ -398,6 +501,9 @@ Li trovi anche nel pannello del tecnico (`/tecnico/`), pronti da copiare con un 
 | Contributi INPS | dipendono dal codice ATECO (Fase 1) |
 | Assicurazione RC professionale | chiedi un preventivo |
 | Notifiche Telegram, Cal.com o Calendly base, Cloudflare Web Analytics | 0 € |
+| Gestionale e monitoraggio (Netlify Blobs e funzioni, nei limiti del piano gratuito) | 0 € |
+| Email automatiche (Brevo o Resend, piano gratuito) | 0 € |
+| WhatsApp automatico (facoltativo) | pochi centesimi a messaggio, secondo il listino di Meta |
 | Stripe, PayPal, SumUp, Satispay | nessun canone di base, solo una commissione sui pagamenti |
 | Assistente virtuale (facoltativo) | in genere pochi euro al mese, con il limite di spesa che scegli tu |
 
@@ -409,9 +515,9 @@ Li trovi anche nel pannello del tecnico (`/tecnico/`), pronti da copiare con un 
 
 1. Aprire la pull request per portare il sito su `main`, necessaria per l'Opzione B di Netlify.
 2. Inserire i tuoi dati veri: nome e cognome, numero, email, P.IVA, foto, dominio.
-3. Tradurre il sito nelle lingue che parli (inglese, rumeno, spagnolo…), per raggiungere le comunità straniere in Italia: dimmi quali.
+3. Aggiungere altre lingue oltre all'inglese (rumeno, spagnolo, arabo…), per raggiungere le comunità straniere in Italia: dimmi quali.
 4. Scrivere altre guide (una al mese aiuta molto su Google) e pagine per le domande più frequenti dei tuoi clienti.
-5. Collegare i link di pagamento, il calendario e l'assistente quando hai creato gli account.
+5. Collegare i link di pagamento, il calendario, le email, WhatsApp e l'assistente quando hai creato gli account.
 
 ---
 

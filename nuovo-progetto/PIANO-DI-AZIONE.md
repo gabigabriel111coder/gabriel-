@@ -12,7 +12,8 @@ Questo piano spiega cosa c'è nel sito, perché è fatto così e cosa fare, in o
 - [ ] **2. AnyDesk:** acquista una licenza commerciale. La versione gratuita non si può usare per lavoro.
 - [ ] **3. WhatsApp Business:** configuralo su un numero dedicato, con gli stessi orari del sito.
 - [ ] **4. Pagamenti:** attiva un sistema di pagamento con link (carta, PayPal, Satispay) e un programma per la fattura elettronica.
-- [ ] **5. Sito:** inserisci i tuoi dati: numero, nome e cognome, P.IVA, foto, prezzi e privacy (vedi Fase 3). Nome, logo e grafica sono già pronti (vedi `BRAND.md`).
+- [ ] **5. Sito:** inserisci i tuoi dati in `sito/assets/config.js` e i segnaposto indicati nella Fase 3. Nome, logo e grafica sono già pronti (vedi `BRAND.md`).
+- [ ] **5bis. Funzioni in più:** attiva pagamenti, notifiche Telegram, recensioni e il resto quando sei pronto (vedi Fase 5bis).
 - [ ] **6. Online:** pubblica il sito su Netlify e collega il tuo dominio (vedi Fase 4).
 - [ ] **7. Google:** crea il profilo dell'attività su Google e registra il sito su Search Console.
 - [ ] **8. Procedura:** prepara i messaggi pronti e le condizioni di servizio (vedi Fase 6).
@@ -160,55 +161,138 @@ Per questo il sito ha una sezione **Sicurezza** con regole chiare:
 
 ## 4. Fase 3: personalizzare il sito
 
-Per vedere il sito sul computer, apri `index.html` con un doppio clic. Il modulo funziona solo quando il sito è online su Netlify.
-
-| Cosa cambiare | Dove |
+### Come è organizzata la cartella
+| Cartella o file | Cosa contiene |
 |---|---|
-| **Numero di telefono, WhatsApp, email, orari** | `assets/main.js`, blocco `CONFIG` in alto. Si aggiornano da soli in tutto il sito, compreso lo stato «Disponibile ora» |
-| Stessi dati, per Google | `index.html`: il blocco `application/ld+json` in alto (telefono, email, orari), il link del telefono e la tabella degli orari nella sezione Contatti |
-| **Nome, logo e colori** | Già fatti: «Gabriel Tech». File e regole in `BRAND.md` |
-| **[Nome Cognome], [X] anni, P.IVA** | `index.html` (sezioni «Chi sono» e footer) e `privacy.html` |
-| **Tua foto** | Metti la foto in `assets/` (per esempio `foto.jpg`). In `index.html`, nella sezione «Chi sono», sostituisci `<svg class="i"><use href="#i-user"/></svg>` con `<img src="assets/foto.jpg" alt="Nome Cognome">` e togli `aria-hidden="true"` dal riquadro. Una foto vera aumenta molto la fiducia |
-| **Prezzi e pacchetti** | `index.html`, sezione `PREZZI`. Aggiorna anche i testi WhatsApp precompilati (attributi `data-wa="…"`) e la nota sotto i prezzi |
-| **Dominio** (dopo averlo comprato) | `index.html`: sostituisci ogni `https://www.example.com` (`canonical`, `og:url`, `og:image`, blocco `ld+json`) |
-| **Colori** | `assets/style.css`, variabili in cima al file (`--accent` è il blu principale) |
-| **Privacy** | `privacy.html`: completa tutte le parti tra parentesi quadre |
+| `sito/` | **Il sito vero e proprio**: l'unica cartella che va online |
+| `sito/assets/config.js` | **Il pannello di controllo**: numero, WhatsApp, email, orari, link di pagamento, recensioni, video, offerte e altro. Tutto quello che lasci vuoto resta nascosto sul sito |
+| `strumenti/contenuti.mjs` | I testi delle 12 pagine dei servizi e delle 4 guide |
+| `strumenti/genera-pagine.mjs` | Il generatore: ricrea tutte le pagine interne con la stessa grafica. Si lancia con `node strumenti/genera-pagine.mjs` oppure `npm run genera` |
+| `netlify/functions/` | Le automazioni: notifica Telegram e assistente virtuale |
+| `PIANO-DI-AZIONE.md`, `BRAND.md`, `README.md` | Documenti per te: non vanno online |
 
-**Attenzione:** il numero `+39 000 000 0000` e l'email `info@example.com` sono finti. Non pubblicare il sito prima di averli sostituiti.
+Le pagine interne (servizi, guide, prenotazione, regalo, aziende, condizioni, privacy) sono **generate**. Se modifichi a mano una di queste pagine, la prossima rigenerazione cancella la modifica. Per cambiarle modifica `strumenti/contenuti.mjs` o il generatore e poi rigenera, oppure chiedimelo.
+
+### Cosa cambiare prima di pubblicare
+| Cosa | Dove |
+|---|---|
+| **Numero, WhatsApp, email, orari** | `sito/assets/config.js`: si aggiornano da soli in tutte le pagine, compreso lo stato «Disponibile ora» e il calendario delle prenotazioni |
+| Stessi dati, per Google | `sito/index.html`: il blocco `application/ld+json` in alto (telefono, email, orari) |
+| **[Nome Cognome], [X] anni, P.IVA** | `sito/index.html` (sezione «Chi sono») e `strumenti/genera-pagine.mjs` (footer, condizioni e privacy), poi rigenera. Nel footer della home si aggiorna da solo, perché anche quello lo scrive il generatore |
+| **Tua foto** | Metti la foto in `sito/assets/` (per esempio `foto.jpg`). In `sito/index.html`, nella sezione «Chi sono», sostituisci `<svg class="i"><use href="#i-user"/></svg>` con `<img src="assets/foto.jpg" alt="Nome Cognome">` e togli `aria-hidden="true"` dal riquadro |
+| **Prezzi** | `sito/index.html` (sezione `PREZZI`), `strumenti/contenuti.mjs` (prezzo di ogni servizio), `strumenti/genera-pagine.mjs` (buoni, aziende, condizioni), il quiz in `sito/assets/main.js` (`PACCHETTI`) e le istruzioni dell'assistente in `netlify/functions/assistente.mjs`. È il cambiamento più sparso: se cambi i prezzi, chiedimelo e li aggiorno ovunque |
+| **Dominio** (dopo averlo comprato) | `sito/assets/config.js` (`sito`), `strumenti/genera-pagine.mjs` (`DOMINIO`, poi rigenera) e la testata di `sito/index.html` (`canonical`, `og:url`, `og:image`, blocco `ld+json`) |
+| **Condizioni e privacy** | Completa le parti tra parentesi quadre nel generatore e falle verificare |
+
+**Attenzione:** il numero `+39 000 000 0000` e l'email `info@example.com` sono finti. Non pubblicare il sito prima di averli sostituiti. Il **pannello del tecnico** (`/tecnico/`) ti mostra cosa manca ancora.
+
+Per vedere il sito sul computer, apri `sito/index.html` con un doppio clic. Per provare anche il 3D serve un piccolo server: dalla cartella `nuovo-progetto` lancia `npm run anteprima` e apri `http://localhost:8080`.
 
 ---
 
 ## 5. Fase 4: mettere il sito online (Netlify, gratis)
 
-Consiglio **Netlify** perché offre hosting gratuito, HTTPS automatico e riceve le richieste del modulo «Ti richiamo io» senza bisogno di un server.
+Consiglio **Netlify**: hosting gratuito, HTTPS automatico, moduli di contatto senza server e le funzioni automatiche (Telegram e assistente).
 
 ### Opzione A: in 5 minuti, per provare
 1. Vai su [app.netlify.com/drop](https://app.netlify.com/drop) e crea un account.
-2. Trascina la cartella `nuovo-progetto` nella pagina.
+2. Trascina nella pagina la cartella **`sito`**, non tutta `nuovo-progetto`: così piano e documenti restano privati.
 3. Ricevi subito un indirizzo del tipo `nome-a-caso.netlify.app`.
 
+Con questa opzione notifica Telegram e assistente virtuale non funzionano: servono l'opzione B.
+
 ### Opzione B: collegato a GitHub (consigliata)
-Con questa opzione, ogni modifica caricata su GitHub aggiorna il sito da sola.
-1. Prima porta la cartella sul branch `main` di GitHub. Posso aprire io la pull request.
+Ogni modifica caricata su GitHub aggiorna il sito da sola.
+1. Prima porta il lavoro sul branch `main` di GitHub. Posso aprire io la pull request.
 2. In Netlify scegli **Add new project → Import an existing project → GitHub** e seleziona il repository `gabriel-`.
 3. Imposta:
    - **Branch:** `main`
    - **Base directory:** `nuovo-progetto`
    - **Build command:** vuoto
-   - **Publish directory:** `nuovo-progetto`
+
+   Il resto, cioè cartella da pubblicare e funzioni, lo legge da solo dal file `netlify.toml`.
 4. Premi **Deploy**.
 
-### Attivare il modulo di contatto
+### Attivare i moduli
+Il sito ha tre moduli: richiamata, prenotazione e preventivo aziende.
 1. In Netlify apri **Forms** e attiva il **rilevamento dei moduli (form detection)**, poi ripubblica il sito.
-2. Apri **Forms → Form notifications** e aggiungi una **notifica email** verso il tuo indirizzo: così ricevi un'email per ogni richiesta di richiamata.
-3. Fai una prova dal sito online.
+2. In **Forms → Form notifications** aggiungi una **notifica email** verso il tuo indirizzo.
+3. Fai una prova da ogni modulo.
 4. Controlla i limiti del piano gratuito: il numero di invii al mese è limitato.
 
 ### Il tuo dominio
-1. **Compra un dominio `.it`**, per esempio `gabrieltech.it` (prima verifica che sia libero), da un registrar italiano o europeo. Costa pochi euro l'anno.
+1. **Compra un dominio `.it`**, per esempio `gabrieltech.it` (prima verifica che sia libero). Costa pochi euro l'anno.
 2. In Netlify apri **Domain management → Add a domain** e segui le istruzioni per il DNS. Il certificato HTTPS è automatico.
-3. **Email professionale** (per esempio `info@tuodominio.it`): di solito la offre lo stesso registrar, oppure puoi usare Zoho, Google Workspace o Microsoft 365.
-4. **Aggiorna il sito:** inserisci il dominio al posto di `https://www.example.com` (Fase 3).
+3. **Email professionale** (per esempio `info@gabrieltech.it`): di solito la offre lo stesso registrar, oppure puoi usare Zoho, Google Workspace o Microsoft 365.
+4. **Aggiorna il sito** con il dominio (Fase 3).
+
+---
+
+## 5bis. Le funzioni in più e come attivarle
+
+Il sito funziona già senza nessuna di queste. Ognuna si accende quando compili la voce indicata, e fino ad allora resta nascosta.
+
+### Già attive, senza fare niente
+- **Diagnosi in 3 domande** nella home: consiglia il pacchetto e porta a WhatsApp o alla prenotazione.
+- **Prenotazione** (`prenota.html`) con i tuoi orari veri: il cliente sceglie giorno e ora, a te arriva la richiesta nel modulo di Netlify (e su Telegram, se lo attivi), poi confermi su WhatsApp.
+- **Guida AnyDesk** (`collegati.html`): riconosce da sola Windows, Mac, Android o iPhone e prepara il messaggio WhatsApp con l'indirizzo AnyDesk del cliente.
+- **12 pagine di servizi e 4 guide**, per farti trovare su Google, più **regalo**, **aziende**, **condizioni**, **privacy** e la pagina **404** con la G in 3D.
+- **Offerte stagionali** in alto nella home: si accendono da sole tra le date scritte in `config.js` (`offerte`). Adesso c'è quella di settembre per il PC della scuola; a dicembre parte il buono regalo di Natale.
+- **Tema chiaro/scuro** con il pulsante in alto, **cursore** e **icone in 3D**, e il **Mac** che in «Come funziona» racconta i tre passi mentre scorri.
+
+### Da attivare quando vuoi
+| Funzione | Cosa fare | Voce in `config.js` |
+|---|---|---|
+| **Pagamenti online** (pacchetto, abbonamenti, buoni) | Crea i link di pagamento: con Stripe, «Payment Links», anche ricorrenti per gli abbonamenti; oppure PayPal, SumUp o Satispay | `pagamenti` |
+| **Area abbonati** | In Stripe attiva il «Customer portal» e copia il link | `pagamenti.areaAbbonati` |
+| **Calendario esterno** (Cal.com o Calendly, gratis nella versione base) | Crea un evento da 30 e uno da 60 minuti con i tuoi orari e copia il link. Si carica solo quando il cliente preme il pulsante, perché usa cookie | `prenotazioneEsterna` |
+| **Recensioni sul sito** | Aggiungi quelle vere, con il permesso dei clienti | `recensioni` |
+| **Link «Lascia una recensione»** | Nel profilo Google dell'attività, «Chiedi recensioni»: copia il link. La pagina `recensione.html` e il codice QR lo usano | `linkRecensioneGoogle` |
+| **Video di presentazione** | Registra 30 secondi. Metti il file in `sito/assets/video/` (meglio sotto i 10 MB) o caricalo su YouTube | `video` |
+| **Canale WhatsApp** | WhatsApp → Aggiornamenti → Canali → Crea canale, poi copia il link | `canaleWhatsApp` |
+| **Statistiche senza cookie** | Account gratuito Cloudflare → Web Analytics → aggiungi il sito e copia il «token» | `cloudflareAnalytics` |
+
+### Notifica sul telefono con Telegram (gratis)
+Ogni richiesta dai moduli ti arriva subito su Telegram, con il link per scrivere al cliente su WhatsApp.
+1. Su Telegram apri **@BotFather**, scrivi `/newbot` e scegli un nome: ricevi un **token**.
+2. Manda un messaggio qualsiasi al tuo nuovo bot.
+3. Nel browser apri `https://api.telegram.org/bot<TOKEN>/getUpdates`, mettendo il tuo token al posto di `<TOKEN>`, e copia il numero dopo `"chat":{"id":`.
+4. In Netlify apri **Site configuration → Environment variables** e aggiungi:
+   - `TELEGRAM_BOT_TOKEN`: il token;
+   - `TELEGRAM_CHAT_ID`: il numero copiato.
+5. Ripubblica il sito e fai una prova dal modulo.
+
+### Assistente virtuale (risponde anche di notte)
+Una finestra «Domande?» risponde su servizi, prezzi e funzionamento e, quando serve, passa il cliente a WhatsApp. Non chiede mai password o dati bancari.
+1. Crea un account nella [console di Anthropic](https://console.anthropic.com), aggiungi un metodo di pagamento e **imposta un limite di spesa mensile**: è la tua protezione principale.
+2. Crea una **chiave API**.
+3. In Netlify aggiungi le variabili:
+   - `ANTHROPIC_API_KEY`: la chiave;
+   - `SITE_URL`: il tuo indirizzo, per esempio `https://www.gabrieltech.it`. Così l'assistente risponde solo dal tuo sito.
+4. In `config.js` metti `assistente: true` e ripubblica.
+
+**Costi:** l'assistente usa `claude-opus-5`, il modello più affidabile. Le istruzioni fisse vengono messe in cache, quindi ogni risposta costa in genere intorno a 1–2 centesimi. Con qualche centinaio di domande al mese sono pochi euro. Se vuoi spendere meno si può usare un modello più economico: dimmelo e adatto la funzione.
+
+**Da ricordare:**
+- **Se cambi prezzi o servizi,** vanno aggiornati anche nelle istruzioni dell'assistente, in `netlify/functions/assistente.mjs`.
+- **Privacy:** le domande vengono elaborate da Anthropic, come già scritto nell'informativa privacy.
+
+### Il pannello del tecnico (`/tecnico/`)
+Una pagina solo per te, non indicizzata da Google: salvala nei preferiti. Contiene:
+- **Controllo impostazioni:** cosa manca ancora in `config.js`.
+- **Messaggi pronti:** i messaggi della Fase 6, più conferma appuntamento, promemoria e richiesta recensione. Si copiano o si aprono in WhatsApp con un clic.
+- **Codici QR** di sito, WhatsApp, recensioni e guida AnyDesk, da scaricare in PNG o SVG.
+- **Da stampare:**
+  - **volantino A5**;
+  - **biglietto da visita** 85 × 55 mm fronte e retro;
+  - **buono regalo**, con codice e scadenza generati da soli.
+
+  Dalla finestra di stampa scegli «Salva come PDF» e mandalo in tipografia.
+
+Il pannello non è protetto da password: non scriverci mai dati dei clienti.
+
+### Monitoraggio a distanza per gli abbonati (quando crescerai)
+Per offrire assistenza «preventiva» agli abbonati Professionisti e Aziende serve un programma di monitoraggio (RMM), come NinjaOne, Atera o Tactical RMM: avvisa se un disco si riempie o un backup fallisce. Sceglilo quando hai i primi clienti in abbonamento, e solo allora aggiungilo alla descrizione dei piani.
 
 ---
 
@@ -264,6 +348,8 @@ Con questa opzione, ogni modifica caricata su GitHub aggiorna il sito da sola.
 
 ### Messaggi pronti per WhatsApp Business
 
+Li trovi anche nel pannello del tecnico (`/tecnico/`), pronti da copiare con un clic.
+
 **Benvenuto**
 > Ciao! Sono [Nome] di Gabriel Tech, assistenza informatica da remoto. Raccontami in breve il problema e che dispositivo usi (PC Windows, Mac, telefono): ti dico subito se posso risolverlo a distanza e quanto costa.
 
@@ -311,6 +397,9 @@ Con questa opzione, ogni modifica caricata su GitHub aggiorna il sito da sola.
 | Commercialista | chiedi 2 o 3 preventivi |
 | Contributi INPS | dipendono dal codice ATECO (Fase 1) |
 | Assicurazione RC professionale | chiedi un preventivo |
+| Notifiche Telegram, Cal.com o Calendly base, Cloudflare Web Analytics | 0 € |
+| Stripe, PayPal, SumUp, Satispay | nessun canone di base, solo una commissione sui pagamenti |
+| Assistente virtuale (facoltativo) | in genere pochi euro al mese, con il limite di spesa che scegli tu |
 
 **Esempio:** con AnyDesk e la SIM spendi circa 35–40 € al mese. Bastano un intervento Completo e un Rapido al mese per coprirli, prima di tasse e contributi. Ogni abbonamento Famiglia o Professionisti rende l'entrata più stabile.
 
@@ -319,10 +408,10 @@ Con questa opzione, ogni modifica caricata su GitHub aggiorna il sito da sola.
 ## 10. Prossimi passi che posso fare io
 
 1. Aprire la pull request per portare il sito su `main`, necessaria per l'Opzione B di Netlify.
-2. Inserire i tuoi dati veri: nome e cognome, numero, P.IVA, foto.
-3. Creare la pagina **Condizioni di servizio**, e biglietto da visita o volantino con codice QR usando il nuovo logo.
-4. Creare una pagina per ogni servizio, per posizionarti meglio su Google.
-5. Aggiungere la sezione recensioni quando avrai le prime recensioni vere.
+2. Inserire i tuoi dati veri: nome e cognome, numero, email, P.IVA, foto, dominio.
+3. Tradurre il sito nelle lingue che parli (inglese, rumeno, spagnolo…), per raggiungere le comunità straniere in Italia: dimmi quali.
+4. Scrivere altre guide (una al mese aiuta molto su Google) e pagine per le domande più frequenti dei tuoi clienti.
+5. Collegare i link di pagamento, il calendario e l'assistente quando hai creato gli account.
 
 ---
 

@@ -5,13 +5,13 @@ Una **G** con il **puntatore del mouse** che clicca dentro: dice subito «assist
 
 | File | Quando usarlo |
 |---|---|
-| `assets/brand/logo-mark.svg` | Il simbolo in qualità perfetta a qualsiasi dimensione (sito, stampa, grafiche) |
-| `assets/brand/logo-horizontal.png` | Simbolo + scritta, su sfondi chiari (documenti, preventivi, firma email) |
-| `assets/brand/logo-horizontal-white.png` | Simbolo + scritta, su sfondi scuri o foto |
-| `assets/brand/profile-1024.png` | **Foto profilo** di WhatsApp Business, Google e social (regge il ritaglio rotondo) |
-| `assets/brand/og-image.png` | Anteprima che compare quando qualcuno condivide il sito su WhatsApp o sui social |
-| `assets/brand/icon-192.png`, `icon-512.png`, `apple-touch-icon.png` | Icona quando si salva il sito sulla schermata Home del telefono |
-| `assets/favicon.svg` | Icona nella scheda del browser |
+| `sito/assets/brand/logo-mark.svg` | Il simbolo in qualità perfetta a qualsiasi dimensione (sito, stampa, grafiche) |
+| `sito/assets/brand/logo-horizontal.png` | Simbolo + scritta, su sfondi chiari (documenti, preventivi, firma email) |
+| `sito/assets/brand/logo-horizontal-white.png` | Simbolo + scritta, su sfondi scuri o foto |
+| `sito/assets/brand/profile-1024.png` | **Foto profilo** di WhatsApp Business, Google e social (regge il ritaglio rotondo) |
+| `sito/assets/brand/og-image.png` | Anteprima che compare quando qualcuno condivide il sito su WhatsApp o sui social |
+| `sito/assets/brand/icon-192.png`, `icon-512.png`, `apple-touch-icon.png` | Icona quando si salva il sito sulla schermata Home del telefono |
+| `sito/assets/favicon.svg` | Icona nella scheda del browser |
 
 **Regole:**
 - lascia sempre spazio libero intorno al logo, almeno quanto metà del simbolo;
@@ -47,7 +47,10 @@ Una **G** con il **puntatore del mouse** che clicca dentro: dice subito «assist
   - la grafica 3D si carica solo dopo la pagina;
   - se il telefono fatica, abbassa la qualità da sola;
   - se il dispositivo non la supporta, o se l'utente ha chiesto meno animazioni, al suo posto resta il logo statico.
-- La libreria 3D è [Three.js](https://threejs.org) (licenza MIT), inclusa nel sito in `assets/vendor/`: non dipende da servizi esterni.
+- **Icone in 3D:** le icone dei servizi hanno spessore e luce e ruotano al passaggio del mouse.
+- **Cursore del brand:** con il mouse, il puntatore diventa la freccia sfumata del logo (`sito/assets/brand/cursor.svg`).
+- **Tema chiaro e scuro:** segue il dispositivo, oppure si sceglie con il pulsante in alto e il sito se lo ricorda.
+- La libreria 3D è [Three.js](https://threejs.org) (licenza MIT), inclusa nel sito in `sito/assets/vendor/`: non dipende da servizi esterni.
 
 ## Tono di voce
 - **Dai del tu,** con frasi brevi e parole semplici, senza gergo tecnico.

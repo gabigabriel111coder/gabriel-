@@ -155,19 +155,20 @@ const CONFIG = {
       glass.style.setProperty("--my", `${e.clientY - r.top}px`);
     }, { passive: true });
 
-    const hero = $(".hero");
-    const device = $(".device");
-    if (hero && device) {
-      hero.addEventListener("pointermove", (e) => {
-        const r = hero.getBoundingClientRect();
-        device.style.setProperty("--tx", `${((e.clientX - r.left) / r.width - 0.5) * 16}deg`);
-        device.style.setProperty("--ty", `${((e.clientY - r.top) / r.height - 0.5) * -12}deg`);
+    // hero e Mac reagiscono al mouse: --nx e --ny vanno da -0.5 a 0.5
+    const norm = (v) => Math.max(-0.7, Math.min(0.7, v)).toFixed(3);
+    $$("[data-tilt-zone]").forEach((zone) => {
+      const area = zone.closest("section") || zone;
+      area.addEventListener("pointermove", (e) => {
+        const r = zone.getBoundingClientRect();
+        zone.style.setProperty("--nx", norm((e.clientX - r.left) / r.width - 0.5));
+        zone.style.setProperty("--ny", norm((e.clientY - r.top) / r.height - 0.5));
       });
-      hero.addEventListener("pointerleave", () => {
-        device.style.setProperty("--tx", "0deg");
-        device.style.setProperty("--ty", "0deg");
+      area.addEventListener("pointerleave", () => {
+        zone.style.setProperty("--nx", "0");
+        zone.style.setProperty("--ny", "0");
       });
-    }
+    });
 
     $$("[data-tilt]").forEach((card) => {
       card.addEventListener("pointermove", (e) => {
@@ -233,5 +234,22 @@ const CONFIG = {
     $("[data-form-wa]", form)?.addEventListener("click", () => {
       window.open(waLink(summary()), "_blank", "noopener");
     });
+  }
+  /* ---------- Scena 3D: solo se il dispositivo la supporta ---------- */
+  const webgl2 = (() => {
+    try {
+      const gl = document.createElement("canvas").getContext("webgl2");
+      gl?.getExtension("WEBGL_lose_context")?.loseContext();
+      return !!gl;
+    } catch {
+      return false;
+    }
+  })();
+  if (!reduceMotion && webgl2 && !navigator.connection?.saveData) {
+    const load = () => import("./scene3d.js")
+      .then((scene) => scene.start())
+      .catch((err) => console.warn("Scena 3D non disponibile, resta il logo statico.", err));
+    if (document.readyState === "complete") load();
+    else addEventListener("load", load, { once: true });
   }
 })();

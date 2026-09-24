@@ -1,4 +1,4 @@
-# Piano d'azione: dal sito al primo cliente
+# Gabriel Tech · piano d'azione: dal sito al primo cliente
 
 Questo piano spiega cosa c'è nel sito, perché è fatto così e cosa fare, in ordine, per metterlo online e iniziare a lavorare.
 
@@ -12,7 +12,7 @@ Questo piano spiega cosa c'è nel sito, perché è fatto così e cosa fare, in o
 - [ ] **2. AnyDesk:** acquista una licenza commerciale. La versione gratuita non si può usare per lavoro.
 - [ ] **3. WhatsApp Business:** configuralo su un numero dedicato, con gli stessi orari del sito.
 - [ ] **4. Pagamenti:** attiva un sistema di pagamento con link (carta, PayPal, Satispay) e un programma per la fattura elettronica.
-- [ ] **5. Sito:** inserisci i tuoi dati: numero, nome, P.IVA, foto, prezzi e privacy (vedi Fase 3).
+- [ ] **5. Sito:** inserisci i tuoi dati: numero, nome e cognome, P.IVA, foto, prezzi e privacy (vedi Fase 3). Nome, logo e grafica sono già pronti (vedi `BRAND.md`).
 - [ ] **6. Online:** pubblica il sito su Netlify e collega il tuo dominio (vedi Fase 4).
 - [ ] **7. Google:** crea il profilo dell'attività su Google e registra il sito su Search Console.
 - [ ] **8. Procedura:** prepara i messaggi pronti e le condizioni di servizio (vedi Fase 6).
@@ -28,10 +28,20 @@ La ricerca sulle tendenze 2026 indica tre direzioni dominanti, e il sito le usa 
 
 - **Liquid Glass:** è il linguaggio grafico presentato da Apple nel giugno 2025 e usato in iOS 26 e macOS Tahoe 26. Nel sito ci sono pannelli di vetro traslucido con un riflesso che segue il mouse.
 - **Bento grid:** i servizi sono disposti in riquadri di dimensioni diverse, come nelle pagine prodotto Apple.
-- **3D interattivo:** in alto c'è un Mac in 3D che ruota seguendo il mouse, con uno schermo animato che mostra una sessione di assistenza.
+- **3D interattivo:**
+  - in alto c'è la **G del logo in 3D**: segue il mouse, si trascina col dito e gira quando scorri;
+  - forme lucide fluttuano ai bordi e si scansano dal mouse;
+  - le schede si alzano in 3D mentre scorri;
+  - in «Come funziona» un Mac ruota con lo scorrimento e mostra una sessione di assistenza.
+
+  I dettagli sono in `BRAND.md`.
 
 Scelte tecniche importanti:
-- **Il 3D è fatto solo con CSS, senza librerie pesanti.** Il sito resta leggero e veloce anche sul telefono.
+- **Il 3D è pensato per restare veloce:**
+  - la G e le forme usano WebGL (Three.js, incluso nel sito) e si caricano solo dopo la pagina;
+  - se il telefono fatica, la qualità si abbassa da sola;
+  - il Mac e le schede sono in CSS puro;
+  - se il dispositivo non supporta il 3D, resta il logo statico.
 - **Si adatta a telefono, tablet e computer** e passa da solo alla **modalità scura** se il dispositivo la usa.
 - **Rispetta chi disattiva le animazioni.** In quel caso le animazioni si fermano.
 - **Usa i font di sistema:** su iPhone e Mac il sito usa il font di Apple (SF Pro), sugli altri dispositivi un font equivalente. Non carica font da Google, quindi nessun dato dei visitatori finisce a terzi e non serve un banner per i cookie.
@@ -129,7 +139,7 @@ Per questo il sito ha una sezione **Sicurezza** con regole chiare:
 
 ### WhatsApp Business (gratis)
 - **Numero dedicato:** usa una seconda SIM o una eSIM, così separi lavoro e vita privata.
-- **Profilo:** nome dell'attività, descrizione, sito e **orari identici a quelli del sito**.
+- **Profilo:** nome «Gabriel Tech», foto profilo `assets/brand/profile-1024.png`, descrizione, sito e **orari identici a quelli del sito**.
 - **Messaggio di benvenuto e messaggio di assenza** fuori orario (testi pronti nella Fase 6).
 - **Risposte rapide** per preventivi, istruzioni AnyDesk e link di pagamento.
 - **Catalogo** con i pacchetti e i prezzi.
@@ -156,11 +166,11 @@ Per vedere il sito sul computer, apri `index.html` con un doppio clic. Il modulo
 |---|---|
 | **Numero di telefono, WhatsApp, email, orari** | `assets/main.js`, blocco `CONFIG` in alto. Si aggiornano da soli in tutto il sito, compreso lo stato «Disponibile ora» |
 | Stessi dati, per Google | `index.html`: il blocco `application/ld+json` in alto (telefono, email, orari), il link del telefono e la tabella degli orari nella sezione Contatti |
-| **Nome dell'attività** («Tecnico Remoto» è provvisorio) | `index.html` e `privacy.html`: usa «Trova e sostituisci» |
+| **Nome, logo e colori** | Già fatti: «Gabriel Tech». File e regole in `BRAND.md` |
 | **[Nome Cognome], [X] anni, P.IVA** | `index.html` (sezioni «Chi sono» e footer) e `privacy.html` |
 | **Tua foto** | Metti la foto in `assets/` (per esempio `foto.jpg`). In `index.html`, nella sezione «Chi sono», sostituisci `<svg class="i"><use href="#i-user"/></svg>` con `<img src="assets/foto.jpg" alt="Nome Cognome">` e togli `aria-hidden="true"` dal riquadro. Una foto vera aumenta molto la fiducia |
 | **Prezzi e pacchetti** | `index.html`, sezione `PREZZI`. Aggiorna anche i testi WhatsApp precompilati (attributi `data-wa="…"`) e la nota sotto i prezzi |
-| **Dominio** (dopo averlo comprato) | `index.html`: `canonical`, `og:url` e `url` nel blocco `ld+json` (ora c'è `example.com`) |
+| **Dominio** (dopo averlo comprato) | `index.html`: sostituisci ogni `https://www.example.com` (`canonical`, `og:url`, `og:image`, blocco `ld+json`) |
 | **Colori** | `assets/style.css`, variabili in cima al file (`--accent` è il blu principale) |
 | **Privacy** | `privacy.html`: completa tutte le parti tra parentesi quadre |
 
@@ -195,10 +205,10 @@ Con questa opzione, ogni modifica caricata su GitHub aggiorna il sito da sola.
 4. Controlla i limiti del piano gratuito: il numero di invii al mese è limitato.
 
 ### Il tuo dominio
-1. **Compra un dominio `.it`** (per esempio `nomecognome.it` o `nomebrand.it`) da un registrar italiano o europeo. Costa pochi euro l'anno.
+1. **Compra un dominio `.it`**, per esempio `gabrieltech.it` (prima verifica che sia libero), da un registrar italiano o europeo. Costa pochi euro l'anno.
 2. In Netlify apri **Domain management → Add a domain** e segui le istruzioni per il DNS. Il certificato HTTPS è automatico.
 3. **Email professionale** (per esempio `info@tuodominio.it`): di solito la offre lo stesso registrar, oppure puoi usare Zoho, Google Workspace o Microsoft 365.
-4. **Aggiorna il sito:** inserisci il dominio in `canonical`, `og:url` e `ld+json` (Fase 3).
+4. **Aggiorna il sito:** inserisci il dominio al posto di `https://www.example.com` (Fase 3).
 
 ---
 
@@ -206,6 +216,7 @@ Con questa opzione, ogni modifica caricata su GitHub aggiorna il sito da sola.
 
 1. **Profilo dell'attività su Google** (Google Business Profile):
    - crealo come attività **senza sede visibile**, che serve una zona;
+   - usa `assets/brand/profile-1024.png` come logo;
    - scegli una categoria legata all'assistenza informatica;
    - inserisci orari identici al sito e il link al sito.
 2. **Recensioni vere:** dopo ogni intervento riuscito manda il link diretto per recensirti. **Non inventare mai recensioni.** Quando ne avrai 5 o più, aggiungiamo una sezione «Dicono di me» al sito.
@@ -254,7 +265,7 @@ Con questa opzione, ogni modifica caricata su GitHub aggiorna il sito da sola.
 ### Messaggi pronti per WhatsApp Business
 
 **Benvenuto**
-> Ciao! Sono [Nome], tecnico informatico da remoto. Raccontami in breve il problema e che dispositivo usi (PC Windows, Mac, telefono): ti dico subito se posso risolverlo a distanza e quanto costa.
+> Ciao! Sono [Nome] di Gabriel Tech, assistenza informatica da remoto. Raccontami in breve il problema e che dispositivo usi (PC Windows, Mac, telefono): ti dico subito se posso risolverlo a distanza e quanto costa.
 
 **Fuori orario**
 > Grazie del messaggio! In questo momento non sono disponibile. Ti rispondo appena torno, negli orari indicati sul sito. Se è urgente, scrivilo nel messaggio.
@@ -308,8 +319,8 @@ Con questa opzione, ogni modifica caricata su GitHub aggiorna il sito da sola.
 ## 10. Prossimi passi che posso fare io
 
 1. Aprire la pull request per portare il sito su `main`, necessaria per l'Opzione B di Netlify.
-2. Inserire i tuoi dati veri: nome, numero, P.IVA, foto, nome dell'attività.
-3. Creare la pagina **Condizioni di servizio** e un'immagine di anteprima per le condivisioni su WhatsApp e social.
+2. Inserire i tuoi dati veri: nome e cognome, numero, P.IVA, foto.
+3. Creare la pagina **Condizioni di servizio**, e biglietto da visita o volantino con codice QR usando il nuovo logo.
 4. Creare una pagina per ogni servizio, per posizionarti meglio su Google.
 5. Aggiungere la sezione recensioni quando avrai le prime recensioni vere.
 

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Tecnico Remoto · stile "Liquid Glass" ispirato al design Apple 2025-2026
+   Gabriel Tech · stile "Liquid Glass" ispirato al design Apple 2025-2026
    Colori e misure sono tutti qui in alto: cambia questi per cambiare il sito.
    ========================================================================== */
 :root {
@@ -18,7 +18,7 @@
   --glass-strong: rgba(255, 255, 255, .78);
   --glass-edge: rgba(255, 255, 255, .8);
   --glass-hi: rgba(255, 255, 255, .9);
-  --spec: rgba(255, 255, 255, .6);
+  --spec: rgba(255, 255, 255, .55);
   --shadow: 0 1px 1px rgba(0, 0, 0, .03), 0 18px 50px -20px rgba(30, 30, 80, .25);
   --radius: 28px;
   --maxw: 1180px;
@@ -90,6 +90,7 @@ svg { display: block; }
 .glass::after {
   content: "";
   position: absolute;
+  z-index: -1; /* sotto il testo: il riflesso non lo schiarisce */
   inset: -1px;
   border-radius: inherit;
   pointer-events: none;
@@ -128,11 +129,10 @@ svg { display: block; }
 }
 .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 700; font-size: 17px; letter-spacing: -.01em; color: var(--text); }
 .brand:hover { text-decoration: none; }
-.brand__mark {
-  width: 30px; height: 30px; border-radius: 9px; display: grid; place-items: center;
-  background: linear-gradient(135deg, #0a84ff, #7c5cff); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .45);
-}
-.brand__mark .i { width: 16px; height: 16px; fill: #fff; stroke: #fff; stroke-width: 1.4; }
+.brand__logo { width: 32px; height: 32px; flex: none; filter: drop-shadow(0 3px 6px rgba(94, 92, 230, .35)); }
+.brand__name { font-size: 18px; letter-spacing: -.02em; }
+.brand__name b { background: linear-gradient(95deg, #0a84ff, #7c5cff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+@media (prefers-color-scheme: dark) { .brand__name b { background-image: linear-gradient(95deg, #4aa8ff, #a48bff); } }
 .nav__links { display: flex; gap: 2px; margin-left: auto; }
 .nav__links a { padding: 8px 13px; border-radius: 999px; font-size: 15px; color: var(--text); opacity: .8; }
 .nav__links a:hover { opacity: 1; text-decoration: none; background: rgba(127, 127, 127, .13); }
@@ -160,14 +160,53 @@ svg { display: block; }
 .is-closed .dot { background: var(--off); }
 @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(40, 200, 64, .55); } 70% { box-shadow: 0 0 0 9px rgba(40, 200, 64, 0); } 100% { box-shadow: 0 0 0 0 rgba(40, 200, 64, 0); } }
 
-/* ---------- Mac in 3D (solo CSS) ---------- */
+/* ---------- Scena 3D (WebGL) dietro la pagina ---------- */
+.webgl { position: fixed; inset: 0; z-index: -1; width: 100%; height: 100%; pointer-events: none; }
+
+/* Riquadro dell'hero: qui compare la G in 3D. Senza WebGL resta il logo con effetto 3D in CSS */
+.stage { position: relative; width: 100%; max-width: 560px; aspect-ratio: 1; margin-inline: auto; cursor: grab; touch-action: pan-y; user-select: none; }
+.stage:active { cursor: grabbing; }
+.stage__fallback { position: absolute; inset: 0; display: grid; place-items: center; perspective: 1000px; transition: opacity .8s; }
+.stage__logo {
+  width: 56%; height: 56%; filter: drop-shadow(0 30px 40px rgba(60, 50, 180, .35));
+  transform: rotateY(calc(var(--nx, 0) * 34deg)) rotateX(calc(var(--ny, 0) * -26deg));
+  transition: transform .5s var(--ease); animation: bob 7s ease-in-out infinite;
+}
+@keyframes bob { 50% { translate: 0 -14px; } }
+.webgl-on .stage__fallback { opacity: 0; }
+.hchip {
+  position: absolute; z-index: 1; display: flex; align-items: center; gap: 8px; padding: 10px 14px 10px 10px;
+  border-radius: 16px; font-size: 14px; font-weight: 600; white-space: nowrap; pointer-events: none;
+  translate: calc(var(--nx, 0) * var(--depth)) calc(var(--ny, 0) * var(--depth) * -1);
+  transition: translate .5s var(--ease);
+}
+.hchip .i { width: 24px; height: 24px; padding: 4px; border-radius: 8px; color: #fff; background: var(--ok); stroke-width: 2.4; }
+.hc1 { top: 10%; left: 0; --depth: 44px; }
+.hc1 .i { background: #0a84ff; }
+.hc2 { bottom: 14%; right: 0; --depth: 64px; }
+.hc3 { top: 22%; right: 2%; flex-direction: column; align-items: flex-start; gap: 0; padding: 10px 16px; --depth: 28px; }
+.hc3 small { font-size: 12px; font-weight: 500; color: var(--muted); }
+.hc3 b { font-size: 24px; letter-spacing: -.03em; line-height: 1.1; }
+.stage__hint {
+  position: absolute; left: 50%; bottom: -2%; translate: -50% 0; display: flex; align-items: center; gap: 6px;
+  font-size: 13px; white-space: nowrap; color: var(--muted); opacity: 0; transition: opacity .6s 1s;
+}
+.stage__hint .i { width: 14px; height: 14px; fill: currentColor; stroke-width: 1; }
+.webgl-on .stage__hint { opacity: 1; }
+
+/* ---------- Mac in 3D (solo CSS): ruota mentre scorri ---------- */
+@property --p { syntax: "<number>"; inherits: true; initial-value: 1; }
+.mac-stage { max-width: 680px; margin: 0 auto clamp(20px, 4vw, 44px); }
 .scene { position: relative; perspective: 1500px; padding: 8% 6% 12%; }
 .float { transform-style: preserve-3d; animation: float 8s ease-in-out infinite; }
 @keyframes float { 50% { transform: translateY(-14px); } }
 .device {
   position: relative; transform-style: preserve-3d;
-  transform: rotateX(calc(9deg + var(--ty, 0deg))) rotateY(calc(-17deg + var(--tx, 0deg)));
-  transition: transform .6s var(--ease);
+  transform:
+    rotateX(calc(9deg + var(--ny, 0) * -12deg + (1 - var(--p)) * 38deg))
+    rotateY(calc(-17deg + var(--nx, 0) * 18deg + (1 - var(--p)) * -34deg))
+    scale(calc(.8 + var(--p) * .2));
+  transition: transform .5s var(--ease);
 }
 .lid {
   position: relative; transform-style: preserve-3d; aspect-ratio: 16 / 10.4;
@@ -461,8 +500,19 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--a
 .legal .todo { margin-top: 8px; padding: 12px 16px; border-radius: 14px; font-size: 15px; color: var(--text); background: color-mix(in srgb, var(--off) 18%, transparent); }
 
 /* ---------- Animazioni all'ingresso ---------- */
-.js .reveal { opacity: 0; translate: 0 26px; transition: opacity .8s var(--ease) var(--d, 0ms), translate .8s var(--ease) var(--d, 0ms); }
+.js .reveal { opacity: 0; translate: 0 26px; transition: opacity .8s var(--ease) var(--d, 0ms), translate .8s var(--ease) var(--d, 0ms), transform .4s var(--ease); }
 .js .reveal.in { opacity: 1; translate: 0 0; }
+
+/* Dove il browser lo permette, le animazioni seguono lo scorrimento (avanti e indietro) */
+.trust, .bento, .split, .steps, .plans, .rules, .faq, .contact, .section { perspective: 1400px; }
+@keyframes rise-3d { from { opacity: 0; translate: 0 80px; rotate: x 24deg; scale: .9; } to { opacity: 1; translate: 0 0; rotate: x 0deg; scale: 1; } }
+@keyframes hero-out { to { opacity: .1; translate: 0 -50px; scale: .95; } }
+@keyframes mac-in { from { --p: 0; } to { --p: 1; } }
+@supports (animation-timeline: view()) {
+  .js .reveal { opacity: 1; translate: none; transform-origin: 50% 100%; animation: rise-3d linear both; animation-timeline: view(); animation-range: entry 0% entry 85%; }
+  .hero__copy { animation: hero-out linear both; animation-timeline: view(); animation-range: exit 5% exit 90%; }
+  .mac-stage { animation: mac-in linear both; animation-timeline: view(); animation-range: entry 0% cover 45%; }
+}
 
 /* ---------- Tablet e telefono ---------- */
 @media (max-width: 980px) {
@@ -473,7 +523,7 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--a
 }
 @media (max-width: 900px) {
   .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 104px; }
-  .scene { max-width: 560px; width: 100%; margin: 8px auto 0; }
+  .stage { max-width: 440px; }
   .steps, .split, .contact { grid-template-columns: 1fr; }
   .plans { grid-template-columns: 1fr; max-width: 480px; margin-inline: auto; }
   .plan--hot { margin-top: 8px; }
@@ -509,6 +559,9 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--a
   .chip { padding: 7px 11px 7px 7px; gap: 7px; }
   .chip .i { width: 22px; height: 22px; }
   .chip.c1 { left: -2%; }
+  .hchip { font-size: 12.5px; padding: 8px 11px 8px 8px; }
+  .hchip .i { width: 20px; height: 20px; }
+  .hc3 b { font-size: 19px; }
   .chip.c2 { right: -3%; }
   .btn--lg { width: 100%; }
   .dl { flex-direction: column; align-items: flex-start; }
@@ -520,3 +573,4 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--a
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .js .reveal { opacity: 1; translate: none; }
 }
+.legal__top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }

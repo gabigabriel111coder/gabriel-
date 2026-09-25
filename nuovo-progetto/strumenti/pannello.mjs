@@ -164,7 +164,7 @@ export function paginePannello({ page, icon, esc }) {
       <div class="flyer__qr" data-qr="sito"></div>
       <div>
         <p class="flyer__cta">Inquadra il codice o scrivimi su WhatsApp</p>
-        <p class="flyer__phone" data-phone>+39 000 000 0000</p>
+        <p class="flyer__phone" data-phone>{{cfg.phoneDisplay}}</p>
         <p class="flyer__site" data-qr-label="sito"></p>
       </div>
     </footer>
@@ -189,7 +189,7 @@ export function paginePannello({ page, icon, esc }) {
     <div>
       <h2>{{cfg.titolare}}</h2>
       <p class="role">Tecnico informatico</p>
-      <p><span data-phone>+39 000 000 0000</span><br><span data-email>info@example.com</span><br><span data-qr-label="sito"></span></p>
+      <p><span data-phone>{{cfg.phoneDisplay}}</span><br><span data-email>{{cfg.email}}</span><br><span data-qr-label="sito"></span></p>
     </div>
     <div data-qr="sito"></div>
   </article>
@@ -247,7 +247,7 @@ export function paginePannello({ page, icon, esc }) {
       </div>
       <div class="vp__foot">
         <div data-qr="whatsapp"></div>
-        <p>Per usarlo scrivimi su WhatsApp al <b data-phone>+39 000 000 0000</b> indicando il codice. Assistenza da remoto in tutta Italia.</p>
+        <p>Per usarlo scrivimi su WhatsApp al <b data-phone>{{cfg.phoneDisplay}}</b> indicando il codice. Assistenza da remoto in tutta Italia.</p>
       </div>
     </div>
   </article>

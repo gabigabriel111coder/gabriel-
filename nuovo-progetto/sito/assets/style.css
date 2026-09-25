@@ -14,8 +14,8 @@
   --danger: #ff3b30;
   --wa: #25d366;
   --wa-ink: #04210f;
-  --glass: rgba(255, 255, 255, .5);
-  --glass-strong: rgba(255, 255, 255, .78);
+  --glass: rgba(255, 255, 255, .7);
+  --glass-strong: rgba(255, 255, 255, .88);
   --glass-edge: rgba(255, 255, 255, .8);
   --glass-hi: rgba(255, 255, 255, .9);
   --spec: rgba(255, 255, 255, .55);
@@ -38,8 +38,8 @@
   --muted: #a1a1a6;
   --line: rgba(255, 255, 255, .1);
   --accent: #2997ff;
-  --glass: rgba(28, 28, 34, .45);
-  --glass-strong: rgba(40, 40, 48, .7);
+  --glass: rgba(28, 28, 34, .72);
+  --glass-strong: rgba(40, 40, 48, .86);
   --glass-edge: rgba(255, 255, 255, .13);
   --glass-hi: rgba(255, 255, 255, .12);
   --spec: rgba(255, 255, 255, .08);
@@ -57,8 +57,8 @@
     --muted: #a1a1a6;
     --line: rgba(255, 255, 255, .1);
     --accent: #2997ff;
-    --glass: rgba(28, 28, 34, .45);
-    --glass-strong: rgba(40, 40, 48, .7);
+    --glass: rgba(28, 28, 34, .72);
+    --glass-strong: rgba(40, 40, 48, .86);
     --glass-edge: rgba(255, 255, 255, .13);
     --glass-hi: rgba(255, 255, 255, .12);
     --spec: rgba(255, 255, 255, .08);
@@ -102,12 +102,13 @@ svg { display: block; }
 .backdrop span:nth-child(2) { width: 55vmax; height: 55vmax; right: -20vmax; top: 18vh; background: radial-gradient(closest-side, #d3b5ff, transparent); }
 .backdrop span:nth-child(3) { width: 50vmax; height: 50vmax; left: 18vw; bottom: -26vmax; background: radial-gradient(closest-side, #9af0dd, transparent); }
 
-/* ---------- Vetro liquido ---------- */
+/* ---------- Vetro liquido ----------
+   La sfocatura di ciò che sta dietro (backdrop-filter) costa molto a ogni fotogramma,
+   soprattutto sopra la scena 3D: la usa solo la barra in alto. I riquadri hanno un vetro
+   più pieno, che da fuori sembra uguale e scorre fluido anche sui telefoni. */
 .glass {
   position: relative;
   background: linear-gradient(150deg, var(--glass-strong), var(--glass));
-  -webkit-backdrop-filter: blur(22px) saturate(180%);
-  backdrop-filter: blur(22px) saturate(180%);
   border: 1px solid var(--glass-edge);
   border-radius: var(--radius);
   box-shadow: inset 0 1px 0 var(--glass-hi), var(--shadow);
@@ -143,13 +144,14 @@ svg { display: block; }
 .btn--block { width: 100%; }
 .btn--primary { background: var(--accent); color: #fff; box-shadow: 0 10px 24px -10px var(--accent); }
 .btn--wa { background: var(--wa); color: var(--wa-ink); box-shadow: 0 10px 24px -10px rgba(37, 211, 102, .9); }
-.btn--ghost { background: var(--glass-strong); color: var(--text); border: 1px solid var(--line); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
+.btn--ghost { background: var(--glass-strong); color: var(--text); border: 1px solid var(--line); }
 .btn--light { background: #fff; color: #1d1d1f; }
 
 /* ---------- Barra di navigazione ---------- */
 .nav {
   position: fixed; z-index: 50; top: 12px; left: 50%; translate: -50% 0;
   width: min(var(--maxw), 100% - 24px);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
   display: flex; align-items: center; gap: 8px;
   padding: 7px 7px 7px 16px; border-radius: 999px;
 }
@@ -702,7 +704,7 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--a
   .story__grid { grid-template-columns: 1fr; gap: 0; }
   .story__sticky {
     top: 70px; z-index: 3; min-height: 0; margin: 0 -16px; padding: 0 16px 6px;
-    background: color-mix(in srgb, var(--bg) 70%, transparent); -webkit-backdrop-filter: blur(18px) saturate(160%); backdrop-filter: blur(18px) saturate(160%);
+    background: color-mix(in srgb, var(--bg) 94%, transparent);
     border-bottom: 1px solid var(--line);
   }
   .story__sticky .mac-stage { max-width: 330px; }

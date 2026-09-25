@@ -1,0 +1,4 @@
+# Il sito di Gabriel Tech è nella cartella nuovo-progetto.
+# Netlify entra in quella cartella e usa le impostazioni di nuovo-progetto/netlify.toml.
+[build]
+  base = "nuovo-progetto"

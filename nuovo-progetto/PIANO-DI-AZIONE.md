@@ -217,16 +217,16 @@ Consiglio **Netlify**: hosting gratuito, HTTPS automatico, moduli di contatto se
 Con questa opzione il sito funziona, in italiano e in inglese, ma le automazioni (Telegram, gestionale, messaggi, monitoraggio, assistente) no: servono l'opzione B.
 
 ### Opzione B: collegato a GitHub (consigliata)
-Ogni modifica caricata su GitHub aggiorna il sito da sola.
-1. Prima porta il lavoro sul branch `main` di GitHub. Posso aprire io la pull request.
-2. In Netlify scegli **Add new project → Import an existing project → GitHub** e seleziona il repository `gabriel-`.
-3. Imposta:
-   - **Branch:** `main`
-   - **Base directory:** `nuovo-progetto`
-   - **Build command:** lascia quello che propone Netlify
-
-   Il resto lo legge da solo dal file `netlify.toml`: la cartella da pubblicare, le funzioni e il comando `npm run genera`, che a ogni pubblicazione rigenera le pagine da `config.js`.
-4. Premi **Deploy**.
+Ogni modifica caricata su GitHub aggiorna il sito da sola. Il sito è già sul branch `main` del repository `gabriel-` e le impostazioni per Netlify sono già pronte.
+1. Vai su [app.netlify.com/signup](https://app.netlify.com/signup) e scegli **Sign up with GitHub**: l'account è gratuito.
+2. Scegli **Add new project → Import an existing project → GitHub**. Autorizza Netlify a vedere il repository `gabriel-` e selezionalo.
+3. Lascia tutti i campi come sono, con il branch `main`. Il resto lo legge da solo dai file `netlify.toml`:
+   - la cartella `nuovo-progetto`;
+   - la cartella da pubblicare;
+   - le funzioni;
+   - il comando `npm run genera`, che a ogni pubblicazione rigenera le pagine da `config.js`.
+4. Premi **Deploy**. Dopo un paio di minuti il sito è online a un indirizzo del tipo `nome-a-caso.netlify.app`.
+5. Per un indirizzo più bello, apri **Site configuration → Change site name** e scrivi per esempio `gabrieltech`: il sito diventa `gabrieltech.netlify.app`, se il nome è libero.
 
 ### Attivare i moduli
 Il sito ha tre moduli: richiamata, prenotazione e preventivo aziende.
@@ -513,7 +513,7 @@ Li trovi anche nel pannello del tecnico (`/tecnico/`), pronti da copiare con un 
 
 ## 10. Prossimi passi che posso fare io
 
-1. Aprire la pull request per portare il sito su `main`, necessaria per l'Opzione B di Netlify.
+1. Collegare il tuo dominio e aggiornarlo in `config.js`, quando lo compri.
 2. Inserire i tuoi dati veri: nome e cognome, numero, email, P.IVA, foto, dominio.
 3. Aggiungere altre lingue oltre all'inglese (rumeno, spagnolo, arabo…), per raggiungere le comunità straniere in Italia: dimmi quali.
 4. Scrivere altre guide (una al mese aiuta molto su Google) e pagine per le domande più frequenti dei tuoi clienti.

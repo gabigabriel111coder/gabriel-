@@ -18,7 +18,7 @@ export function start() {
   canvas.setAttribute("aria-hidden", "true");
   (document.querySelector(".backdrop") || document.body.firstChild).after(canvas);
 
-  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: "high-performance" });
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: "high-performance", failIfMajorPerformanceCaveat: true });
   // La scena è uno sfondo decorativo: non serve disegnarla alla risoluzione piena dello schermo
   const dpr = Math.min(devicePixelRatio, small ? 1 : 1.25);
   renderer.setPixelRatio(dpr);
@@ -106,7 +106,7 @@ export function start() {
     ["cursor", "pearl", 1.3], ["torus", "blue", 0.8], ["box", "violet", 0.75], ["sphere", "pearl", 0.7],
     ["capsule", "teal", 0.9], ["box", "pink", 0.7], ["torus", "teal", 0.9], ["cursor", "violet", 1.1]
   ];
-  const floaters = LOOKS.slice(0, small ? 7 : LOOKS.length).map(([g, m, s], i) => {
+  const floaters = LOOKS.slice(0, small ? 5 : 8).map(([g, m, s], i) => {
     const mesh = new THREE.Mesh(GEO[g], MAT[m]);
     mesh.scale.setScalar(s * (small ? 0.6 : 0.9));
     mesh.rotation.set(Math.random() * 6, Math.random() * 6, Math.random() * 6);
@@ -123,12 +123,11 @@ export function start() {
     };
   });
 
-  // distribuisce le forme lungo tutta la pagina (in "schermate")
+  // le forme accompagnano la prima parte della pagina (in "schermate"); più in basso la scena si ferma
   const PARALLAX = 0.55;
   function layout() {
     misuraAncora();
-    const screens = Math.max(1, (document.documentElement.scrollHeight - innerHeight) / innerHeight);
-    const span = screens * PARALLAX + 0.6;
+    const span = 1;
     floaters.forEach((f, i) => {
       f.yScr = i === 0 ? (small ? 0.47 : 0.36) : i === 1 ? -0.4 : 0.2 - (i / (floaters.length - 1)) * span;
     });
@@ -194,10 +193,19 @@ export function start() {
   /* ---------- Animazione ---------- */
   const clock = new THREE.Clock();
   const ndc = new THREE.Vector3(), dir = new THREE.Vector3(), anchorPos = new THREE.Vector3();
-  let started = false, ultimoDisegno = 0, logoInVista = true;
+  let started = false, ultimoDisegno = 0, logoInVista = true, nascosta = false;
   // livelli di risoluzione: se il dispositivo fatica, si scende di un gradino (mai si risale)
   const LIVELLI = [...new Set([dpr, Math.min(dpr, 1), 0.75, 0.6])];
-  let livello = 0, campioni = 0, tempoCampioni = 0, mezzaVelocita = false;
+  let livello = 0, campioni = 0, tempoCampioni = 0, mezzaVelocita = false, metaForme = false, spenta = false;
+
+  // Il dispositivo non ce la fa: la scena si spegne e torna il logo normale
+  function spegni() {
+    spenta = true;
+    renderer.setAnimationLoop(null);
+    renderer.dispose();
+    canvas.remove();
+    document.documentElement.classList.remove("webgl-on");
+  }
 
   function toWorldAtZ0(nx, ny, out) { // punto dello schermo -> posizione 3D sul piano z = 0
     ndc.set(nx, ny, 0.5).unproject(camera);
@@ -206,6 +214,13 @@ export function start() {
   }
 
   function frame() {
+    // Oltre la prima parte della pagina non c'è più niente da mostrare: la scena si ferma e sparisce
+    if (scrollY > innerHeight * 2.5) {
+      if (!nascosta) { canvas.style.visibility = "hidden"; nascosta = true; }
+      return;
+    }
+    if (nascosta) { canvas.style.visibility = ""; nascosta = false; }
+
     // Da fermi basta meno: 30 fotogrammi al secondo con la G in vista, circa 10 senza
     const adesso = performance.now();
     const fermo = adesso - ultimoMovimento > 1200 && !drag && Math.abs(spinVel) < 0.002;
@@ -292,21 +307,25 @@ export function start() {
       document.documentElement.classList.add("webgl-on");
     }
 
-    // qualità automatica: si misura mentre la pagina si muove, per tutta la visita
-    if (!fermo && t > 1.5 && intervallo < 250) {
+    // qualità automatica per tutta la visita: confronta i fotogrammi ottenuti con quelli voluti
+    // (60 al secondo mentre ti muovi, 30 da fermo con la G in vista) e, se non ci arriva, alleggerisce
+    if (pausaMinima <= 32 && t > 1.5 && intervallo < 1000) {
       campioni++;
       tempoCampioni += intervallo;
       if (tempoCampioni > 2000) {
         const fps = (campioni * 1000) / tempoCampioni;
+        const obiettivo = pausaMinima ? 1000 / pausaMinima : 60;
         campioni = tempoCampioni = 0;
-        if (fps < 45 && livello < LIVELLI.length - 1) {
+        if (fps < 12 || (metaForme && fps < obiettivo * 0.5)) {
+          spegni(); // il dispositivo non ce la fa
+        } else if (fps < obiettivo * 0.75 && livello < LIVELLI.length - 1) {
           livello++;
           renderer.setPixelRatio(LIVELLI[livello]);
           resize();
-        } else if (fps < 45 && !mezzaVelocita) {
+        } else if (fps < obiettivo * 0.75 && !fermo && !mezzaVelocita) {
           mezzaVelocita = true; // al massimo 30 fotogrammi al secondo anche mentre si scorre
-        } else if (fps < 25) {
-          // ultimo aiuto: metà delle forme fluttuanti
+        } else if (fps < obiettivo * 0.6 && !metaForme) {
+          metaForme = true; // metà delle forme fluttuanti
           floaters.forEach((f, i) => { if (i % 2) f.mesh.visible = false; });
         }
       }
@@ -315,6 +334,7 @@ export function start() {
 
   renderer.setAnimationLoop(frame);
   document.addEventListener("visibilitychange", () => {
+    if (spenta) return;
     renderer.setAnimationLoop(document.hidden ? null : frame);
     clock.getDelta();
   });

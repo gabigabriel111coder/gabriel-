@@ -10,7 +10,7 @@
    - scrive sitemap.xml, robots.txt e i dati per le funzioni di Netlify
    I testi di servizi e guide sono in strumenti/contenuti.mjs.
    ========================================================================== */
-import { readFileSync, writeFileSync, mkdirSync, rmSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, rmSync, existsSync, readdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { SERVIZI, GUIDE } from "./contenuti.mjs";
@@ -27,6 +27,30 @@ const CONFIG = caricaConfig(join(SITO, "assets", "config.js"));
 const DOMINIO = String((CONFIG.sito && !/example\.com/.test(CONFIG.sito) ? CONFIG.sito : process.env.URL) || CONFIG.sito || "https://www.example.com").replace(/\/+$/, "");
 const INGLESE = (CONFIG.lingue || ["it"]).includes("en");
 const OGGI = new Date().toISOString().slice(0, 10);
+
+/* ---------- La foto del tecnico ----------
+   Basta caricare nella cartella sito/assets un file chiamato foto.jpg (oppure .png o .webp):
+   il generatore lo trova da solo e ne prepara due versioni leggere, quadrate e centrate sul volto.
+   In alternativa si può indicare un altro file in config.js (foto: "assets/nome-file.jpg"). */
+const FOTO = await preparaFoto();
+async function preparaFoto() {
+  const cartella = join(SITO, "assets");
+  const nome = CONFIG.foto
+    ? String(CONFIG.foto).replace(/^\/+|^assets\//g, "")
+    : readdirSync(cartella).find((f) => /^foto\.(jpe?g|png|webp)$/i.test(f));
+  if (!nome || !existsSync(join(cartella, nome))) return null;
+  try {
+    const { default: sharp } = await import("sharp");
+    for (const lato of [160, 480]) {
+      await sharp(join(cartella, nome)).rotate().resize(lato, lato, { fit: "cover", position: "attention" })
+        .webp({ quality: 82 }).toFile(join(cartella, `foto-${lato}.webp`));
+    }
+    return { piccola: "/assets/foto-160.webp", grande: "/assets/foto-480.webp" };
+  } catch (err) {
+    console.warn(`Attenzione: non riesco a preparare la foto (${err.message}): uso il file così com'è.`);
+    return { piccola: `/assets/${nome}`, grande: `/assets/${nome}` };
+  }
+}
 
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
 const icon = (name) => `<svg class="i"><use href="#i-${name}"/></svg>`;
@@ -103,10 +127,14 @@ export function footer(r, home) {
         </ul>
       </nav>
     </div>
-    <p class="footer__legal">© <span data-year>{{anno}}</span> {{cfg.titolare}} · P.IVA {{cfg.piva}} · AnyDesk è un marchio di AnyDesk Software GmbH, che non è affiliata a questo sito.</p>
+    <p class="footer__legal">© <span data-year>{{anno}}</span> {{cfg.intestazione}} · AnyDesk è un marchio di AnyDesk Software GmbH, che non è affiliata a questo sito.</p>
   </div>
 </footer>
-<a class="fab" href="${home}#contatti" data-wa aria-label="Scrivimi su WhatsApp">${icon("chat")}</a>`;
+<a class="fab${FOTO ? " fab--foto" : ""}" href="${home}#contatti" data-wa aria-label="Scrivimi su WhatsApp">{{foto.fab}}</a>
+<a class="persona-float" href="${home}#contatti" data-wa data-status data-persona-float aria-label="Scrivimi su WhatsApp: ti rispondo io">
+  <span class="persona-float__foto">{{foto.mini}}<span class="dot"></span></span>
+  <span class="persona-float__testo"><b>Ti rispondo io</b><small data-status-text>Scrivimi su WhatsApp</small></span>
+</a>`;
 }
 
 /* ---------- Struttura comune di ogni pagina ---------- */
@@ -141,7 +169,8 @@ export function page({ path, title, description, body, noindex = false, jsonld =
   <script>${EARLY}</script>
   <script type="importmap">{ "imports": { "three": "${r || "./"}assets/vendor/three.module.min.js" } }</script>
   <script src="${r}assets/config.js" defer></script>
-  <script src="${r}assets/main.js" defer></script>${scripts.map((src) => `\n  <script src="${r}${src}" defer></script>`).join("")}${jsonld ? `\n  <script type="application/ld+json">${JSON.stringify(jsonld)}</script>` : ""}
+  <script src="${r}assets/main.js" defer></script>
+  <script type="speculationrules">{"prerender":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/tecnico/*"}},{"not":{"selector_matches":"[target=_blank], [download]"}}]},"eagerness":"moderate"}]}</script>${scripts.map((src) => `\n  <script src="${r}${src}" defer></script>`).join("")}${jsonld ? `\n  <script type="application/ld+json">${JSON.stringify(jsonld)}</script>` : ""}
   <!--HREFLANG-->
 </head>
 <body${bodyAttrs}>
@@ -231,6 +260,10 @@ for (const s of SERVIZI) {
         ${waBtn(`Ciao! Ho bisogno di aiuto per: ${s.titolo}.`, "Scrivimi su WhatsApp", "btn--wa btn--lg")}
         <a class="btn btn--ghost btn--lg" href="${r}prenota.html?servizio=${s.pacchetto.toLowerCase()}&amp;problema=${encodeURIComponent(s.titolo)}">${icon("calendar")}Prenota</a>
       </div>
+      <div class="persona">
+        {{foto.mini}}
+        <p><b>Ti rispondo io, di persona.</b><span>{{cfg.firmaRiga}}</span></p>
+      </div>
     </div>
     <aside class="aside-card glass" aria-label="Prezzo">
       <p class="eyebrow">${s.pacchetto === "Lezione" ? "Lezione a distanza" : `Intervento ${s.pacchetto}`}</p>
@@ -239,6 +272,7 @@ for (const s of SERVIZI) {
         <dt>Durata</dt><dd>${s.durata}</dd>
         <dt>Dove</dt><dd>Da remoto, in tutta Italia</dd>
         <dt>Se non risolvo</dt><dd>Non paghi</dd>
+        <dt>Paghi</dt><dd>Alla fine, con fattura</dd>
       </dl>
       <p class="meta">${s.nota || "Il prezzo esatto te lo dico prima di iniziare."}</p>
     </aside>
@@ -455,6 +489,10 @@ page({
   ${crumbs([["Home", home], ["Prenota"]])}
   <h1>Prenota un orario.</h1>
   <p class="lead">Scegli giorno e ora: ti confermo su WhatsApp. Per gli interventi singoli non paghi niente in anticipo.</p>
+  <div class="persona">
+    {{foto.mini}}
+    <p><b>Ti rispondo io, di persona.</b><span>{{cfg.firmaRiga}}</span></p>
+  </div>
 </section>
 
 <section class="section section--tight wrap">
@@ -933,6 +971,13 @@ const jsonldHome = {
     return { "@type": "OpeningHoursSpecification", dayOfWeek: giorni, opens, closes };
   })
 };
+// Città e titolare, se sono già scritti in config.js: per Google un'attività con sede e persona reali
+const sede = /^\s*([^[\]()]+?)\s*\((\w{2})\)\s*$/.exec(String(CONFIG.indirizzo || ""));
+if (sede) jsonldHome.address = { "@type": "PostalAddress", addressLocality: sede[1], addressRegion: sede[2], addressCountry: "IT" };
+if (CONFIG.titolare && !/^\[.*\]$/.test(String(CONFIG.titolare).trim())) {
+  jsonldHome.founder = { "@type": "Person", name: String(CONFIG.titolare).trim() };
+  if (FOTO) jsonldHome.founder.image = `{{sito}}${FOTO.grande}`;
+}
 PAGINE.unshift({
   path: "index.html",
   html: HOME
@@ -996,6 +1041,24 @@ function valori(lingua) {
   v["p.pacchetto5ora"] = String(Math.round(Number(prezzi.pacchetto5) / 5));
   const campi = { titolare: CONFIG.titolare, piva: CONFIG.piva, indirizzo: CONFIG.indirizzo, anni: CONFIG.anniEsperienza, email: CONFIG.email, phoneDisplay: CONFIG.phoneDisplay, phoneLink: CONFIG.phoneLink, whatsapp: CONFIG.whatsapp };
   for (const [chiave, valore] of Object.entries(campi)) v[`cfg.${chiave}`] = esc(valore ?? "");
+
+  // Nome, P.IVA e foto: finché mancano, il sito non mostra segnaposto tra parentesi
+  const en = lingua === "en";
+  const vero = (x) => x != null && String(x).trim() !== "" && !/^\[.*\]$/.test(String(x).trim());
+  const nome = vero(CONFIG.titolare) ? String(CONFIG.titolare).trim() : "";
+  const piva = vero(CONFIG.piva) ? String(CONFIG.piva).trim() : "";
+  const anni = vero(CONFIG.anniEsperienza) ? String(CONFIG.anniEsperienza).trim() : "";
+  v["cfg.nome"] = esc(nome);
+  const riga = [nome, anni && (en ? `IT technician for ${anni} years` : `tecnico informatico da ${anni} anni`)].filter(Boolean).join(" · ")
+    || (en ? "Your IT technician" : "Il tuo tecnico informatico");
+  v["cfg.firmaRiga"] = esc(riga.charAt(0).toUpperCase() + riga.slice(1));
+  v["cfg.intestazione"] = esc([nome || "Gabriel Tech", piva && `${en ? "VAT no." : "P.IVA"} ${piva}`].filter(Boolean).join(" · "));
+  v["voce.piva"] = piva ? `<li>${icon("check")}${en ? "VAT no." : "P.IVA"} ${esc(piva)}</li>` : "";
+  const alt = esc(nome ? (en ? `${nome}, your technician` : `${nome}, il tuo tecnico`) : (en ? "Your Gabriel Tech technician" : "Il tuo tecnico di Gabriel Tech"));
+  const logo = (classe) => `<span class="foto foto--logo${classe}" aria-hidden="true"><svg><use href="#logo-mark"/></svg></span>`;
+  v["foto.mini"] = FOTO ? `<img class="foto" src="${FOTO.piccola}" alt="${alt}" width="80" height="80" decoding="async">` : logo("");
+  v["foto.grande"] = FOTO ? `<img class="foto" src="${FOTO.grande}" alt="${alt}" width="240" height="240" loading="lazy" decoding="async">` : logo(" foto--grande");
+  v["foto.fab"] = FOTO ? `<img class="foto" src="${FOTO.piccola}" alt="" width="58" height="58" decoding="async"><span class="fab__wa">${icon("chat")}</span>` : icon("chat");
   return v;
 }
 const VALORI = { it: valori("it"), en: valori("en") };
@@ -1075,6 +1138,9 @@ if (INGLESE && traduttore.mancanti.size) {
   rmSync(fileMancanti);
 }
 for (const avviso of avvisi) console.warn(`Attenzione: ${avviso}`);
-const inutilizzate = INGLESE ? traduttore.vociInutilizzate().length : 0;
-if (inutilizzate) console.log(`Nota: ${inutilizzate} voci del dizionario inglese non sono più usate.`);
+const inutilizzate = INGLESE ? traduttore.vociInutilizzate() : [];
+if (inutilizzate.length) {
+  console.log(`Nota: ${inutilizzate.length} voci del dizionario inglese non sono più usate (elenco con ELENCO_VOCI=1 npm run genera).`);
+  if (process.env.ELENCO_VOCI) for (const voce of inutilizzate) console.log(`  - ${voce}`);
+}
 console.log(`Fatto: ${PAGINE.length} pagine${INGLESE ? ` in italiano e ${PAGINE.filter((p) => p.traduci).length} in inglese` : ""}, ${sitemap.length} indirizzi nella sitemap.`);

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Gabriel Tech · Assistenza informatica da remoto in tutta Italia</title>
-  <meta name="description" content="Assistenza informatica da remoto con AnyDesk: PC lento, virus, email e PEC, SPID, stampanti, Windows 11, backup. Prezzi chiari e paghi solo a problema risolto.">
+  <meta name="description" content="Assistenza informatica da remoto con un tecnico vero, che ti risponde di persona: prezzo chiaro prima di iniziare, vedi tutto quello che faccio e paghi solo a problema risolto.">
   <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#050507" media="(prefers-color-scheme: dark)">
   <link rel="canonical" href="{{sito}}/">
@@ -12,7 +12,7 @@
   <meta property="og:locale" content="it_IT">
   <meta property="og:site_name" content="Gabriel Tech">
   <meta property="og:title" content="Gabriel Tech · Assistenza informatica da remoto">
-  <meta property="og:description" content="Il tuo computer, sistemato a distanza. Prezzi chiari, paghi solo a problema risolto.">
+  <meta property="og:description" content="Il tuo computer, sistemato a distanza da un tecnico vero. Prezzo chiaro prima, paghi solo a problema risolto.">
   <meta property="og:url" content="{{sito}}/">
   <meta property="og:image" content="{{sito}}/assets/brand/og-image.png">
   <meta property="og:image:width" content="1200">
@@ -26,6 +26,8 @@
   <script type="importmap">{ "imports": { "three": "./assets/vendor/three.module.min.js" } }</script>
   <script src="assets/config.js" defer></script>
   <script src="assets/main.js" defer></script>
+  <!-- Pagine aperte in anticipo quando il mouse si ferma su un link: la navigazione è istantanea (Chrome, Edge) -->
+  <script type="speculationrules">{"prerender":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/tecnico/*"}},{"not":{"selector_matches":"[target=_blank], [download]"}}]},"eagerness":"moderate"}]}</script>
   <!-- JSONLD -->
   <!--HREFLANG-->
 </head>
@@ -78,6 +80,7 @@
   <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
   <symbol id="i-tag" viewBox="0 0 24 24"><path d="M3.5 12.3V4.5a1 1 0 0 1 1-1h7.8l8.2 8.2a1.5 1.5 0 0 1 0 2.1l-6.8 6.8a1.5 1.5 0 0 1-2.1 0z"/><circle cx="8.5" cy="8.5" r="1.4"/></symbol>
   <symbol id="i-qr" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><path d="M13.5 13.5h3v3h-3zM17.5 17.5h3v3h-3zM13.5 19.5h2M19.5 13.5v2"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-6.5-6.1-6.5-11a6.5 6.5 0 0 1 13 0c0 4.9-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></symbol>
   <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12.5" rx="2"/><path d="M9 20.5h6M12 16.5v4"/></symbol>
 </svg>
 
@@ -93,14 +96,18 @@
         <p class="status glass" data-status><span class="dot"></span><span data-status-text>Scrivimi su WhatsApp, anche adesso</span></p>
       </div>
       <h1>Il tuo computer,<br><span class="grad">sistemato a distanza.</span></h1>
-      <p class="lead">Assistenza informatica da remoto per privati e piccole attività. Mi collego al tuo PC o Mac in sicurezza, risolvo il problema mentre guardi e paghi solo a lavoro finito.</p>
+      <p class="lead">Assistenza informatica da remoto per privati e piccole attività. Ti dico il prezzo prima di iniziare, lavoro sul tuo schermo mentre guardi e paghi solo se il problema è risolto.</p>
+      <div class="persona">
+        {{foto.mini}}
+        <p><b>Ti rispondo io, di persona.</b><span>{{cfg.firmaRiga}}</span></p>
+      </div>
       <div class="cta-row">
         <a class="btn btn--wa btn--lg" href="#contatti" data-wa><svg class="i"><use href="#i-chat"/></svg>Scrivimi su WhatsApp</a>
         <a class="btn btn--ghost btn--lg" href="#prezzi">Vedi i prezzi</a>
       </div>
       <ul class="hero__facts">
-        <li><svg class="i"><use href="#i-check"/></svg>Nessun tecnico in casa</li>
-        <li><svg class="i"><use href="#i-check"/></svg>Windows, Mac, Android, iPhone</li>
+        <li><svg class="i"><use href="#i-check"/></svg>Niente call center</li>
+        <li><svg class="i"><use href="#i-check"/></svg>Fattura sempre</li>
         <li><svg class="i"><use href="#i-check"/></svg>In tutta Italia</li>
       </ul>
     </div>
@@ -398,7 +405,7 @@
     <div class="head reveal">
       <p class="eyebrow">Prezzi</p>
       <h2>Prezzi chiari. Nessuna sorpresa.</h2>
-      <p>Il prezzo lo concordiamo prima di iniziare. Se il problema non si risolve da remoto, non paghi.</p>
+      <p>Il prezzo te lo dico prima di iniziare, per iscritto su WhatsApp, e non cambia senza il tuo sì. Se il problema non si risolve da remoto, non paghi nulla.</p>
     </div>
 
     <div class="seg glass reveal" role="tablist" aria-label="Tipo di offerta" data-tabs>
@@ -505,17 +512,49 @@
       <div class="rule glass reveal" data-tilt><span class="ico ico--indigo"><svg class="i"><use href="#i-power"/></svg></span><h3>La sessione la apri e la chiudi tu</h3><p>A fine intervento l'accesso si chiude. Nessun accesso permanente senza il tuo consenso.</p></div>
       <div class="rule glass reveal" data-tilt><span class="ico ico--teal"><svg class="i"><use href="#i-folder"/></svg></span><h3>Tocco solo quello che serve</h3><p>Non apro file personali che non servono all'intervento e non copio i tuoi dati.</p></div>
     </div>
+    <div class="verifica glass reveal">
+      <span class="ico ico--green"><svg class="i"><use href="#i-shield"/></svg></span>
+      <div>
+        <h3>Ti ha contattato qualcuno a nome mio?</h3>
+        <p>Il mio unico numero è <b>{{cfg.phoneDisplay}}</b> e non chiamo mai per primo. Scrivi il numero che ti ha contattato: ti dico subito se sono davvero io.</p>
+        <form class="idform" data-verifica>
+          <label class="sr-only" for="v-numero">Numero che ti ha contattato</label>
+          <input id="v-numero" type="tel" inputmode="tel" autocomplete="off" placeholder="Es. 333 123 4567" required>
+          <button class="btn btn--primary" type="submit">Controlla</button>
+        </form>
+        <p class="form__status" role="status" aria-live="polite" data-verifica-esito></p>
+      </div>
+    </div>
     <p class="note reveal"><a href="guide/finto-tecnico.html">Guida: come riconoscere la truffa del finto tecnico, e cosa fare se ci sei cascato</a></p>
   </section>
 
   <!-- CHI SONO -->
   <section class="section section--tight wrap" id="chi-sono">
     <div class="about glass reveal">
-      <div class="avatar" aria-hidden="true"><svg class="i"><use href="#i-user"/></svg></div>
+      <figure class="ritratto">
+        <span class="ritratto__anello" aria-hidden="true"></span>
+        {{foto.grande}}
+        <figcaption class="ritratto__nome">{{cfg.nome}}</figcaption>
+      </figure>
       <div>
         <p class="eyebrow">Chi sono</p>
         <h2>Un tecnico vero, con nome e cognome.</h2>
-        <p class="about__text">Sono {{cfg.titolare}}, tecnico informatico. Da {{cfg.anni}} anni aiuto privati e piccole attività con computer, smartphone e reti. Ho scelto di lavorare solo da remoto: così posso aiutarti in pochi minuti, ovunque tu sia, a un prezzo onesto. E ti spiego sempre cosa sto facendo, con parole semplici.</p>
+        <p class="about__text">Faccio il tecnico informatico da {{cfg.anni}} anni, a {{cfg.indirizzo}}, e aiuto privati e piccole attività con computer, smartphone e reti. Quando mi scrivi rispondo io, e quando ci colleghiamo ci sono io: niente call center, niente passaggi di mano. Ti spiego sempre cosa sto facendo, con parole semplici.</p>
+        <ul class="identita">
+          <li><svg class="i"><use href="#i-check"/></svg>{{cfg.anni}} anni di esperienza</li>
+          <li><svg class="i"><use href="#i-pin"/></svg>{{cfg.indirizzo}}</li>
+          {{voce.piva}}
+          <li><svg class="i"><use href="#i-check"/></svg>Fattura elettronica sempre</li>
+        </ul>
+        <div class="promesse">
+          <p class="promesse__titolo">La mia promessa</p>
+          <ul>
+            <li><b>Il prezzo lo sai prima</b><span>Per iscritto su WhatsApp, prima di iniziare.</span></li>
+            <li><b>Se non risolvo, non paghi</b><span>Nessun costo se da remoto non si può fare.</span></li>
+            <li><b>Vedi tutto, chiudi quando vuoi</b><span>Ogni clic avviene sul tuo schermo.</span></li>
+            <li><b>Paghi alla fine</b><span>Con metodi tracciabili e fattura.</span></li>
+          </ul>
+        </div>
         <div class="about__video" data-video hidden></div>
         <ul class="pills"><li>Windows</li><li>macOS</li><li>Android e iPhone</li><li>Microsoft 365</li><li>Reti e Wi-Fi</li><li>Sicurezza</li></ul>
       </div>
@@ -539,6 +578,8 @@
       <h2>Tutto quello che vuoi sapere.</h2>
     </div>
     <div class="faq">
+      <details class="glass reveal"><summary>Chi c'è dietro Gabriel Tech?</summary><p>Ci sono io: un tecnico informatico con {{cfg.anni}} anni di esperienza, a {{cfg.indirizzo}}. Rispondo io ai messaggi, mi collego io al tuo computer e ti mando io la fattura. Nessun call center e nessun intermediario.</p></details>
+      <details class="glass reveal"><summary>Come faccio a sapere che sei davvero tu?</summary><p>Il mio unico numero è {{cfg.phoneDisplay}} e non chiamo mai per primo: sei sempre tu a contattarmi. Se qualcuno ti chiama a nome mio da un altro numero, riaggancia. <a href="#sicurezza">Controlla un numero</a>.</p></details>
       <details class="glass reveal"><summary>È sicuro far entrare qualcuno nel mio computer?</summary><p>Sì, se sai chi è. La connessione AnyDesk è cifrata, parte solo quando la accetti tu e vedi tutto quello che faccio. Puoi chiuderla in qualsiasi momento con un clic. Leggi anche le <a href="#sicurezza">mie regole di sicurezza</a>.</p></details>
       <details class="glass reveal"><summary>Cosa mi serve per iniziare?</summary><p>Un computer o uno smartphone acceso e collegato a internet, e AnyDesk scaricato dal sito ufficiale. Se non sai come fare, ti guido io al telefono.</p></details>
       <details class="glass reveal"><summary>Quanto dura un intervento?</summary><p>Molti problemi semplici si risolvono in meno di mezz'ora. Per i casi più complessi ti do una stima prima di iniziare, e se serve più tempo te lo chiedo prima di continuare.</p></details>
@@ -556,8 +597,8 @@
   <section class="section wrap" id="contatti">
     <div class="head reveal">
       <p class="eyebrow">Contatti</p>
-      <h2>Parliamone.<br>Il preventivo è gratis.</h2>
-      <p>Scrivimi su WhatsApp oppure lascia il tuo numero: ti richiamo io, negli orari di disponibilità.</p>
+      <h2>Parliamone.<br>Il preventivo è gratis e senza impegno.</h2>
+      <p>Rispondo io, di persona. Scrivimi su WhatsApp oppure lascia il tuo numero: ti richiamo io, negli orari di disponibilità.</p>
     </div>
     <div class="contact">
       <div class="card glass reveal">

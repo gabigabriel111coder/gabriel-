@@ -57,7 +57,10 @@
       ciao: "Ciao!", invio: "Invio in corso…", inviato: "Grazie! Ho ricevuto la richiesta: ti rispondo appena possibile.",
       continua: "Continua", nonInviato: "Non sono riuscito a inviare la richiesta.", waRiserva: "Mandamela su WhatsApp.",
       scegliOrario: "Scegli un giorno e un orario.",
-      suggerimento: "Questa pagina è disponibile anche in italiano.", suggerimentoLink: "Leggi in italiano", chiudi: "Chiudi"
+      suggerimento: "Questa pagina è disponibile anche in italiano.", suggerimentoLink: "Leggi in italiano", chiudi: "Chiudi",
+      verificaOk: (n) => `✓ Sì, sono io: ${n} è il mio numero.`,
+      verificaNo: "✗ Non sono io. Io non chiamo mai per primo: riaggancia, non installare niente e non dare codici. Se hai già dato l'accesso al computer, stacca internet e scrivimi.",
+      verificaCorto: "Scrivi il numero completo, anche solo le cifre."
     },
     en: {
       temaChiaro: "Switch to light theme", temaScuro: "Switch to dark theme",
@@ -101,7 +104,10 @@
       ciao: "Hi!", invio: "Sending…", inviato: "Thank you! I've received your request: I'll reply as soon as possible.",
       continua: "Continue", nonInviato: "I couldn't send your request.", waRiserva: "Send it to me on WhatsApp.",
       scegliOrario: "Choose a day and a time.",
-      suggerimento: "This page is also available in English.", suggerimentoLink: "Read in English", chiudi: "Close"
+      suggerimento: "This page is also available in English.", suggerimentoLink: "Read in English", chiudi: "Close",
+      verificaOk: (n) => `✓ Yes, it's me: ${n} is my number.`,
+      verificaNo: "✗ It's not me. I never call first: hang up, don't install anything and don't share any codes. If you've already given access to your computer, disconnect it from the internet and message me.",
+      verificaCorto: "Type the full number, digits only is fine."
     }
   };
   const T = TESTI[LANG];
@@ -295,7 +301,8 @@
     $$("[data-status]").forEach((node) => {
       node.classList.toggle("is-open", s.open);
       node.classList.toggle("is-closed", !s.open);
-      $("[data-status-text]", node).textContent = s.text;
+      const testo = $("[data-status-text]", node);
+      if (testo) testo.textContent = s.text;
     });
   }
   renderStatus();
@@ -634,6 +641,12 @@
     }
   }
 
+  // Le animazioni del Mac girano solo quando è visibile
+  const macStage = $(".mac-stage");
+  if (macStage && "IntersectionObserver" in window) {
+    new IntersectionObserver(([entry]) => macStage.classList.toggle("in-vista", entry.isIntersecting)).observe(macStage);
+  } else macStage?.classList.add("in-vista");
+
   /* ---------- Comparsa morbida degli elementi ---------- */
   $$(".bento, .trust, .plans, .rules, .cards, .guides, .reviews__list").forEach((group) => {
     $$(".reveal", group).forEach((node, i) => node.style.setProperty("--d", `${(i % 4) * 70}ms`));
@@ -698,6 +711,49 @@
     });
   }
 
+  /* ---------- Verifica del numero: è davvero Gabriel Tech? ---------- */
+  const verifica = $("[data-verifica]");
+  if (verifica) {
+    const cifre = (v) => {
+      let d = String(v || "").replace(/\D/g, "");
+      if (d.startsWith("00")) d = d.slice(2);
+      if (/^3\d{8,9}$/.test(d)) d = `39${d}`;
+      return d;
+    };
+    const ufficiali = new Set([cifre(C.whatsapp), cifre(C.phoneLink)].filter((d) => d.length >= 8));
+    const esito = $("[data-verifica-esito]");
+    verifica.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const numero = verifica.querySelector("input").value.trim();
+      const d = cifre(numero);
+      if (d.length < 8) { esito.textContent = T.verificaCorto; esito.className = "form__status err"; return; }
+      const mio = ufficiali.has(d);
+      esito.textContent = mio ? T.verificaOk(C.phoneDisplay || numero) : T.verificaNo;
+      esito.className = `form__status ${mio ? "ok" : "err"}`;
+    });
+  }
+
+  /* ---------- La foto del tecnico accompagna lo scorrimento ----------
+     Compare dopo la prima schermata e si fa da parte quando sono già in vista i contatti. */
+  const bolla = $("[data-persona-float]");
+  if (bolla) {
+    let oltre = false, coperta = false;
+    const aggiorna = () => bolla.classList.toggle("visibile", oltre && !coperta);
+    const misura = () => { oltre = scrollY > innerHeight * 0.6; aggiorna(); };
+    addEventListener("scroll", unaVoltaPerFotogramma(misura), { passive: true });
+    misura();
+    const zone = [$("#contatti"), $(".footer")].filter(Boolean);
+    if ("IntersectionObserver" in window && zone.length) {
+      const inVista = new Set();
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => (e.isIntersecting ? inVista.add(e.target) : inVista.delete(e.target)));
+        coperta = inVista.size > 0;
+        aggiorna();
+      });
+      zone.forEach((z) => io.observe(z));
+    }
+  }
+
   /* ---------- Caricamenti opzionali ---------- */
   // statistiche senza cookie (Cloudflare Web Analytics)
   if (C.cloudflareAnalytics) {
@@ -714,23 +770,32 @@
     s.defer = true;
     document.body.append(s);
   }
-  // scena 3D: solo se il dispositivo la supporta
-  const webgl2 = (() => {
+  // scena 3D: solo se il dispositivo la supporta con la scheda grafica
+  // (senza scheda grafica il browser la disegnerebbe col processore, e il sito andrebbe a scatti)
+  const webgl2 = () => {
     try {
-      const gl = document.createElement("canvas").getContext("webgl2");
-      gl?.getExtension("WEBGL_lose_context")?.loseContext();
-      return !!gl;
+      const gl = document.createElement("canvas").getContext("webgl2", { failIfMajorPerformanceCaveat: true });
+      if (!gl) return false;
+      const info = gl.getExtension("WEBGL_debug_renderer_info");
+      const scheda = info ? String(gl.getParameter(info.UNMASKED_RENDERER_WEBGL)) : "";
+      gl.getExtension("WEBGL_lose_context")?.loseContext();
+      return !/swiftshader|llvmpipe|softpipe|software|basic render/i.test(scheda);
     } catch {
       return false;
     }
-  })();
-  // niente 3D sui telefoni con poca memoria (meno di 4 GB): resta il logo, e lo scorrimento è fluido
+  };
+  // La G in 3D solo dove c'è il suo riquadro (home e pagina 404), solo su computer con il mouse
+  // e con memoria sufficiente: telefoni e pagine interne restano leggeri e veloci da aprire.
   const pocaMemoria = navigator.deviceMemory !== undefined && navigator.deviceMemory < 4;
-  if (!reduceMotion && webgl2 && !pocaMemoria && !navigator.connection?.saveData && !document.body.hasAttribute("data-no-3d")) {
+  const computer = finePointer && innerWidth > 860;
+  if (!reduceMotion && computer && !pocaMemoria && !navigator.connection?.saveData
+      && !document.body.hasAttribute("data-no-3d") && document.querySelector("[data-3d-anchor]") && webgl2()) {
     const load = () => import("./scene3d.js")
       .then((scene) => scene.start())
       .catch((err) => console.warn("Scena 3D non disponibile, resta il logo statico.", err));
-    if (document.readyState === "complete") load();
-    else addEventListener("load", load, { once: true });
+    // parte quando il browser ha finito il lavoro importante, così la pagina risponde subito
+    const quandoLibero = () => ("requestIdleCallback" in window ? requestIdleCallback(load, { timeout: 2000 }) : setTimeout(load, 300));
+    if (document.readyState === "complete") quandoLibero();
+    else addEventListener("load", quandoLibero, { once: true });
   }
 })();

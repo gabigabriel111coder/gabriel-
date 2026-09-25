@@ -188,7 +188,7 @@ Quasi tutto si cambia **in un solo posto**, `sito/assets/config.js`, e poi si ri
 | **Nome e cognome, P.IVA, indirizzo, anni di esperienza** | `config.js` (`titolare`, `piva`, `indirizzo`, `anniEsperienza`): compaiono in «Chi sono», nel footer, nelle condizioni e nella privacy |
 | **Prezzi** | `config.js` (`prezzi`): home, pagine dei servizi, buoni regalo, aziende, condizioni, diagnosi, versione inglese e assistente virtuale |
 | **Dominio** (dopo averlo comprato) | `config.js` (`sito`): indirizzi per Google, sitemap, codici QR e link nelle email. Finché non lo metti, sul sito pubblicato si usa da solo l'indirizzo di Netlify |
-| **Tua foto** | Metti la foto in `sito/assets/` (per esempio `foto.jpg`). In `strumenti/modelli/home.html`, sezione «Chi sono», sostituisci `<svg class="i"><use href="#i-user"/></svg>` con `<img src="assets/foto.jpg" alt="Nome Cognome">`, togli `aria-hidden="true"` dal riquadro e rigenera |
+| **Tua foto** | Carica un file chiamato `foto.jpg` (oppure `.png` o `.webp`) nella cartella `sito/assets`. Il sito lo trova da solo, lo ritaglia sul volto e ne prepara versioni leggere. Vedi «La fiducia al centro» (sezione 8ter) |
 | **Testi della home** | `strumenti/modelli/home.html`. Se aggiungi frasi nuove, il generatore te le elenca in `strumenti/traduzioni/mancanti-en.json`: aggiungi la traduzione in `strumenti/traduzioni/en.mjs`, oppure chiedimelo |
 | **Condizioni e privacy** | Nel generatore: falle verificare prima di pubblicare |
 
@@ -520,6 +520,27 @@ Le animazioni che accompagnano lo scorrimento, invece, pesano pochissimo e sono 
 
 Uno «scatto» è un fotogramma che resta sullo schermo più di un ventesimo di secondo: è quello che si percepisce come scorrimento a singhiozzo. Su un telefono o un computer veri, con la loro scheda grafica, i numeri sono più alti.
 
+### Seconda tornata: fatto
+Dopo la prima correzione la navigazione tra le pagine era ancora lenta. Le misure su un telefono lento simulato hanno trovato altre due cause: la scena 3D si ricaricava a ogni pagina, e alcune animazioni decorative ricalcolavano la pagina circa 60 volte al secondo, anche quando non si vedevano.
+1. **3D solo dove serve:**
+   - la G in 3D c'è solo nella home e solo sui computer con scheda grafica;
+   - telefoni e pagine interne mostrano il logo normale e si aprono molto più in fretta;
+   - la scena si ferma dopo la prima parte della home;
+   - se il computer non ha la scheda grafica o va a scatti, la scena si spegne da sola.
+2. **Animazioni leggere:**
+   - le animazioni decorative ora le fa la scheda grafica, senza ricalcolare la pagina;
+   - si fermano quando non si vedono;
+   - sui telefoni la comparsa dei blocchi è più semplice, senza rotazione 3D.
+3. **Pagine pronte in anticipo:** con Chrome ed Edge, quando il mouse si ferma su un link la pagina viene preparata prima del clic, così si apre all'istante.
+
+| Prova (telefono lento simulato) | Prima | Dopo |
+|---|---|---|
+| Home: lavoro che blocca la pagina | 1,9 secondi | 0,6 secondi |
+| Home: dati da scaricare | 805 KB | 117 KB |
+| Pagina di un servizio: lavoro che blocca la pagina | 0,5 secondi | 0,2 secondi |
+| Computer senza scheda grafica, home ferma | 8 fotogrammi al secondo | 56 fotogrammi al secondo |
+| Telefono, home mentre scorri | 55 fotogrammi al secondo, 18 scatti | 60 fotogrammi al secondo, nessuno scatto |
+
 ### Fase 2: da fare solo se serve
 1. **Misura sul tuo telefono.** Apri il sito e scorri la home e una pagina dei servizi. Se scatta ancora, dimmi il modello del telefono e il browser.
 2. **Controllo gratuito di Google:** su [pagespeed.web.dev](https://pagespeed.web.dev) incolla l'indirizzo del sito e guarda il risultato «Dispositivi mobili». Ripetilo una volta al mese e dopo ogni modifica grande.
@@ -528,6 +549,61 @@ Uno «scatto» è un fotogramma che resta sullo schermo più di un ventesimo di 
    - la libreria 3D (Three.js) pesa circa 180 KB compressi e si carica dopo la pagina, quindi non la rallenta; si può ridurre di circa metà con una versione su misura;
    - quando aggiungi la tua foto in «Chi sono», usala in formato WebP e larga al massimo 800 pixel.
 5. **Cache:** i file che cambiano raramente (logo, immagini, libreria 3D) possono restare nella memoria del browser più a lungo, così chi torna sul sito lo apre subito.
+
+---
+
+## 8ter. La fiducia al centro
+
+Chi chiede assistenza da remoto fa entrare uno sconosciuto nel proprio computer: prima di tutto deve fidarsi. Il sito ora lo dice in ogni punto in cui il cliente decide.
+
+### Fatto
+- **La tua foto, rotonda, in quattro punti:**
+  - nell'apertura della home, accanto a «Ti rispondo io, di persona»;
+  - nelle pagine dei servizi e in quella della prenotazione;
+  - grande in «Chi sono», con un anello colorato che gira mentre scorri;
+  - in un cerchio che accompagna lo scorrimento: sul computer in basso a sinistra, con la disponibilità del momento; sul telefono dentro il pulsante WhatsApp.
+
+  Finché non carichi la foto, al suo posto c'è il logo.
+- **Testi riscritti sulla fiducia:**
+  - il prezzo lo dici prima, per iscritto, e non cambia senza il sì del cliente;
+  - «se non risolvo, non paghi»;
+  - paga alla fine, con fattura;
+  - vede tutto e chiude quando vuole;
+  - risponde e si collega sempre la stessa persona, niente call center.
+- **«La mia promessa»** in «Chi sono», con anni di esperienza, città e fattura elettronica, più la P.IVA quando la inserisci.
+- **Verifica del numero** nella sezione Sicurezza: chi riceve una chiamata «a nome tuo» scrive il numero e il sito gli dice subito se sei davvero tu. È la difesa più diretta contro la truffa del finto tecnico.
+- **Due nuove domande frequenti:** «Chi c'è dietro Gabriel Tech?» e «Come faccio a sapere che sei davvero tu?».
+- **Per Google:** la città è nei dati dell'attività, e il tuo nome ci va da solo quando lo scrivi in `config.js`.
+- **Niente segnaposto in vista:** finché nome e P.IVA non ci sono, il sito mostra «Gabriel Tech» invece delle parentesi quadre.
+
+### Come caricare la foto (2 minuti, anche dal telefono)
+1. Scegli una foto vera:
+   - viso ben illuminato, sorriso, sfondo semplice;
+   - meglio quadrata o verticale;
+   - non importa se è grande: il sito la alleggerisce da solo.
+2. Rinominala **`foto.jpg`**.
+3. Apri [questa pagina di GitHub](https://github.com/gabigabriel111coder/gabriel-/upload/main/nuovo-progetto/sito/assets), trascina la foto e premi **Commit changes**.
+4. Netlify ripubblica il sito da solo: dopo un paio di minuti la foto compare in tutti e quattro i punti.
+
+### Da fare, in ordine di importanza
+1. **Nome e cognome e P.IVA** in `config.js` (`titolare` e `piva`): compaiono in «Chi sono», sotto la foto, a piè di pagina e nei dati per Google. Un nome vero vale più di qualsiasi slogan.
+2. **La foto** (vedi sopra).
+3. **Scheda dell'attività su Google** (gratis), con sede a Bassano del Grappa, orari e foto. È il primo posto dove la gente controlla se esisti davvero. Poi copia il link «Chiedi recensioni» in `config.js` (`linkRecensioneGoogle`).
+4. **Le prime 5 recensioni vere**, chieste ai primi clienti soddisfatti: il sito le mostra da solo quando le scrivi in `config.js` (`recensioni`), con il permesso di chi le ha scritte.
+5. **Video di presentazione di 30 secondi** (`video` in `config.js`): la tua faccia e la tua voce che spiegano come lavori. Convince più di ogni testo.
+
+### Altre opzioni e integrazioni
+| Opzione | Cosa dà | Costo | Chi la fa |
+|---|---|---|---|
+| **Rapporto d'intervento** via email: a fine lavoro il cliente riceve cosa hai fatto, in 3 righe | Trasparenza, e un ricordo scritto che fa tornare il cliente | Gratis | Posso aggiungerlo io al gestionale |
+| **Garanzia di 7 giorni**: se lo stesso problema si ripresenta, ricontrolli gratis | Toglie l'ultimo dubbio prima di pagare | Il tuo tempo | Decidi tu, poi aggiorno testi e condizioni |
+| **Pagamenti con Stripe o PayPal** (`pagamenti` in `config.js`) | Il cliente paga con la protezione acquisti del suo circuito | Solo commissioni | Crei i link, io li collego |
+| **Trustpilot** (piano gratuito) | Recensioni verificate da un sito esterno. Si può collegare al gestionale per l'invito automatico | Gratis o a pagamento | Tu crei l'account, io lo collego |
+| **Numero REA e Camera di Commercio** a piè di pagina | Prova che l'attività è registrata | Gratis | Mi dai il numero |
+| **Assicurazione RC professionale**, citata in «Chi sono» e nelle condizioni | Rassicura aziende e professionisti | Da preventivo | Tu la stipuli, io aggiorno i testi |
+| **Certificazioni** (per esempio Microsoft, CompTIA) come riquadri in «Chi sono» | Competenza dimostrata | Dipende | Mi mandi i nomi |
+| **Profilo WhatsApp Business completo**: foto, indirizzo, orari, catalogo dei servizi | Chi ti scrive vede subito un'attività vera | Gratis | Tu, dal telefono |
+| **Casi reali prima e dopo**, anonimi e con il consenso del cliente | Mostra risultati concreti | Gratis | Mi mandi i casi, io creo la sezione |
 
 ---
 

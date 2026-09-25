@@ -192,7 +192,7 @@ Quasi tutto si cambia **in un solo posto**, `sito/assets/config.js`, e poi si ri
 | **Testi della home** | `strumenti/modelli/home.html`. Se aggiungi frasi nuove, il generatore te le elenca in `strumenti/traduzioni/mancanti-en.json`: aggiungi la traduzione in `strumenti/traduzioni/en.mjs`, oppure chiedimelo |
 | **Condizioni e privacy** | Nel generatore: falle verificare prima di pubblicare |
 
-**Attenzione:** il numero `+39 000 000 0000` e l'email `info@example.com` sono finti. Non pubblicare il sito prima di averli sostituiti. Il **pannello del tecnico** (`/tecnico/`) ti mostra cosa manca ancora.
+**Attenzione:** l'email `info@example.com` è finta. Non far girare il link del sito prima di averla sostituita. Il **pannello del tecnico** (`/tecnico/`) ti mostra cosa manca ancora.
 
 Per vedere il sito sul computer, apri `sito/index.html` con un doppio clic. Per provare anche il 3D serve un piccolo server: dalla cartella `nuovo-progetto` lancia `npm run anteprima` e apri `http://localhost:8080`.
 

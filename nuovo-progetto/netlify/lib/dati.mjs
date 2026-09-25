@@ -1,8 +1,8 @@
 // File creato da strumenti/genera-pagine.mjs con i dati di sito/assets/config.js: non modificarlo a mano.
 export default {
   "sito": "https://www.example.com",
-  "telefono": "+39 000 000 0000",
-  "whatsapp": "390000000000",
+  "telefono": "+39 389 496 3065",
+  "whatsapp": "393894963065",
   "email": "info@example.com",
   "titolare": "[Nome Cognome]",
   "prezzi": {

@@ -11,9 +11,9 @@ window.CONFIG = {
   anniEsperienza: "[X]",
 
   /* ---------- Contatti ---------- */
-  phoneDisplay: "+39 000 000 0000", // come appare sul sito
-  phoneLink: "+390000000000",       // per il tasto "Chiama": + prefisso e numero, senza spazi
-  whatsapp: "390000000000",         // per WhatsApp: 39 e numero, senza + né spazi
+  phoneDisplay: "+39 389 496 3065", // come appare sul sito
+  phoneLink: "+393894963065",       // per il tasto "Chiama": + prefisso e numero, senza spazi
+  whatsapp: "393894963065",         // per WhatsApp: 39 e numero, senza + né spazi
   email: "info@example.com",
   sito: "https://www.example.com",  // il tuo dominio, senza barra finale (serve per codici QR e messaggi)
 

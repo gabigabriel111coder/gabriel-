@@ -187,12 +187,12 @@ Quasi tutto si cambia **in un solo posto**, `sito/assets/config.js`, e poi si ri
 | **Numero, WhatsApp, email, orari** | `config.js`. Si aggiornano anche lo stato «Disponibile ora» e il calendario delle prenotazioni |
 | **Nome e cognome, P.IVA, indirizzo, anni di esperienza** | `config.js` (`titolare`, `piva`, `indirizzo`, `anniEsperienza`): compaiono in «Chi sono», nel footer, nelle condizioni e nella privacy |
 | **Prezzi** | `config.js` (`prezzi`): home, pagine dei servizi, buoni regalo, aziende, condizioni, diagnosi, versione inglese e assistente virtuale |
-| **Dominio** (dopo averlo comprato) | `config.js` (`sito`): indirizzi per Google, sitemap, codici QR e link nelle email |
+| **Dominio** (dopo averlo comprato) | `config.js` (`sito`): indirizzi per Google, sitemap, codici QR e link nelle email. Finché non lo metti, sul sito pubblicato si usa da solo l'indirizzo di Netlify |
 | **Tua foto** | Metti la foto in `sito/assets/` (per esempio `foto.jpg`). In `strumenti/modelli/home.html`, sezione «Chi sono», sostituisci `<svg class="i"><use href="#i-user"/></svg>` con `<img src="assets/foto.jpg" alt="Nome Cognome">`, togli `aria-hidden="true"` dal riquadro e rigenera |
 | **Testi della home** | `strumenti/modelli/home.html`. Se aggiungi frasi nuove, il generatore te le elenca in `strumenti/traduzioni/mancanti-en.json`: aggiungi la traduzione in `strumenti/traduzioni/en.mjs`, oppure chiedimelo |
 | **Condizioni e privacy** | Nel generatore: falle verificare prima di pubblicare |
 
-**Attenzione:** l'email `info@example.com` è finta. Non far girare il link del sito prima di averla sostituita. Il **pannello del tecnico** (`/tecnico/`) ti mostra cosa manca ancora.
+**Attenzione:** nome e cognome e P.IVA sono ancora segnaposto tra parentesi quadre: completali in `config.js` prima di far girare il link del sito. Il **pannello del tecnico** (`/tecnico/`) ti mostra cosa manca ancora.
 
 Per vedere il sito sul computer, apri `sito/index.html` con un doppio clic. Per provare anche il 3D serve un piccolo server: dalla cartella `nuovo-progetto` lancia `npm run anteprima` e apri `http://localhost:8080`.
 

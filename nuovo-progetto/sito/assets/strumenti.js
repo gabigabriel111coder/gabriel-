@@ -5,7 +5,7 @@
   const C = window.CONFIG || {};
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
-  const sito = (C.sito || location.origin).replace(/\/$/, "");
+  const sito = (C.sito && !/example\.com/.test(C.sito) ? C.sito : location.origin).replace(/\/$/, "");
   const LINK = {
     sito: `${sito}/`,
     whatsapp: `https://wa.me/${C.whatsapp}`,

@@ -3,7 +3,7 @@ export default {
   "sito": "https://www.example.com",
   "telefono": "+39 389 496 3065",
   "whatsapp": "393894963065",
-  "email": "info@example.com",
+  "email": "malattiainformatica@gmail.com",
   "titolare": "[Nome Cognome]",
   "prezzi": {
     "rapido": 25,

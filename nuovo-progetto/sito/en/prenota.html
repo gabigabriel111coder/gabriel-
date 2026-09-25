@@ -24,6 +24,7 @@
   <script type="importmap">{ "imports": { "three": "../assets/vendor/three.module.min.js" } }</script>
   <script src="../assets/config.js" defer></script>
   <script src="../assets/main.js" defer></script>
+  <script type="speculationrules">{"prerender":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/tecnico/*"}},{"not":{"selector_matches":"[target=_blank], [download]"}}]},"eagerness":"moderate"}]}</script>
   <link rel="alternate" hreflang="it" href="https://www.example.com/prenota.html">
   <link rel="alternate" hreflang="en" href="https://www.example.com/en/prenota.html">
   <link rel="alternate" hreflang="x-default" href="https://www.example.com/prenota.html">
@@ -76,6 +77,7 @@
   <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
   <symbol id="i-tag" viewBox="0 0 24 24"><path d="M3.5 12.3V4.5a1 1 0 0 1 1-1h7.8l8.2 8.2a1.5 1.5 0 0 1 0 2.1l-6.8 6.8a1.5 1.5 0 0 1-2.1 0z"/><circle cx="8.5" cy="8.5" r="1.4"/></symbol>
   <symbol id="i-qr" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><path d="M13.5 13.5h3v3h-3zM17.5 17.5h3v3h-3zM13.5 19.5h2M19.5 13.5v2"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-6.5-6.1-6.5-11a6.5 6.5 0 0 1 13 0c0 4.9-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></symbol>
   <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12.5" rx="2"/><path d="M9 20.5h6M12 16.5v4"/></symbol>
 </svg>
 <header class="nav glass" data-nav>
@@ -104,6 +106,10 @@
   <nav aria-label="Breadcrumb"><ol class="crumbs"><li><a href="index.html">Home</a></li><li><span aria-current="page">Book</span></li></ol></nav>
   <h1>Book a time slot.</h1>
   <p class="lead">Choose a day and time: I'll confirm on WhatsApp. For one-off sessions you pay nothing in advance.</p>
+  <div class="persona">
+    <span class="foto foto--logo" aria-hidden="true"><svg><use href="#logo-mark"/></svg></span>
+    <p><b>I answer you myself, in person.</b><span>IT technician for 15 years</span></p>
+  </div>
 </section>
 
 <section class="section section--tight wrap">
@@ -242,9 +248,13 @@
         </ul>
       </nav>
     </div>
-    <p class="footer__legal">© <span data-year>2026</span> [Nome Cognome] · VAT no. [00000000000] · AnyDesk is a trademark of AnyDesk Software GmbH, which is not affiliated with this website.</p>
+    <p class="footer__legal">© <span data-year>2026</span> Gabriel Tech · AnyDesk is a trademark of AnyDesk Software GmbH, which is not affiliated with this website.</p>
   </div>
 </footer>
 <a class="fab" href="index.html#contatti" data-wa aria-label="Message me on WhatsApp"><svg class="i"><use href="#i-chat"/></svg></a>
+<a class="persona-float" href="index.html#contatti" data-wa data-status data-persona-float aria-label="Message me on WhatsApp: I'll answer myself">
+  <span class="persona-float__foto"><span class="foto foto--logo" aria-hidden="true"><svg><use href="#logo-mark"/></svg></span><span class="dot"></span></span>
+  <span class="persona-float__testo"><b>I'll answer myself</b><small data-status-text>Message me on WhatsApp</small></span>
+</a>
 </body>
 </html>

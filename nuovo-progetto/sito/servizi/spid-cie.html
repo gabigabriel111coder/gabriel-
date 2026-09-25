@@ -24,6 +24,7 @@
   <script type="importmap">{ "imports": { "three": "../assets/vendor/three.module.min.js" } }</script>
   <script src="../assets/config.js" defer></script>
   <script src="../assets/main.js" defer></script>
+  <script type="speculationrules">{"prerender":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/tecnico/*"}},{"not":{"selector_matches":"[target=_blank], [download]"}}]},"eagerness":"moderate"}]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"SPID, CIE e servizi pubblici online","serviceType":"SPID, CIE e servizi pubblici online","description":"Aiuto per SPID, CIE, app IO, INPS, Agenzia delle Entrate, Fascicolo sanitario e pagoPA. Assistenza da remoto con calma, da 25 €.","areaServed":{"@type":"Country","name":"Italia"},"provider":{"@type":"ProfessionalService","name":"Gabriel Tech","url":"https://www.example.com/"},"offers":{"@type":"Offer","price":"25","priceCurrency":"EUR"}}</script>
   <link rel="alternate" hreflang="it" href="https://www.example.com/servizi/spid-cie.html">
   <link rel="alternate" hreflang="en" href="https://www.example.com/en/servizi/spid-cie.html">
@@ -77,6 +78,7 @@
   <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
   <symbol id="i-tag" viewBox="0 0 24 24"><path d="M3.5 12.3V4.5a1 1 0 0 1 1-1h7.8l8.2 8.2a1.5 1.5 0 0 1 0 2.1l-6.8 6.8a1.5 1.5 0 0 1-2.1 0z"/><circle cx="8.5" cy="8.5" r="1.4"/></symbol>
   <symbol id="i-qr" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><path d="M13.5 13.5h3v3h-3zM17.5 17.5h3v3h-3zM13.5 19.5h2M19.5 13.5v2"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-6.5-6.1-6.5-11a6.5 6.5 0 0 1 13 0c0 4.9-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></symbol>
   <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12.5" rx="2"/><path d="M9 20.5h6M12 16.5v4"/></symbol>
 </svg>
 <header class="nav glass" data-nav>
@@ -112,6 +114,10 @@
         <a class="btn btn--wa btn--lg" href="#contatti" data-wa="Ciao! Ho bisogno di aiuto per: SPID, CIE e servizi pubblici online."><svg class="i"><use href="#i-chat"/></svg>Scrivimi su WhatsApp</a>
         <a class="btn btn--ghost btn--lg" href="../prenota.html?servizio=rapido&amp;problema=SPID%2C%20CIE%20e%20servizi%20pubblici%20online"><svg class="i"><use href="#i-calendar"/></svg>Prenota</a>
       </div>
+      <div class="persona">
+        <span class="foto foto--logo" aria-hidden="true"><svg><use href="#logo-mark"/></svg></span>
+        <p><b>Ti rispondo io, di persona.</b><span>Tecnico informatico da 15 anni</span></p>
+      </div>
     </div>
     <aside class="aside-card glass" aria-label="Prezzo">
       <p class="eyebrow">Intervento Rapido</p>
@@ -120,6 +126,7 @@
         <dt>Durata</dt><dd>fino a 30 minuti</dd>
         <dt>Dove</dt><dd>Da remoto, in tutta Italia</dd>
         <dt>Se non risolvo</dt><dd>Non paghi</dd>
+        <dt>Paghi</dt><dd>Alla fine, con fattura</dd>
       </dl>
       <p class="meta">Per una richiesta completa dello SPID a volte serve l'intervento Completo: te lo dico prima.</p>
     </aside>
@@ -230,9 +237,13 @@
         </ul>
       </nav>
     </div>
-    <p class="footer__legal">© <span data-year>2026</span> [Nome Cognome] · P.IVA [00000000000] · AnyDesk è un marchio di AnyDesk Software GmbH, che non è affiliata a questo sito.</p>
+    <p class="footer__legal">© <span data-year>2026</span> Gabriel Tech · AnyDesk è un marchio di AnyDesk Software GmbH, che non è affiliata a questo sito.</p>
   </div>
 </footer>
 <a class="fab" href="../index.html#contatti" data-wa aria-label="Scrivimi su WhatsApp"><svg class="i"><use href="#i-chat"/></svg></a>
+<a class="persona-float" href="../index.html#contatti" data-wa data-status data-persona-float aria-label="Scrivimi su WhatsApp: ti rispondo io">
+  <span class="persona-float__foto"><span class="foto foto--logo" aria-hidden="true"><svg><use href="#logo-mark"/></svg></span><span class="dot"></span></span>
+  <span class="persona-float__testo"><b>Ti rispondo io</b><small data-status-text>Scrivimi su WhatsApp</small></span>
+</a>
 </body>
 </html>

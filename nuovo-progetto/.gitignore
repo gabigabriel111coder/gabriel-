@@ -1,2 +1,5 @@
 node_modules/
 .netlify/
+# Versioni della foto preparate dal generatore (si ricreano a ogni pubblicazione)
+sito/assets/foto-160.webp
+sito/assets/foto-480.webp

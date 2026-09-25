@@ -650,25 +650,34 @@
     reveals.forEach((node) => io.observe(node));
   }
 
-  /* ---------- Effetti 3D con il mouse ---------- */
+  /* ---------- Effetti 3D con il mouse ----------
+     Il mouse può mandare anche 120 eventi al secondo: ogni effetto si aggiorna
+     al massimo una volta per fotogramma. */
+  const unaVoltaPerFotogramma = (fn) => {
+    let ultimo = null;
+    return (e) => {
+      if (!ultimo) requestAnimationFrame(() => { fn(ultimo); ultimo = null; });
+      ultimo = e;
+    };
+  };
   if (!reduceMotion && finePointer) {
-    document.addEventListener("pointermove", (e) => {
+    document.addEventListener("pointermove", unaVoltaPerFotogramma((e) => {
       const glass = e.target.closest?.(".glass");
       if (!glass) return;
       const r = glass.getBoundingClientRect();
       glass.style.setProperty("--mx", `${e.clientX - r.left}px`);
       glass.style.setProperty("--my", `${e.clientY - r.top}px`);
-    }, { passive: true });
+    }), { passive: true });
 
     // hero e Mac reagiscono al mouse: --nx e --ny vanno da -0.5 a 0.5
     const norm = (v) => Math.max(-0.7, Math.min(0.7, v)).toFixed(3);
     $$("[data-tilt-zone]").forEach((zone) => {
       const area = zone.closest("section") || zone;
-      area.addEventListener("pointermove", (e) => {
+      area.addEventListener("pointermove", unaVoltaPerFotogramma((e) => {
         const r = zone.getBoundingClientRect();
         zone.style.setProperty("--nx", norm((e.clientX - r.left) / r.width - 0.5));
         zone.style.setProperty("--ny", norm((e.clientY - r.top) / r.height - 0.5));
-      });
+      }), { passive: true });
       area.addEventListener("pointerleave", () => {
         zone.style.setProperty("--nx", "0");
         zone.style.setProperty("--ny", "0");
@@ -676,13 +685,16 @@
     });
 
     $$("[data-tilt]").forEach((card) => {
-      card.addEventListener("pointermove", (e) => {
+      let dentro = false;
+      card.addEventListener("pointerenter", () => { dentro = true; });
+      card.addEventListener("pointermove", unaVoltaPerFotogramma((e) => {
+        if (!dentro) return; // il mouse è già uscito prima di questo fotogramma
         const r = card.getBoundingClientRect();
         const x = (e.clientX - r.left) / r.width - 0.5;
         const y = (e.clientY - r.top) / r.height - 0.5;
         card.style.transform = `perspective(900px) rotateX(${-y * 5}deg) rotateY(${x * 6}deg) translateY(-4px)`;
-      });
-      card.addEventListener("pointerleave", () => { card.style.transform = ""; });
+      }), { passive: true });
+      card.addEventListener("pointerleave", () => { dentro = false; card.style.transform = ""; });
     });
   }
 
@@ -712,7 +724,9 @@
       return false;
     }
   })();
-  if (!reduceMotion && webgl2 && !navigator.connection?.saveData && !document.body.hasAttribute("data-no-3d")) {
+  // niente 3D sui telefoni con poca memoria (meno di 4 GB): resta il logo, e lo scorrimento è fluido
+  const pocaMemoria = navigator.deviceMemory !== undefined && navigator.deviceMemory < 4;
+  if (!reduceMotion && webgl2 && !pocaMemoria && !navigator.connection?.saveData && !document.body.hasAttribute("data-no-3d")) {
     const load = () => import("./scene3d.js")
       .then((scene) => scene.start())
       .catch((err) => console.warn("Scena 3D non disponibile, resta il logo statico.", err));

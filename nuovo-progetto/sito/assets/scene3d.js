@@ -19,7 +19,8 @@ export function start() {
   (document.querySelector(".backdrop") || document.body.firstChild).after(canvas);
 
   const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: "high-performance" });
-  let dpr = Math.min(devicePixelRatio, small ? 1.5 : 1.75);
+  // La scena è uno sfondo decorativo: non serve disegnarla alla risoluzione piena dello schermo
+  const dpr = Math.min(devicePixelRatio, small ? 1 : 1.25);
   renderer.setPixelRatio(dpr);
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.05;
@@ -125,6 +126,7 @@ export function start() {
   // distribuisce le forme lungo tutta la pagina (in "schermate")
   const PARALLAX = 0.55;
   function layout() {
+    misuraAncora();
     const screens = Math.max(1, (document.documentElement.scrollHeight - innerHeight) / innerHeight);
     const span = screens * PARALLAX + 0.6;
     floaters.forEach((f, i) => {
@@ -137,16 +139,29 @@ export function start() {
   const eased = new THREE.Vector2(0, 0);
   const ZERO = new THREE.Vector2(0, 0), pushTarget = new THREE.Vector2();
   let pointerActive = false;
+  // Ultimo movimento (mouse, dito, scorrimento): da fermi la scena si ridisegna meno spesso
+  let ultimoMovimento = performance.now();
+  const sveglia = () => { ultimoMovimento = performance.now(); };
+  addEventListener("scroll", sveglia, { passive: true });
   addEventListener("pointermove", (e) => {
     pointer.set((e.clientX / innerWidth) * 2 - 1, -(e.clientY / innerHeight) * 2 + 1);
     pointerActive = true;
+    sveglia();
   }, { passive: true });
   document.documentElement.addEventListener("pointerleave", () => { pointerActive = false; });
 
   // trascinare la G (anche col dito: lo scorrimento verticale resta libero)
   const anchor = document.querySelector("[data-3d-anchor]");
+  // Riquadro della G nella pagina: si misura solo quando cambia l'impaginazione,
+  // così a ogni fotogramma il browser non deve ricalcolare il layout
+  let box = null;
+  function misuraAncora() {
+    if (!anchor) return;
+    const r = anchor.getBoundingClientRect();
+    box = { top: r.top + scrollY, left: r.left, width: r.width, height: r.height };
+  }
   let drag = null, spinY = 0, spinVel = 0;
-  anchor?.addEventListener("pointerdown", (e) => { drag = { x: e.clientX }; anchor.setPointerCapture(e.pointerId); });
+  anchor?.addEventListener("pointerdown", (e) => { drag = { x: e.clientX }; anchor.setPointerCapture(e.pointerId); sveglia(); });
   anchor?.addEventListener("pointermove", (e) => {
     if (!drag) return;
     spinVel = (e.clientX - drag.x) * 0.012;
@@ -160,20 +175,29 @@ export function start() {
   let lastScroll = scrollY, scrollBoost = 0;
 
   /* ---------- Dimensioni ---------- */
+  let misure = { w: 0, h: 0 };
   function resize() {
     renderer.setSize(innerWidth, innerHeight, false);
     camera.aspect = innerWidth / innerHeight;
     camera.updateProjectionMatrix();
+    misure = { w: innerWidth, h: innerHeight };
     layout();
   }
-  addEventListener("resize", resize);
+  addEventListener("resize", () => {
+    // sui telefoni la barra del browser cambia l'altezza mentre scorri: per così poco non si ridisegna tutto
+    if (innerWidth === misure.w && Math.abs(innerHeight - misure.h) < 160) return;
+    resize();
+  });
   new ResizeObserver(layout).observe(document.body);
   resize();
 
   /* ---------- Animazione ---------- */
   const clock = new THREE.Clock();
   const ndc = new THREE.Vector3(), dir = new THREE.Vector3(), anchorPos = new THREE.Vector3();
-  let frames = 0, sampleTime = 0, quality = 2, started = false;
+  let started = false, ultimoDisegno = 0, logoInVista = true;
+  // livelli di risoluzione: se il dispositivo fatica, si scende di un gradino (mai si risale)
+  const LIVELLI = [...new Set([dpr, Math.min(dpr, 1), 0.75, 0.6])];
+  let livello = 0, campioni = 0, tempoCampioni = 0, mezzaVelocita = false;
 
   function toWorldAtZ0(nx, ny, out) { // punto dello schermo -> posizione 3D sul piano z = 0
     ndc.set(nx, ny, 0.5).unproject(camera);
@@ -182,6 +206,14 @@ export function start() {
   }
 
   function frame() {
+    // Da fermi basta meno: 30 fotogrammi al secondo con la G in vista, circa 10 senza
+    const adesso = performance.now();
+    const fermo = adesso - ultimoMovimento > 1200 && !drag && Math.abs(spinVel) < 0.002;
+    const pausaMinima = fermo ? (logoInVista ? 32 : 95) : mezzaVelocita ? 30 : 0;
+    if (adesso - ultimoDisegno < pausaMinima) return;
+    const intervallo = adesso - ultimoDisegno;
+    ultimoDisegno = adesso;
+
     const dt = Math.min(clock.getDelta(), 0.05);
     const t = clock.elapsedTime;
     const h = innerHeight;
@@ -201,8 +233,9 @@ export function start() {
     camera.updateMatrixWorld();
 
     // la G segue il riquadro dell'hero, qualunque sia l'impaginazione
-    const r = anchor?.getBoundingClientRect();
-    logo.visible = !!r && r.bottom > -h * 0.3 && r.top < h * 1.3;
+    const top = box ? box.top - scrollY : 0;
+    const r = box && { top, bottom: top + box.height, left: box.left, width: box.width, height: box.height };
+    logo.visible = logoInVista = !!r && r.bottom > -h * 0.3 && r.top < h * 1.3;
     if (logo.visible) {
       const nx = ((r.left + r.width / 2) / innerWidth) * 2 - 1;
       const ny = -((r.top + r.height / 2) / h) * 2 + 1;
@@ -259,21 +292,22 @@ export function start() {
       document.documentElement.classList.add("webgl-on");
     }
 
-    // qualità automatica: se il dispositivo fatica, riduce la risoluzione
-    if (t > 1.5 && quality > 0) {
-      frames++;
-      sampleTime += dt;
-      if (sampleTime > 2) {
-        const fps = frames / sampleTime;
-        frames = 0;
-        sampleTime = 0;
-        if (fps < 40) {
-          quality--;
-          dpr = quality === 1 ? Math.min(dpr, 1) : 0.75;
-          renderer.setPixelRatio(dpr);
+    // qualità automatica: si misura mentre la pagina si muove, per tutta la visita
+    if (!fermo && t > 1.5 && intervallo < 250) {
+      campioni++;
+      tempoCampioni += intervallo;
+      if (tempoCampioni > 2000) {
+        const fps = (campioni * 1000) / tempoCampioni;
+        campioni = tempoCampioni = 0;
+        if (fps < 45 && livello < LIVELLI.length - 1) {
+          livello++;
+          renderer.setPixelRatio(LIVELLI[livello]);
           resize();
-        } else {
-          quality = 0; // va bene così
+        } else if (fps < 45 && !mezzaVelocita) {
+          mezzaVelocita = true; // al massimo 30 fotogrammi al secondo anche mentre si scorre
+        } else if (fps < 25) {
+          // ultimo aiuto: metà delle forme fluttuanti
+          floaters.forEach((f, i) => { if (i % 2) f.mesh.visible = false; });
         }
       }
     }

@@ -487,6 +487,50 @@ Li trovi anche nel pannello del tecnico (`/tecnico/`), pronti da copiare con un 
 
 ---
 
+## 8bis. Velocità del sito
+
+### Cosa rallentava lo scorrimento
+Le misure fatte nel browser hanno trovato due cause, che insieme si moltiplicavano:
+- **la scena 3D si ridisegnava sempre**, 60 volte al secondo anche a pagina ferma, e quasi alla risoluzione piena dello schermo;
+- **i riquadri «vetro» sfocavano ciò che c'era dietro** (l'effetto `backdrop-filter`). Sopra una scena 3D in movimento, il browser doveva rifare la sfocatura di ogni riquadro visibile a ogni fotogramma: con decine di riquadri, il telefono o il computer non ce la facevano.
+
+Le animazioni che accompagnano lo scorrimento, invece, pesano pochissimo e sono rimaste.
+
+### Fase 1: fatto
+1. **Vetro:** la sfocatura vera resta solo sulla barra in alto, più leggera. I riquadri hanno un vetro più pieno, che a colpo d'occhio sembra uguale.
+2. **Scena 3D più leggera:**
+   - risoluzione ridotta (1,25 volte sui computer, 1 sui telefoni): per uno sfondo decorativo non si nota;
+   - a pagina ferma si ridisegna 30 volte al secondo con la G in vista e circa 10 senza; a pieno ritmo solo mentre scorri o muovi il mouse;
+   - qualità automatica per tutta la visita: se il dispositivo fatica, scende di risoluzione, poi a 30 fotogrammi al secondo, poi toglie metà delle forme;
+   - niente 3D sui telefoni con meno di 4 GB di memoria: resta il logo normale.
+3. **Meno lavoro nascosto:**
+   - la posizione della G si misura solo quando cambia l'impaginazione, non a ogni fotogramma;
+   - sui telefoni, la barra del browser che appare e scompare non ricrea più la scena;
+   - gli effetti del mouse si aggiornano al massimo una volta per fotogramma.
+
+**Risultati** (stessa prova prima e dopo: 2 secondi a pagina ferma e 40 scatti di rotellina, su un computer senza scheda grafica, quindi con numeri più bassi di un dispositivo vero):
+
+| Prova | Prima | Dopo |
+|---|---|---|
+| Telefono, home, mentre scorri | 33 fotogrammi al secondo, 35 scatti | 55 fotogrammi al secondo, 18 scatti |
+| Telefono, home, pagina ferma | 25 fotogrammi al secondo | 59 fotogrammi al secondo, nessuno scatto |
+| Telefono, pagina di un servizio, mentre scorri | 71 fotogrammi al secondo, 7 scatti | 120 fotogrammi al secondo, nessuno scatto |
+| Computer, home, mentre scorri | 22 fotogrammi al secondo, 137 scatti | 34 fotogrammi al secondo, 76 scatti |
+| Computer, pagina di un servizio, mentre scorri | 22 fotogrammi al secondo, 123 scatti | 38 fotogrammi al secondo, 61 scatti |
+
+Uno «scatto» è un fotogramma che resta sullo schermo più di un ventesimo di secondo: è quello che si percepisce come scorrimento a singhiozzo. Su un telefono o un computer veri, con la loro scheda grafica, i numeri sono più alti.
+
+### Fase 2: da fare solo se serve
+1. **Misura sul tuo telefono.** Apri il sito e scorri la home e una pagina dei servizi. Se scatta ancora, dimmi il modello del telefono e il browser.
+2. **Controllo gratuito di Google:** su [pagespeed.web.dev](https://pagespeed.web.dev) incolla l'indirizzo del sito e guarda il risultato «Dispositivi mobili». Ripetilo una volta al mese e dopo ogni modifica grande.
+3. **Se qualche telefono resta lento:** la scena 3D solo nella prima schermata, cioè la G, senza le forme che fluttuano lungo la pagina.
+4. **Peso della pagina:**
+   - la libreria 3D (Three.js) pesa circa 180 KB compressi e si carica dopo la pagina, quindi non la rallenta; si può ridurre di circa metà con una versione su misura;
+   - quando aggiungi la tua foto in «Chi sono», usala in formato WebP e larga al massimo 800 pixel.
+5. **Cache:** i file che cambiano raramente (logo, immagini, libreria 3D) possono restare nella memoria del browser più a lungo, così chi torna sul sito lo apre subito.
+
+---
+
 ## 9. Costi di partenza (stime da verificare)
 
 | Voce | Costo indicativo |

@@ -23,7 +23,8 @@ const QUI = dirname(fileURLToPath(import.meta.url));
 const RADICE = join(QUI, "..");
 const SITO = join(RADICE, "sito");
 const CONFIG = caricaConfig(join(SITO, "assets", "config.js"));
-const DOMINIO = String(CONFIG.sito || "https://www.example.com").replace(/\/+$/, "");
+// Finché in config.js c'è il dominio d'esempio, su Netlify si usa l'indirizzo vero del sito (variabile URL)
+const DOMINIO = String((CONFIG.sito && !/example\.com/.test(CONFIG.sito) ? CONFIG.sito : process.env.URL) || CONFIG.sito || "https://www.example.com").replace(/\/+$/, "");
 const INGLESE = (CONFIG.lingue || ["it"]).includes("en");
 const OGGI = new Date().toISOString().slice(0, 10);
 

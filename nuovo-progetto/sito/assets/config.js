@@ -7,15 +7,15 @@ window.CONFIG = {
   /* ---------- Chi sei: compare in «Chi sono», nel footer e nei documenti ---------- */
   titolare: "[Nome Cognome]",
   piva: "[00000000000]",
-  indirizzo: "[indirizzo]",          // serve per condizioni di servizio e privacy
-  anniEsperienza: "[X]",
+  indirizzo: "Bassano del Grappa (VI)", // serve per condizioni di servizio e privacy
+  anniEsperienza: "15",
 
   /* ---------- Contatti ---------- */
   phoneDisplay: "+39 389 496 3065", // come appare sul sito
   phoneLink: "+393894963065",       // per il tasto "Chiama": + prefisso e numero, senza spazi
   whatsapp: "393894963065",         // per WhatsApp: 39 e numero, senza + né spazi
-  email: "info@example.com",
-  sito: "https://www.example.com",  // il tuo dominio, senza barra finale (serve per codici QR e messaggi)
+  email: "malattiainformatica@gmail.com",
+  sito: "https://www.example.com",  // il tuo dominio, senza barra finale. Finché resta example.com, su Netlify si usa da solo l'indirizzo del sito
 
   /* ---------- Orari (ora italiana) ----------
      1 = lunedì … 6 = sabato, 0 = domenica. Più fasce per giorno. */

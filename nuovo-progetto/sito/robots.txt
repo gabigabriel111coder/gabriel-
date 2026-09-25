@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /tecnico/
+Disallow: /agent/
+
+Sitemap: https://www.example.com/sitemap.xml

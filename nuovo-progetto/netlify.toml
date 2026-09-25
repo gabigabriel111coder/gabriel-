@@ -1,0 +1,46 @@
+# Configurazione di Netlify (vedi PIANO-DI-AZIONE.md, Fase 4).
+# Pubblica solo la cartella "sito": piano, documenti e strumenti restano privati.
+# A ogni pubblicazione rigenera le pagine da sito/assets/config.js (prezzi, orari, contatti, inglese).
+[build]
+  command = "npm run genera"
+  publish = "sito"
+  functions = "netlify/functions"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+[functions]
+  node_bundler = "esbuild"
+
+# Pagine inglesi che non esistono: pagina "non trovata" in inglese
+[[redirects]]
+  from = "/en/*"
+  to = "/en/404.html"
+  status = 404
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+[[headers]]
+  for = "/assets/vendor/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/tecnico/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+# Programmi di monitoraggio: sempre scaricati come file, mai aperti nel browser
+[[headers]]
+  for = "/agent/*"
+  [headers.values]
+    Content-Type = "application/octet-stream"
+    Content-Disposition = "attachment"
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "no-cache"

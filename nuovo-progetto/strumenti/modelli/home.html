@@ -131,6 +131,39 @@
     <div class="trust__item glass reveal"><svg class="i"><use href="#i-shield"/></svg><p><b>Non risolto? Non paghi</b><span>Il prezzo lo sai prima di iniziare.</span></p></div>
   </section>
 
+  <!-- CHI SONO: la foto è sito/assets/foto.jpg, il nome si scrive in assets/config.js (titolare) -->
+  <section class="section section--tight wrap" id="chi-sono">
+    <div class="about glass reveal">
+      <figure class="ritratto">
+        <span class="ritratto__anello" aria-hidden="true"></span>
+        {{foto.grande}}
+        <figcaption class="ritratto__nome">{{cfg.nome}}</figcaption>
+      </figure>
+      <div>
+        <p class="eyebrow">Chi sono</p>
+        <h2>Ci metto la faccia.</h2>
+        <p class="about__text">Faccio il tecnico informatico da {{cfg.anni}} anni. Lavoro da {{cfg.indirizzo}} e aiuto persone e piccole attività in tutta Italia. Quando mi scrivi ti rispondo io, e quando ci colleghiamo ci sono io, dall'inizio alla fine. So che far entrare qualcuno nel proprio computer richiede fiducia, e quella fiducia me la voglio guadagnare.</p>
+        <ul class="identita">
+          <li><svg class="i"><use href="#i-check"/></svg>{{cfg.anni}} anni di esperienza</li>
+          <li><svg class="i"><use href="#i-pin"/></svg>{{cfg.indirizzo}}</li>
+          {{voce.piva}}
+          <li><svg class="i"><use href="#i-check"/></svg>Fattura elettronica sempre</li>
+        </ul>
+        <div class="promesse">
+          <p class="promesse__titolo">Cosa ti prometto</p>
+          <ul>
+            <li><b>Sono una persona di parola</b><span>Il prezzo concordato non cambia. E se non risolvo, non paghi.</span></li>
+            <li><b>I tuoi dati non si perdono</b><span>Foto, documenti ed email restano al loro posto. Tocco solo quello che serve.</span></li>
+            <li><b>La connessione è sicura</b><span>Uso AnyDesk, che cifra tutto. Mi collego solo se me lo permetti, e chiudi quando vuoi.</span></li>
+            <li><b>Faccio le cose per bene</b><span>Tratto il tuo computer come se fosse il mio e alla fine ti spiego cosa ho fatto.</span></li>
+          </ul>
+        </div>
+        <div class="about__video" data-video hidden></div>
+        <ul class="pills"><li>Windows</li><li>macOS</li><li>Android e iPhone</li><li>Microsoft 365</li><li>Reti e Wi-Fi</li><li>Sicurezza</li></ul>
+      </div>
+    </div>
+  </section>
+
   <!-- SERVIZI -->
   <section class="section wrap" id="servizi">
     <div class="head reveal">
@@ -528,39 +561,6 @@
       </div>
     </div>
     <p class="note reveal"><a href="guide/finto-tecnico.html">Guida: come riconoscere la truffa del finto tecnico, e cosa fare se ci sei cascato</a></p>
-  </section>
-
-  <!-- CHI SONO -->
-  <section class="section section--tight wrap" id="chi-sono">
-    <div class="about glass reveal">
-      <figure class="ritratto">
-        <span class="ritratto__anello" aria-hidden="true"></span>
-        {{foto.grande}}
-        <figcaption class="ritratto__nome">{{cfg.nome}}</figcaption>
-      </figure>
-      <div>
-        <p class="eyebrow">Chi sono</p>
-        <h2>Un tecnico vero, con nome e cognome.</h2>
-        <p class="about__text">Faccio il tecnico informatico da {{cfg.anni}} anni, a {{cfg.indirizzo}}, e aiuto privati e piccole attività con computer, smartphone e reti. Quando mi scrivi rispondo io, e quando ci colleghiamo ci sono io: niente call center, niente passaggi di mano. Ti spiego sempre cosa sto facendo, con parole semplici.</p>
-        <ul class="identita">
-          <li><svg class="i"><use href="#i-check"/></svg>{{cfg.anni}} anni di esperienza</li>
-          <li><svg class="i"><use href="#i-pin"/></svg>{{cfg.indirizzo}}</li>
-          {{voce.piva}}
-          <li><svg class="i"><use href="#i-check"/></svg>Fattura elettronica sempre</li>
-        </ul>
-        <div class="promesse">
-          <p class="promesse__titolo">La mia promessa</p>
-          <ul>
-            <li><b>Il prezzo lo sai prima</b><span>Per iscritto su WhatsApp, prima di iniziare.</span></li>
-            <li><b>Se non risolvo, non paghi</b><span>Nessun costo se da remoto non si può fare.</span></li>
-            <li><b>Vedi tutto, chiudi quando vuoi</b><span>Ogni clic avviene sul tuo schermo.</span></li>
-            <li><b>Paghi alla fine</b><span>Con metodi tracciabili e fattura.</span></li>
-          </ul>
-        </div>
-        <div class="about__video" data-video hidden></div>
-        <ul class="pills"><li>Windows</li><li>macOS</li><li>Android e iPhone</li><li>Microsoft 365</li><li>Reti e Wi-Fi</li><li>Sicurezza</li></ul>
-      </div>
-    </div>
   </section>
 
   <!-- RECENSIONI: compaiono quando le aggiungi in assets/config.js -->

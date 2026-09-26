@@ -547,7 +547,7 @@ Dopo la prima correzione la navigazione tra le pagine era ancora lenta. Le misur
 3. **Se qualche telefono resta lento:** la scena 3D solo nella prima schermata, cioè la G, senza le forme che fluttuano lungo la pagina.
 4. **Peso della pagina:**
    - la libreria 3D (Three.js) pesa circa 180 KB compressi e si carica dopo la pagina, quindi non la rallenta; si può ridurre di circa metà con una versione su misura;
-   - quando aggiungi la tua foto in «Chi sono», usala in formato WebP e larga al massimo 800 pixel.
+   - la tua foto pesa poco: il sito ne prepara da solo due versioni WebP leggere (160 e 480 pixel).
 5. **Cache:** i file che cambiano raramente (logo, immagini, libreria 3D) possono restare nella memoria del browser più a lungo, così chi torna sul sito lo apre subito.
 
 ---
@@ -563,34 +563,39 @@ Chi chiede assistenza da remoto fa entrare uno sconosciuto nel proprio computer:
   - grande in «Chi sono», con un anello colorato che gira mentre scorri;
   - in un cerchio che accompagna lo scorrimento: sul computer in basso a sinistra, con la disponibilità del momento; sul telefono dentro il pulsante WhatsApp.
 
-  Finché non carichi la foto, al suo posto c'è il logo.
+  La foto è `sito/assets/foto.jpg`, già ritagliata sul volto e senza dati nascosti (posizione, telefono).
 - **Testi riscritti sulla fiducia:**
   - il prezzo lo dici prima, per iscritto, e non cambia senza il sì del cliente;
   - «se non risolvo, non paghi»;
   - paga alla fine, con fattura;
   - vede tutto e chiude quando vuole;
   - risponde e si collega sempre la stessa persona, niente call center.
-- **«La mia promessa»** in «Chi sono», con anni di esperienza, città e fattura elettronica, più la P.IVA quando la inserisci.
+- **«Chi sono» subito dopo l'apertura della home**, in un riquadro tutto tuo:
+  - la tua foto grande e il titolo «Ci metto la faccia»;
+  - un testo in prima persona: 15 anni di lavoro, rispondi e ti colleghi sempre tu, la fiducia te la vuoi guadagnare;
+  - «Cosa ti prometto»: sei una persona di parola, i dati non si perdono, la connessione è sicura, fai le cose per bene;
+  - anni di esperienza, città e fattura elettronica, più la P.IVA quando la inserisci.
 - **Verifica del numero** nella sezione Sicurezza: chi riceve una chiamata «a nome tuo» scrive il numero e il sito gli dice subito se sei davvero tu. È la difesa più diretta contro la truffa del finto tecnico.
 - **Due nuove domande frequenti:** «Chi c'è dietro Gabriel Tech?» e «Come faccio a sapere che sei davvero tu?».
 - **Per Google:** la città è nei dati dell'attività, e il tuo nome ci va da solo quando lo scrivi in `config.js`.
 - **Niente segnaposto in vista:** finché nome e P.IVA non ci sono, il sito mostra «Gabriel Tech» invece delle parentesi quadre.
 
-### Come caricare la foto (2 minuti, anche dal telefono)
+### Come cambiare la foto (2 minuti, anche dal telefono)
 1. Scegli una foto vera:
    - viso ben illuminato, sorriso, sfondo semplice;
    - meglio quadrata o verticale;
    - non importa se è grande: il sito la alleggerisce da solo.
-2. Rinominala **`foto.jpg`**.
-3. Apri [questa pagina di GitHub](https://github.com/gabigabriel111coder/gabriel-/upload/main/nuovo-progetto/sito/assets), trascina la foto e premi **Commit changes**.
-4. Netlify ripubblica il sito da solo: dopo un paio di minuti la foto compare in tutti e quattro i punti.
+2. Rinominala **`foto.jpg`**, come quella di adesso.
+3. Apri [questa pagina di GitHub](https://github.com/gabigabriel111coder/gabriel-/upload/main/nuovo-progetto/sito/assets), trascina la foto e premi **Commit changes**: la nuova prende il posto della vecchia.
+4. Netlify ripubblica il sito da solo: dopo un paio di minuti la foto nuova compare in tutti e quattro i punti.
+
+Il sito la ritaglia da solo, cercando il volto. Se il risultato non ti convince, ritagliala prima tu, quadrata, oppure mandamela e la preparo io.
 
 ### Da fare, in ordine di importanza
 1. **Nome e cognome e P.IVA** in `config.js` (`titolare` e `piva`): compaiono in «Chi sono», sotto la foto, a piè di pagina e nei dati per Google. Un nome vero vale più di qualsiasi slogan.
-2. **La foto** (vedi sopra).
-3. **Scheda dell'attività su Google** (gratis), con sede a Bassano del Grappa, orari e foto. È il primo posto dove la gente controlla se esisti davvero. Poi copia il link «Chiedi recensioni» in `config.js` (`linkRecensioneGoogle`).
-4. **Le prime 5 recensioni vere**, chieste ai primi clienti soddisfatti: il sito le mostra da solo quando le scrivi in `config.js` (`recensioni`), con il permesso di chi le ha scritte.
-5. **Video di presentazione di 30 secondi** (`video` in `config.js`): la tua faccia e la tua voce che spiegano come lavori. Convince più di ogni testo.
+2. **Scheda dell'attività su Google** (gratis), con sede a Bassano del Grappa, orari e foto. È il primo posto dove la gente controlla se esisti davvero. Poi copia il link «Chiedi recensioni» in `config.js` (`linkRecensioneGoogle`).
+3. **Le prime 5 recensioni vere**, chieste ai primi clienti soddisfatti: il sito le mostra da solo quando le scrivi in `config.js` (`recensioni`), con il permesso di chi le ha scritte.
+4. **Video di presentazione di 30 secondi** (`video` in `config.js`): la tua faccia e la tua voce che spiegano come lavori. Convince più di ogni testo.
 
 ### Altre opzioni e integrazioni
 | Opzione | Cosa dà | Costo | Chi la fa |
@@ -634,7 +639,7 @@ Chi chiede assistenza da remoto fa entrare uno sconosciuto nel proprio computer:
 ## 10. Prossimi passi che posso fare io
 
 1. Collegare il tuo dominio e aggiornarlo in `config.js`, quando lo compri.
-2. Inserire i tuoi dati veri: nome e cognome, numero, email, P.IVA, foto, dominio.
+2. Inserire i tuoi dati veri: nome e cognome, P.IVA e dominio.
 3. Aggiungere altre lingue oltre all'inglese (rumeno, spagnolo, arabo…), per raggiungere le comunità straniere in Italia: dimmi quali.
 4. Scrivere altre guide (una al mese aiuta molto su Google) e pagine per le domande più frequenti dei tuoi clienti.
 5. Collegare i link di pagamento, il calendario, le email, WhatsApp e l'assistente quando hai creato gli account.

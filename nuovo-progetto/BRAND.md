@@ -9,7 +9,7 @@ Una **G** con il **puntatore del mouse** che clicca dentro: dice subito «assist
 | `sito/assets/brand/logo-horizontal.png` | Simbolo + scritta, su sfondi chiari (documenti, preventivi, firma email) |
 | `sito/assets/brand/logo-horizontal-white.png` | Simbolo + scritta, su sfondi scuri o foto |
 | `sito/assets/brand/profile-1024.png` | **Foto profilo** di WhatsApp Business, Google e social (regge il ritaglio rotondo) |
-| `sito/assets/brand/og-image.png` | Anteprima che compare quando qualcuno condivide il sito su WhatsApp o sui social |
+| `sito/assets/brand/og-image.png` | Anteprima che compare quando qualcuno condivide il sito su Facebook, WhatsApp o sui social: logo, titolo e la tua foto (`og-image-en.png` per le pagine in inglese) |
 | `sito/assets/brand/icon-192.png`, `icon-512.png`, `apple-touch-icon.png` | Icona quando si salva il sito sulla schermata Home del telefono |
 | `sito/assets/favicon.svg` | Icona nella scheda del browser |
 | `sito/favicon.ico` | La stessa icona per i browser e i programmi che non leggono l'SVG |

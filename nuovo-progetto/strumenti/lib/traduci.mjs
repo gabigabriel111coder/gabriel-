@@ -10,7 +10,7 @@ const PEZZI = /(<!--[\s\S]*?-->|<script\b[\s\S]*?<\/script>|<style\b[\s\S]*?<\/s
 const ATTRIBUTO = /(\s)([a-zA-Z_:][-a-zA-Z0-9_:.]*)(\s*=\s*)"([^"]*)"/g;
 const ATTRIBUTI_TESTO = new Set(["title", "alt", "aria-label", "placeholder", "data-wa", "data-wa-intro", "data-success", "data-success-link-text", "data-share", "data-label"]);
 const ATTRIBUTI_URL = new Set(["href", "src"]);
-const META_TESTO = /\b(?:name|property)="(?:description|og:title|og:description|twitter:title|twitter:description)"/;
+const META_TESTO = /\b(?:name|property)="(?:description|og:title|og:description|og:image:alt|twitter:title|twitter:description)"/;
 const JSONLD_TESTO = new Set(["description", "headline", "name", "serviceType", "alternateName"]);
 const JSONLD_URL = new Set(["url", "@id", "mainEntityOfPage", "logo", "image"]);
 // File comuni a tutte le lingue: restano nella radice del sito

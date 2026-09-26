@@ -12,6 +12,7 @@ Una **G** con il **puntatore del mouse** che clicca dentro: dice subito «assist
 | `sito/assets/brand/og-image.png` | Anteprima che compare quando qualcuno condivide il sito su WhatsApp o sui social |
 | `sito/assets/brand/icon-192.png`, `icon-512.png`, `apple-touch-icon.png` | Icona quando si salva il sito sulla schermata Home del telefono |
 | `sito/assets/favicon.svg` | Icona nella scheda del browser |
+| `sito/favicon.ico` | La stessa icona per i browser e i programmi che non leggono l'SVG |
 
 **Regole:**
 - lascia sempre spazio libero intorno al logo, almeno quanto metà del simbolo;

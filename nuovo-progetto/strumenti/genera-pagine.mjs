@@ -162,6 +162,8 @@ export function page({ path, title, description, body, noindex = false, jsonld =
   <meta property="og:url" content="${url}">
   <meta property="og:image" content="{{sito}}/assets/brand/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="apple-mobile-web-app-title" content="Gabriel Tech">
+  <link rel="icon" href="${r}favicon.ico" sizes="32x32">
   <link rel="icon" href="${r}assets/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="${r}assets/brand/apple-touch-icon.png">
   <link rel="manifest" href="${r}site.webmanifest">

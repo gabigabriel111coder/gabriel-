@@ -14,7 +14,7 @@ const META_TESTO = /\b(?:name|property)="(?:description|og:title|og:description|
 const JSONLD_TESTO = new Set(["description", "headline", "name", "serviceType", "alternateName"]);
 const JSONLD_URL = new Set(["url", "@id", "mainEntityOfPage", "logo", "image"]);
 // File comuni a tutte le lingue: restano nella radice del sito
-const FILE_COMUNI = /^\/(?:assets\/|agent\/|tecnico\/|site\.webmanifest|sitemap\.xml|robots\.txt)/;
+const FILE_COMUNI = /^\/(?:assets\/|agent\/|tecnico\/|favicon\.ico|site\.webmanifest|sitemap\.xml|robots\.txt)/;
 const CODICE = /^[A-Z0-9]{2,}(?:[-·][A-Z0-9]{2,})+$/;
 
 const decodifica = (s) => s.replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&");

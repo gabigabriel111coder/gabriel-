@@ -575,6 +575,9 @@ Chi chiede assistenza da remoto fa entrare uno sconosciuto nel proprio computer:
   - un testo in prima persona: 15 anni di lavoro, rispondi e ti colleghi sempre tu, la fiducia te la vuoi guadagnare;
   - «Cosa ti prometto»: sei una persona di parola, i dati non si perdono, la connessione è sicura, fai le cose per bene;
   - anni di esperienza, città e fattura elettronica, più la P.IVA quando la inserisci.
+- **Anteprima del link con la tua foto:** quando condividi il sito su Facebook, WhatsApp o Messenger compare un'immagine con il logo, il titolo, la tua foto e «Tecnico informatico da 15 anni». Le pagine in inglese hanno la loro versione in inglese.
+  - Facebook la mostra solo se il progetto su Netlify è pubblico.
+  - Se Facebook mostra ancora un'anteprima vecchia, apri il [Debugger di condivisione](https://developers.facebook.com/tools/debug/), incolla il link del sito e premi il pulsante per rileggere la pagina («Scrape Again»).
 - **Verifica del numero** nella sezione Sicurezza: chi riceve una chiamata «a nome tuo» scrive il numero e il sito gli dice subito se sei davvero tu. È la difesa più diretta contro la truffa del finto tecnico.
 - **Due nuove domande frequenti:** «Chi c'è dietro Gabriel Tech?» e «Come faccio a sapere che sei davvero tu?».
 - **Per Google:** la città è nei dati dell'attività, e il tuo nome ci va da solo quando lo scrivi in `config.js`.

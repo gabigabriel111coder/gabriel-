@@ -8,6 +8,7 @@
 export default {
   "Gabriel Tech · Assistenza informatica da remoto in tutta Italia": "Gabriel Tech · Remote IT support anywhere in Italy",
   "Gabriel Tech · Assistenza informatica da remoto": "Gabriel Tech · Remote IT support",
+  "Foto del tecnico di Gabriel Tech e il titolo «Il tuo computer, sistemato a distanza»": "Photo of the Gabriel Tech technician and the headline «Your computer, fixed remotely»",
   "Assistenza informatica da remoto per privati e piccole attività.": "Remote IT support for individuals and small businesses.",
   "Italia": "Italy",
   "Vai al contenuto": "Skip to content",

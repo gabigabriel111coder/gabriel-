@@ -161,6 +161,9 @@ export function page({ path, title, description, body, noindex = false, jsonld =
   <meta property="og:description" content="${esc(description)}">
   <meta property="og:url" content="${url}">
   <meta property="og:image" content="{{sito}}/assets/brand/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Foto del tecnico di Gabriel Tech e il titolo «Il tuo computer, sistemato a distanza»">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="apple-mobile-web-app-title" content="Gabriel Tech">
   <link rel="icon" href="${r}favicon.ico" sizes="32x32">

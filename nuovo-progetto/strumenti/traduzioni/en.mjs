@@ -1012,7 +1012,7 @@ export default {
   "Numero che ti ha contattato": "Number that contacted you",
   "Es. 333 123 4567": "E.g. 333 123 4567",
   "Controlla": "Check",
-  "Ci metto la faccia.": "I stand behind my work.",
+  "Un tecnico vero, sempre lo stesso.": "A real technician, always the same one.",
   "Faccio il tecnico informatico da {{cfg.anni}} anni. Lavoro da {{cfg.indirizzo}} e aiuto persone e piccole attività in tutta Italia. Quando mi scrivi ti rispondo io, e quando ci colleghiamo ci sono io, dall'inizio alla fine. So che far entrare qualcuno nel proprio computer richiede fiducia, e quella fiducia me la voglio guadagnare.": "I've been an IT technician for {{cfg.anni}} years. I work from {{cfg.indirizzo}} and help people and small businesses all over Italy. When you message me, I'm the one who answers, and when we connect, I'm with you from start to finish. I know it takes trust to let someone into your computer, and I want to earn it.",
   "Cosa ti prometto": "What I promise you",
   "Sono una persona di parola": "I keep my word",

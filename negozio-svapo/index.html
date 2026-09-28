@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nebbia Vape Atelier</title>
+<meta name="description" content="Liquidi per sigaretta elettronica: scegli il tuo gusto, prenotalo online e ritiralo in negozio in giornata. Paghi al ritiro.">
+<meta name="theme-color" content="#15121c">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%2315121c'/%3E%3Cpath d='M9 22V10l14 12V10' stroke='%23f2a65a' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;500;700&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Verifica età: obbligatoria per i prodotti da svapo -->
+<div class="agegate" id="agegate" role="dialog" aria-modal="true" aria-labelledby="agegate-title" hidden>
+  <div class="agegate__box">
+    <p class="logo logo--big" aria-hidden="true">nebbia</p>
+    <h2 id="agegate-title">Hai almeno 18 anni?</h2>
+    <p>Questo sito presenta prodotti con nicotina ed è riservato ai maggiorenni. Al ritiro in negozio ti chiediamo un documento.</p>
+    <div class="agegate__actions">
+      <button class="btn btn--primary" id="age-yes" type="button">Sì, ho 18 anni o più</button>
+      <button class="btn btn--ghost" id="age-no" type="button">No</button>
+    </div>
+    <p class="agegate__no" id="age-no-msg" hidden>Non puoi accedere a questo sito. Torna quando avrai 18 anni.</p>
+  </div>
+</div>
+
+<header class="topbar" id="topbar">
+  <a href="#top" class="logo" aria-label="Nebbia, torna all'inizio">nebbia<span>vape atelier</span></a>
+  <nav class="topnav" aria-label="Sezioni">
+    <a href="#liquidi">Liquidi</a>
+    <a href="#come-funziona">Come funziona</a>
+    <a href="#negozio">Negozio</a>
+  </nav>
+  <button class="bag-btn" id="bag-open" type="button" aria-label="Apri la tua prenotazione">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg>
+    <span>Prenotazione</span>
+    <b class="bag-count" id="bag-count">0</b>
+  </button>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <canvas class="hero__mist" id="mist" aria-hidden="true"></canvas>
+    <div class="hero__text">
+      <p class="eyebrow">Prenota online · ritira in negozio</p>
+      <h1>Il gusto che ami,<br><em>pronto quando arrivi.</em></h1>
+      <p class="hero__lead">Scegli il tuo liquido, prenotalo in trenta secondi e passa a prenderlo. Lo trovi già pronto sul banco, con il tuo nome sopra. Paghi solo al ritiro.</p>
+      <div class="hero__cta">
+        <a class="btn btn--primary" href="#liquidi">Scegli il tuo liquido</a>
+        <a class="btn btn--ghost" href="#come-funziona">Come funziona</a>
+      </div>
+    </div>
+    <div class="hero__stage" aria-hidden="true">
+      <div class="float f1"><div class="bottle" style="--c1:#f2a65a;--c2:#b8452b"><span class="bottle__cap"></span><span class="bottle__body"><span class="bottle__liquid"></span><span class="bottle__label">Ambra<small>10 ml</small></span></span></div></div>
+      <div class="float f2"><div class="bottle bottle--xl" style="--c1:#b9a3ff;--c2:#5a3fb8"><span class="bottle__cap"></span><span class="bottle__body"><span class="bottle__liquid"></span><span class="bottle__label">Notte Viola<small>10 ml</small></span></span></div></div>
+      <div class="float f3"><div class="bottle" style="--c1:#9fe3d0;--c2:#2b8c7a"><span class="bottle__cap"></span><span class="bottle__body"><span class="bottle__liquid"></span><span class="bottle__label">Brezza<small>10 ml</small></span></span></div></div>
+    </div>
+  </section>
+
+  <ul class="promise" aria-label="Perché prenotare da noi">
+    <li><strong>Pronto in 2 ore</strong><span>Prenoti ora, ritiri oggi stesso</span></li>
+    <li><strong>Paghi al ritiro</strong><span>Nessuna carta, nessun anticipo</span></li>
+    <li><strong>Prodotti a norma</strong><span>Liquidi notificati, etichette in italiano</span></li>
+    <li><strong>Consigli veri</strong><span>Ti aiutiamo a trovare la nicotina giusta</span></li>
+  </ul>
+
+  <section class="section" id="liquidi">
+    <div class="section__head">
+      <p class="eyebrow">La collezione</p>
+      <h2>Trova il tuo gusto</h2>
+      <p class="section__lead">Tocca un liquido per scegliere formato e nicotina. Puoi prenotarne quanti vuoi.</p>
+    </div>
+
+    <div class="toolbar">
+      <div class="chips" role="group" aria-label="Filtra per famiglia di gusto" id="filters"></div>
+      <label class="search" for="search">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="search" type="search" placeholder="Cerca un gusto: menta, tabacco, fragola…" autocomplete="off">
+      </label>
+    </div>
+
+    <div class="grid" id="grid" aria-live="polite"></div>
+    <p class="empty" id="empty" hidden>Nessun liquido corrisponde alla ricerca. Prova con un altro gusto o scrivici: lo ordiniamo per te.</p>
+  </section>
+
+  <section class="feature" id="gusto-del-mese" aria-labelledby="feature-title">
+    <div class="feature__glow" aria-hidden="true"></div>
+    <div class="feature__bottle" aria-hidden="true">
+      <div class="bottle bottle--xxl" style="--c1:#ffcf8a;--c2:#9a4a1c"><span class="bottle__cap"></span><span class="bottle__body"><span class="bottle__liquid"></span><span class="bottle__label">Tabacco Reale<small>10 ml</small></span></span></div>
+    </div>
+    <div class="feature__text">
+      <p class="eyebrow">Il gusto del mese</p>
+      <h2 id="feature-title">Tabacco Reale</h2>
+      <p class="feature__notes">Virginia dorato · miele di castagno · un filo di vaniglia</p>
+      <p>Pensato per chi cerca la pienezza del tabacco senza durezza. Morbido alla prima boccata, rotondo fino all'ultima. Il più richiesto dai nostri clienti da tre stagioni.</p>
+      <button class="btn btn--primary" type="button" data-open="tabacco-reale">Prenota Tabacco Reale</button>
+    </div>
+  </section>
+
+  <section class="section" id="come-funziona">
+    <div class="section__head">
+      <p class="eyebrow">Come funziona</p>
+      <h2>Tre passi, nessuna attesa</h2>
+    </div>
+    <ol class="steps">
+      <li>
+        <span class="steps__n">1</span>
+        <h3>Scegli</h3>
+        <p>Sfoglia i liquidi, scegli formato e livello di nicotina. Se hai dubbi, scrivici: rispondiamo in pochi minuti.</p>
+      </li>
+      <li>
+        <span class="steps__n">2</span>
+        <h3>Prenota</h3>
+        <p>Indica nome, telefono, giorno e ora di ritiro. Ricevi subito un codice di prenotazione.</p>
+      </li>
+      <li>
+        <span class="steps__n">3</span>
+        <h3>Ritira e paga</h3>
+        <p>Vieni in negozio, dì il tuo codice e mostra un documento. Paghi in contanti o con carta, solo al ritiro.</p>
+      </li>
+    </ol>
+  </section>
+
+  <section class="section store" id="negozio">
+    <div class="store__info">
+      <p class="eyebrow">Il negozio</p>
+      <h2>Vieni a trovarci</h2>
+      <p class="store__address" id="shop-address"></p>
+      <table class="hours" aria-label="Orari di apertura">
+        <tbody id="shop-hours"></tbody>
+      </table>
+      <div class="store__actions">
+        <a class="btn btn--primary" id="shop-maps" href="#" target="_blank" rel="noopener">Indicazioni stradali</a>
+        <a class="btn btn--ghost" id="shop-wa" href="#" target="_blank" rel="noopener">Scrivici su WhatsApp</a>
+      </div>
+      <p class="store__phone">Telefono: <span id="shop-phone"></span></p>
+    </div>
+    <div class="store__faq">
+      <h3>Domande frequenti</h3>
+      <details>
+        <summary>Perché non posso comprare online?</summary>
+        <p>La legge italiana limita la vendita a distanza dei liquidi con nicotina. Per questo li prenoti qui e li ritiri in negozio, dove verifichiamo la maggiore età.</p>
+      </details>
+      <details>
+        <summary>Quanta nicotina scelgo?</summary>
+        <p>Dipende da quanto fumavi e dal tuo dispositivo. In negozio ti aiutiamo a scegliere; nel dubbio indica nelle note «da consigliare» e decidiamo insieme al ritiro.</p>
+      </details>
+      <details>
+        <summary>Cos'è un «Mix &amp; Vape»?</summary>
+        <p>Un flacone da 60 ml con 20 ml di aroma, da completare con basi neutre o nicotinate. Rende di più e costa meno al millilitro. Se vuoi te lo prepariamo noi al banco.</p>
+      </details>
+      <details>
+        <summary>Posso annullare o cambiare la prenotazione?</summary>
+        <p>Certo, basta scriverci su WhatsApp con il tuo codice. Teniamo i prodotti da parte per 3 giorni dalla data scelta.</p>
+      </details>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p class="warning">Questo prodotto contiene nicotina, una sostanza che crea una forte dipendenza. Ne è sconsigliato l'uso ai non fumatori.</p>
+  <div class="footer__row">
+    <p class="logo">nebbia<span>vape atelier</span></p>
+    <p>Vendita riservata ai maggiorenni. Verifica dell'età al ritiro.</p>
+    <p id="shop-legal"></p>
+  </div>
+</footer>
+
+<!-- Scheda prodotto -->
+<div class="sheet" id="product-sheet" role="dialog" aria-modal="true" aria-labelledby="ps-name" hidden>
+  <div class="sheet__backdrop" data-close></div>
+  <div class="sheet__panel">
+    <button class="sheet__close" type="button" data-close aria-label="Chiudi">×</button>
+    <div class="ps">
+      <div class="ps__visual" id="ps-visual"></div>
+      <div class="ps__body">
+        <p class="eyebrow" id="ps-family"></p>
+        <h2 id="ps-name"></h2>
+        <p class="ps__notes" id="ps-notes"></p>
+        <p class="ps__desc" id="ps-desc"></p>
+
+        <fieldset class="opt">
+          <legend>Formato</legend>
+          <div class="opt__list" id="ps-formats"></div>
+        </fieldset>
+        <fieldset class="opt" id="ps-nic-wrap">
+          <legend>Nicotina <small>mg/ml</small></legend>
+          <div class="opt__list" id="ps-nic"></div>
+        </fieldset>
+        <div class="ps__buy">
+          <div class="qty" aria-label="Quantità">
+            <button type="button" id="ps-minus" aria-label="Diminuisci">−</button>
+            <output id="ps-qty">1</output>
+            <button type="button" id="ps-plus" aria-label="Aumenta">+</button>
+          </div>
+          <button class="btn btn--primary btn--grow" type="button" id="ps-add">Aggiungi · <span id="ps-price"></span></button>
+        </div>
+        <p class="ps__hint">Paghi in negozio al momento del ritiro.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Prenotazione -->
+<div class="sheet sheet--side" id="bag" role="dialog" aria-modal="true" aria-labelledby="bag-title" hidden>
+  <div class="sheet__backdrop" data-close></div>
+  <div class="sheet__panel">
+    <button class="sheet__close" type="button" data-close aria-label="Chiudi">×</button>
+
+    <div id="bag-view">
+      <h2 id="bag-title">La tua prenotazione</h2>
+      <ul class="bag-list" id="bag-list"></ul>
+      <p class="bag-empty" id="bag-empty">Non hai ancora scelto nessun liquido. <a href="#liquidi" data-close>Sfoglia la collezione</a></p>
+
+      <form class="book" id="book-form" name="prenotazione" method="POST" data-netlify="true" netlify-honeypot="sito-web" novalidate>
+        <input type="hidden" name="form-name" value="prenotazione">
+        <p class="hp"><label>Non compilare <input name="sito-web" tabindex="-1" autocomplete="off"></label></p>
+        <div class="bag-total"><span>Totale da pagare al ritiro</span><strong id="bag-total">€ 0,00</strong></div>
+
+        <h3>Quando passi?</h3>
+        <div class="days" id="days" role="radiogroup" aria-label="Giorno di ritiro"></div>
+        <label class="field" for="slot">Orario
+          <select id="slot" name="orario" required></select>
+        </label>
+
+        <h3>I tuoi dati</h3>
+        <label class="field" for="nome">Nome e cognome
+          <input id="nome" name="nome" autocomplete="name" required placeholder="Mario Rossi">
+        </label>
+        <label class="field" for="telefono">Cellulare
+          <input id="telefono" name="telefono" type="tel" autocomplete="tel" required placeholder="333 123 4567" inputmode="tel">
+        </label>
+        <label class="field" for="note"><span>Note <small>(facoltative)</small></span>
+          <textarea id="note" name="note" rows="2" placeholder="Es. nicotina da consigliare, preparami il Mix &amp; Vape"></textarea>
+        </label>
+        <label class="check" for="maggiorenne">
+          <input id="maggiorenne" name="maggiorenne" type="checkbox" required>
+          <span>Sono maggiorenne e porterò un documento al ritiro.</span>
+        </label>
+        <label class="check" for="privacy">
+          <input id="privacy" name="privacy" type="checkbox" required>
+          <span>Acconsento all'uso dei miei dati solo per gestire questa prenotazione.</span>
+        </label>
+        <input type="hidden" name="giorno" id="f-giorno">
+        <input type="hidden" name="prodotti" id="f-prodotti">
+        <input type="hidden" name="totale" id="f-totale">
+        <input type="hidden" name="codice" id="f-codice">
+        <p class="form-error" id="form-error" role="alert" hidden></p>
+        <button class="btn btn--primary btn--block" type="submit" id="book-submit">Conferma prenotazione</button>
+      </form>
+    </div>
+
+    <div id="done-view" class="done" hidden>
+      <div class="done__seal" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>
+      </div>
+      <h2>Ci vediamo presto, <span id="done-name"></span></h2>
+      <p class="done__lead" id="done-lead"></p>
+      <div class="done__code">
+        <span>Il tuo codice</span>
+        <strong id="done-code"></strong>
+        <button type="button" class="link-btn" id="copy-code">Copia</button>
+      </div>
+      <dl class="done__when">
+        <div><dt>Ritiro</dt><dd id="done-when"></dd></div>
+        <div><dt>Totale al ritiro</dt><dd id="done-total"></dd></div>
+      </dl>
+      <ul class="bag-list bag-list--small" id="done-list"></ul>
+      <a class="btn btn--primary btn--block" id="done-wa" href="#" target="_blank" rel="noopener">Invia la prenotazione su WhatsApp</a>
+      <button type="button" class="btn btn--ghost btn--block" id="done-new">Fai un'altra prenotazione</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+<script src="app.js"></script>
+</body>
+</html>

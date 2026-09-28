@@ -1,0 +1,10 @@
+# Sito statico: Netlify pubblica questa cartella così com'è.
+# Le prenotazioni arrivano in Netlify > Forms > "prenotazione".
+[build]
+  publish = "."
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"

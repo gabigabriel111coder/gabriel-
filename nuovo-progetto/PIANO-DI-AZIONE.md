@@ -557,13 +557,13 @@ Dopo la prima correzione la navigazione tra le pagine era ancora lenta. Le misur
 Chi chiede assistenza da remoto fa entrare uno sconosciuto nel proprio computer: prima di tutto deve fidarsi. Il sito ora lo dice in ogni punto in cui il cliente decide.
 
 ### Fatto
-- **La tua foto, rotonda, in quattro punti:**
+- **Il tuo spazio per la foto, rotondo, in quattro punti:**
   - nell'apertura della home, accanto a «Ti rispondo io, di persona»;
   - nelle pagine dei servizi e in quella della prenotazione;
   - grande in «Chi sono», con un anello colorato che gira mentre scorri;
   - in un cerchio che accompagna lo scorrimento: sul computer in basso a sinistra, con la disponibilità del momento; sul telefono dentro il pulsante WhatsApp.
 
-  La foto è `sito/assets/foto.jpg`, già ritagliata sul volto e senza dati nascosti (posizione, telefono).
+  Adesso in questi punti c'è il logo. Quando carichi una foto (vedi sotto), prende il suo posto da sola in tutti e quattro, ritagliata sul volto e senza dati nascosti (posizione, telefono).
 - **Testi riscritti sulla fiducia:**
   - il prezzo lo dici prima, per iscritto, e non cambia senza il sì del cliente;
   - «se non risolvo, non paghi»;
@@ -571,11 +571,11 @@ Chi chiede assistenza da remoto fa entrare uno sconosciuto nel proprio computer:
   - vede tutto e chiude quando vuole;
   - risponde e si collega sempre la stessa persona, niente call center.
 - **«Chi sono» subito dopo l'apertura della home**, in un riquadro tutto tuo:
-  - la tua foto grande e il titolo «Ci metto la faccia»;
+  - lo spazio rotondo per la foto (ora con il logo) e il titolo «Un tecnico vero, sempre lo stesso»;
   - un testo in prima persona: 15 anni di lavoro, rispondi e ti colleghi sempre tu, la fiducia te la vuoi guadagnare;
   - «Cosa ti prometto»: sei una persona di parola, i dati non si perdono, la connessione è sicura, fai le cose per bene;
   - anni di esperienza, città e fattura elettronica, più la P.IVA quando la inserisci.
-- **Anteprima del link con la tua foto:** quando condividi il sito su Facebook, WhatsApp o Messenger compare un'immagine con il logo, il titolo, la tua foto e «Tecnico informatico da 15 anni». Le pagine in inglese hanno la loro versione in inglese.
+- **Anteprima del link:** quando condividi il sito su Facebook, WhatsApp o Messenger compare un'immagine con il logo e il titolo «Il tuo computer, sistemato a distanza». Le pagine in inglese hanno la loro versione in inglese.
   - Facebook la mostra solo se il progetto su Netlify è pubblico.
   - Se Facebook mostra ancora un'anteprima vecchia, apri il [Debugger di condivisione](https://developers.facebook.com/tools/debug/), incolla il link del sito e premi il pulsante per rileggere la pagina («Scrape Again»).
 - **Verifica del numero** nella sezione Sicurezza: chi riceve una chiamata «a nome tuo» scrive il numero e il sito gli dice subito se sei davvero tu. È la difesa più diretta contro la truffa del finto tecnico.
@@ -583,19 +583,20 @@ Chi chiede assistenza da remoto fa entrare uno sconosciuto nel proprio computer:
 - **Per Google:** la città è nei dati dell'attività, e il tuo nome ci va da solo quando lo scrivi in `config.js`.
 - **Niente segnaposto in vista:** finché nome e P.IVA non ci sono, il sito mostra «Gabriel Tech» invece delle parentesi quadre.
 
-### Come cambiare la foto (2 minuti, anche dal telefono)
+### Come aggiungere la tua foto (2 minuti, anche dal telefono)
+Al momento non c'è: al suo posto il sito mostra il logo. Quando vuoi metterci la tua faccia:
 1. Scegli una foto vera:
    - viso ben illuminato, sorriso, sfondo semplice;
    - meglio quadrata o verticale;
    - non importa se è grande: il sito la alleggerisce da solo.
-2. Rinominala **`foto.jpg`**, come quella di adesso.
-3. Apri [questa pagina di GitHub](https://github.com/gabigabriel111coder/gabriel-/upload/main/nuovo-progetto/sito/assets), trascina la foto e premi **Commit changes**: la nuova prende il posto della vecchia.
-4. Netlify ripubblica il sito da solo: dopo un paio di minuti la foto nuova compare in tutti e quattro i punti.
+2. Rinominala **`foto.jpg`**.
+3. Apri [questa pagina di GitHub](https://github.com/gabigabriel111coder/gabriel-/upload/main/nuovo-progetto/sito/assets), trascina la foto e premi **Commit changes**.
+4. Netlify ripubblica il sito da solo: dopo un paio di minuti la foto compare in tutti e quattro i punti al posto del logo.
 
 Il sito la ritaglia da solo, cercando il volto. Se il risultato non ti convince, ritagliala prima tu, quadrata, oppure mandamela e la preparo io.
 
 ### Da fare, in ordine di importanza
-1. **Nome e cognome e P.IVA** in `config.js` (`titolare` e `piva`): compaiono in «Chi sono», sotto la foto, a piè di pagina e nei dati per Google. Un nome vero vale più di qualsiasi slogan.
+1. **Nome e cognome e P.IVA** in `config.js` (`titolare` e `piva`): compaiono in «Chi sono», nel riquadro, a piè di pagina e nei dati per Google. Un nome vero vale più di qualsiasi slogan.
 2. **Scheda dell'attività su Google** (gratis), con sede a Bassano del Grappa, orari e foto. È il primo posto dove la gente controlla se esisti davvero. Poi copia il link «Chiedi recensioni» in `config.js` (`linkRecensioneGoogle`).
 3. **Le prime 5 recensioni vere**, chieste ai primi clienti soddisfatti: il sito le mostra da solo quando le scrivi in `config.js` (`recensioni`), con il permesso di chi le ha scritte.
 4. **Video di presentazione di 30 secondi** (`video` in `config.js`): la tua faccia e la tua voce che spiegano come lavori. Convince più di ogni testo.
